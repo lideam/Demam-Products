@@ -1,5 +1,10 @@
 import { MainRoutes } from "./routes/MainRoutes";
+import { UtilProvider } from "./context";
 
 export default function App() {
-  return <MainRoutes />;
+  return (
+    <UtilProvider>
+      <MainRoutes />
+    </UtilProvider>
+  );
 }

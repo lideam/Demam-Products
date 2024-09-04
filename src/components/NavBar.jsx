@@ -19,12 +19,13 @@ import {
   ShoppingBagIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
+import { useUtilContext } from "../context";
 
 const navigation = {
   categories: [
     {
-      id: "women",
-      name: "Women",
+      id: "Categories",
+      name: "Categories",
       featured: [
         {
           name: "New Arrivals",
@@ -84,75 +85,16 @@ const navigation = {
         },
       ],
     },
-    {
-      id: "men",
-      name: "Men",
-      featured: [
-        {
-          name: "New Arrivals",
-          href: "#",
-          imageSrc:
-            "https://tailwindui.com/img/ecommerce-images/product-page-04-detail-product-shot-01.jpg",
-          imageAlt:
-            "Drawstring top with elastic loop closure and textured interior padding.",
-        },
-        {
-          name: "Artwork Tees",
-          href: "#",
-          imageSrc:
-            "https://tailwindui.com/img/ecommerce-images/category-page-02-image-card-06.jpg",
-          imageAlt:
-            "Three shirts in gray, white, and blue arranged on table with same line drawing of hands and shapes overlapping on front of shirt.",
-        },
-      ],
-      sections: [
-        {
-          id: "clothing",
-          name: "Clothing",
-          items: [
-            { name: "Tops", href: "#" },
-            { name: "Pants", href: "#" },
-            { name: "Sweaters", href: "#" },
-            { name: "T-Shirts", href: "#" },
-            { name: "Jackets", href: "#" },
-            { name: "Activewear", href: "#" },
-            { name: "Browse All", href: "#" },
-          ],
-        },
-        {
-          id: "accessories",
-          name: "Accessories",
-          items: [
-            { name: "Watches", href: "#" },
-            { name: "Wallets", href: "#" },
-            { name: "Bags", href: "#" },
-            { name: "Sunglasses", href: "#" },
-            { name: "Hats", href: "#" },
-            { name: "Belts", href: "#" },
-          ],
-        },
-        {
-          id: "brands",
-          name: "Brands",
-          items: [
-            { name: "Re-Arranged", href: "#" },
-            { name: "Counterfeit", href: "#" },
-            { name: "Full Nelson", href: "#" },
-            { name: "My Way", href: "#" },
-          ],
-        },
-      ],
-    },
   ],
   pages: [
-    { name: "Company", href: "#" },
-    { name: "Stores", href: "#" },
+    // { name: "Company", href: "#" },
   ],
 };
 
 export const NavBar = () => {
   const [open, setOpen] = useState(false);
-
+  const { toggleCartsVisibility } = useUtilContext();
+  const [search, setSearch] = useState(false);
   return (
     <div className="bg-white">
       {/* Mobile menu */}
@@ -328,13 +270,15 @@ export const NavBar = () => {
 
               {/* Logo */}
               <div className="ml-4 flex lg:ml-0">
-                <a href="#">
-                  <span className="sr-only">Your Company</span>
+                <a href="#" className="flex justify-center items-center gap-4">
                   <img
                     alt=""
                     src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
                     className="h-8 w-auto"
                   />
+                  <span className=" font-bold font-mono text-2xl">
+                    Bella Cosmo Shop -
+                  </span>
                 </a>
               </div>
 
@@ -462,27 +406,43 @@ export const NavBar = () => {
                   >
                     <img
                       alt=""
-                      src="https://tailwindui.com/img/flags/flag-canada.svg"
+                      src="https://imgs.search.brave.com/1OQhujPCjL2xtbtta_zigDz5Z9r3kJlj2_8ap2OsrBQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/YnJpdGFubmljYS5j/b20vMTIvMTItMDA0/LTM3MDhCMDY3L0Zs/YWctRXRoaW9waWEu/anBn"
                       className="block h-auto w-5 flex-shrink-0"
                     />
-                    <span className="ml-3 block text-sm font-medium">CAD</span>
+                    <span className="ml-3 block text-sm font-medium">ETB</span>
                     <span className="sr-only">, change currency</span>
                   </a>
                 </div>
 
                 {/* Search */}
                 <div className="flex lg:ml-6">
-                  <a href="#" className="p-2 text-gray-400 hover:text-gray-500">
+                  <a
+                    href="#"
+                    className="relative p-2 text-gray-400 hover:text-gray-500"
+                  >
+                    {search && (
+                      <input
+                        type="search"
+                        placeholder="search something here.."
+                        className="absolute border-4 outline-none border-blue-700 rounded-lg p-2 top-12 right-0 w-[300px]"
+                        name=""
+                        id=""
+                      />
+                    )}
                     <span className="sr-only">Search</span>
                     <MagnifyingGlassIcon
                       aria-hidden="true"
                       className="h-6 w-6"
+                      onClick={() => setSearch(!search)}
                     />
                   </a>
                 </div>
 
                 {/* Cart */}
-                <div className="ml-4 flow-root lg:ml-6">
+                <div
+                  onClick={toggleCartsVisibility}
+                  className="ml-4 flow-root lg:ml-6"
+                >
                   <a href="#" className="group -m-2 flex items-center p-2">
                     <ShoppingBagIcon
                       aria-hidden="true"

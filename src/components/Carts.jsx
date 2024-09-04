@@ -1,4 +1,7 @@
+import { useUtilContext } from "../context";
+
 export const Carts = () => {
+    const { toggleCartsVisibility } = useUtilContext();
   return (
     <div
       className="fixed w-screen max-w-sm border border-gray-600 bg-gray-100 px-4 py-8 sm:px-6 lg:px-8 z-50"
@@ -6,7 +9,10 @@ export const Carts = () => {
       role="dialog"
       tabIndex="-1"
     >
-      <button className="absolute end-4 top-4 bg-gray-100 text-gray-600 transition hover:scale-110">
+      <button
+        onClick={toggleCartsVisibility}
+        className="absolute end-4 top-4 bg-gray-100 text-gray-600 transition hover:scale-110"
+      >
         <span className="sr-only">Close cart</span>
 
         <svg
