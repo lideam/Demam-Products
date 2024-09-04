@@ -156,7 +156,7 @@ export const NavBar = () => {
   return (
     <div className="bg-white">
       {/* Mobile menu */}
-      <Dialog open={open} onClose={setOpen} className="relative z-40 lg:hidden">
+      <Dialog open={open} onClose={setOpen} className="fixed z-40 lg:hidden">
         <DialogBackdrop
           transition
           className="fixed inset-0 bg-black bg-opacity-25 transition-opacity duration-300 ease-linear data-[closed]:opacity-0"
