@@ -19,21 +19,20 @@ export const Home = () => {
               className="h-64 bg-cover lg:h-full"
               style={{
                 backgroundImage:
-                  "url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80')",
+                  "url('https://images.pexels.com/photos/208052/pexels-photo-208052.jpeg?auto=compress&cs=tinysrgb&w=600')",
               }}
             ></div>
           </div>
 
           <div className="max-w-xl px-6 py-12 lg:max-w-5xl lg:w-1/2">
             <h2 className="text-2xl font-semibold text-gray-800 dark:text-white md:text-3xl">
-              Build Your New <span className="text-blue-500">Idea</span>
+              Elevate Your Everyday<span className="text-blue-500"> Style</span>
             </h2>
 
             <p className="mt-4 text-gray-500 dark:text-gray-300">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem
-              modi reprehenderit vitae exercitationem aliquid dolores ullam
-              temporibus enim expedita aperiam mollitia iure consectetur dicta
-              tenetur, porro consequuntur saepe accusantium consequatur.
+              Shop the essentials that make every day a little more beautiful.
+              From skincare must-haves to chic accessories, Bella Cosmo Shop has
+              everything you need to shine.
             </p>
 
             <div className="inline-flex w-full mt-6 sm:w-auto">

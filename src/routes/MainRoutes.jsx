@@ -49,7 +49,7 @@ export const MainRoutes = () => {
               style={{
                 cursor: "grab",
                 padding: "8px 16px",
-                backgroundColor: "#4CAF50",
+                backgroundColor: "blue",
                 color: "white",
                 border: "none",
                 borderRadius: "4px",

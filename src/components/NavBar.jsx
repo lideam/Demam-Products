@@ -95,6 +95,7 @@ export const NavBar = () => {
   const [open, setOpen] = useState(false);
   const { toggleCartsVisibility } = useUtilContext();
   const [search, setSearch] = useState(false);
+
   return (
     <div className="bg-white">
       {/* Mobile menu */}
@@ -234,11 +235,11 @@ export const NavBar = () => {
               <a href="#" className="-m-2 flex items-center p-2">
                 <img
                   alt=""
-                  src="https://tailwindui.com/img/flags/flag-canada.svg"
+                  src="https://imgs.search.brave.com/1OQhujPCjL2xtbtta_zigDz5Z9r3kJlj2_8ap2OsrBQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/YnJpdGFubmljYS5j/b20vMTIvMTItMDA0/LTM3MDhCMDY3L0Zs/YWctRXRoaW9waWEu/anBn"
                   className="block h-auto w-5 flex-shrink-0"
                 />
                 <span className="ml-3 block text-base font-medium text-gray-900">
-                  CAD
+                  ETB
                 </span>
                 <span className="sr-only">, change currency</span>
               </a>
@@ -277,7 +278,7 @@ export const NavBar = () => {
                     className="h-8 w-auto"
                   />
                   <span className=" font-bold font-mono text-2xl">
-                    Bella Cosmo Shop -
+                    Bella Cosmo Shop
                   </span>
                 </a>
               </div>

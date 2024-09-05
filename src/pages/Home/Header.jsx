@@ -6,14 +6,17 @@ export const Header = () => {
           <div className="bg-blue-600 p-8 md:p-12 lg:px-16 lg:py-24">
             <div className="mx-auto max-w-xl text-center">
               <h2 className="text-2xl font-bold text-white md:text-3xl">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit
+                Unleash Your Inner Glamour
               </h2>
 
               <p className="hidden text-white/90 sm:mt-4 sm:block">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Et,
-                egestas tempus tellus etiam sed. Quam a scelerisque amet
-                ullamcorper eu enim et fermentum, augue. Aliquet amet volutpat
-                quisque ut interdum tincidunt duis.
+                Discover the latest trends in beauty, skincare, and fashion at
+                Bella Cosmo Shop. Our curated collection of top-tier products is
+                designed to empower and inspire. Whether you're looking for the
+                perfect makeup, a rejuvenating skincare routine, or stylish
+                accessories, we've got you covered. Elevate your beauty game and
+                embrace the confidence that comes with looking and feeling your
+                best.
               </p>
 
               <div className="mt-4 md:mt-8">
@@ -30,13 +33,13 @@ export const Header = () => {
           <div className="grid grid-cols-2 gap-4 md:grid-cols-1 lg:grid-cols-2">
             <img
               alt=""
-              src="https://images.unsplash.com/photo-1621274790572-7c32596bc67f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=654&q=80"
+              src="https://images.pexels.com/photos/286951/pexels-photo-286951.jpeg?auto=compress&cs=tinysrgb&w=600"
               className="h-40 w-full object-cover sm:h-56 md:h-[450px]"
             />
 
             <img
               alt=""
-              src="https://images.unsplash.com/photo-1567168544813-cc03465b4fa8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
+              src="https://images.pexels.com/photos/1926620/pexels-photo-1926620.jpeg?auto=compress&cs=tinysrgb&w=600"
               className="h-40 w-full object-cover sm:h-56 md:h-[450px]"
             />
           </div>
