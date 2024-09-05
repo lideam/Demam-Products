@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import { Home } from "../pages";
+import { Home, ProductDetail } from "../pages";
 import { Footer, NavBar, Carts } from "../components";
 import { useUtilContext } from "../context";
 
@@ -62,9 +62,12 @@ export const MainRoutes = () => {
             <Carts />
           </div>
         )}
-        <Routes>
-          <Route path="/" element={<Home />} />
-        </Routes>
+        <div className="min-h-screen">
+          <Routes>
+            <Route exact path="/" element={<Home />} />
+            <Route path="/item" element={<ProductDetail />} />
+          </Routes>
+        </div>
       </div>
       <Footer />
     </div>
