@@ -3,13 +3,31 @@ import { Filter } from "./Filter";
 import { List } from "./List";
 import { Break } from "./Break";
 import { Featured } from "./Featured";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export const Home = () => {
+  const [loadProducts, setLoadProducts] = useState(true);
+  const [products, setProducts] = useState({});
+
+  const getProducts = async () => {
+    setLoadProducts(true);
+    const { data } = await axios.get("http://localhost:5000/api/products");
+    setProducts(data);
+    setLoadProducts(false);
+  };
+
+  useEffect(() => {
+    getProducts();
+  }, []);
+
+  console.log(products);
+
   return (
     <div className="flex flex-col gap-8">
       <Header />
       <Filter />
-      <List />
+      {!loadProducts && <List products={products} />}
       <Break />
       <Featured />
       <section className=" dark:bg-gray-800 lg:py-12 lg:flex lg:justify-center">
