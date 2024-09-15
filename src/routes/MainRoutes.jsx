@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import { Home, ProductDetail } from "../pages";
+import { Home } from "../pages";
 import { Footer, NavBar, Carts } from "../components";
 import { useUtilContext } from "../context";
 
@@ -33,8 +33,8 @@ export const MainRoutes = () => {
 
   return (
     <div onMouseMove={handleMouseMove} onMouseUp={handleMouseUp}>
-      <NavBar />
-      <div className="mx-auto max-w-screen-2xl px-4 py-8 sm:px-6 lg:px-8 gap-8 flex flex-col">
+      {/* <NavBar /> */}
+      <div className="">
         {isCartsVisible && (
           <div
             style={{
@@ -65,11 +65,11 @@ export const MainRoutes = () => {
         <div className="min-h-screen">
           <Routes>
             <Route exact path="/" element={<Home />} />
-            <Route path="/item" element={<ProductDetail />} />
+            {/* <Route path="/item" element={<ProductDetail />} /> */}
           </Routes>
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

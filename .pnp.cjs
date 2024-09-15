@@ -28,6 +28,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./",\
         "packageDependencies": [\
           ["@eslint/js", "npm:9.9.1"],\
+          ["@fontsource/playfair-display", "npm:5.1.0"],\
           ["@headlessui/react", "virtual:d9650954c7f1725ea712d2e40695de9ea5d1c0fa9b89379134c62909d440d91b03d6c37e2823804a3404472b90a5bec73c82193190dd3c4db4c9e9edd75db91e#npm:2.1.4"],\
           ["@heroicons/react", "virtual:d9650954c7f1725ea712d2e40695de9ea5d1c0fa9b89379134c62909d440d91b03d6c37e2823804a3404472b90a5bec73c82193190dd3c4db4c9e9edd75db91e#npm:2.1.5"],\
           ["@shadcn/ui", "npm:0.0.4"],\
@@ -717,6 +718,15 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../../.yarn/berry/cache/@floating-ui-utils-npm-0.2.7-bfe9040526-10c0.zip/node_modules/@floating-ui/utils/",\
         "packageDependencies": [\
           ["@floating-ui/utils", "npm:0.2.7"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@fontsource/playfair-display", [\
+      ["npm:5.1.0", {\
+        "packageLocation": "../../../.yarn/berry/cache/@fontsource-playfair-display-npm-5.1.0-30302b974d-10c0.zip/node_modules/@fontsource/playfair-display/",\
+        "packageDependencies": [\
+          ["@fontsource/playfair-display", "npm:5.1.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -2950,6 +2960,7 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["frontend", "workspace:."],\
           ["@eslint/js", "npm:9.9.1"],\
+          ["@fontsource/playfair-display", "npm:5.1.0"],\
           ["@headlessui/react", "virtual:d9650954c7f1725ea712d2e40695de9ea5d1c0fa9b89379134c62909d440d91b03d6c37e2823804a3404472b90a5bec73c82193190dd3c4db4c9e9edd75db91e#npm:2.1.4"],\
           ["@heroicons/react", "virtual:d9650954c7f1725ea712d2e40695de9ea5d1c0fa9b89379134c62909d440d91b03d6c37e2823804a3404472b90a5bec73c82193190dd3c4db4c9e9edd75db91e#npm:2.1.5"],\
           ["@shadcn/ui", "npm:0.0.4"],\

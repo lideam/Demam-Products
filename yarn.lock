@@ -514,6 +514,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@fontsource/playfair-display@npm:^5.1.0":
+  version: 5.1.0
+  resolution: "@fontsource/playfair-display@npm:5.1.0"
+  checksum: 10c0/68ff729f8e09cffa26079908f687458de307a5b8f61acbff5acc74822be7cbccbefda58f0460ac401da9cee77411065ad8322ecf22d4fddfd2749048dbd51687
+  languageName: node
+  linkType: hard
+
 "@headlessui/react@npm:^2.1.4":
   version: 2.1.4
   resolution: "@headlessui/react@npm:2.1.4"
@@ -2345,6 +2352,7 @@ __metadata:
   resolution: "frontend@workspace:."
   dependencies:
     "@eslint/js": "npm:^9.9.0"
+    "@fontsource/playfair-display": "npm:^5.1.0"
     "@headlessui/react": "npm:^2.1.4"
     "@heroicons/react": "npm:^2.1.5"
     "@shadcn/ui": "npm:^0.0.4"
