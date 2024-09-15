@@ -37,7 +37,7 @@ export const Categories = () => {
         <h1 className="text-4xl font-extrabold">Our Store</h1>
         <p>Explore our range of products. </p>
       </header>
-      <div className="px-12 py-8 flex gap-12">
+      <div className="pl-12 py-8 flex justify-center items-center w-full gap-12">
         <img
           src="https://images.pexels.com/photos/11403818/pexels-photo-11403818.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
           alt=""

@@ -2347,6 +2347,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"framer-motion@npm:^11.5.4":
+  version: 11.5.4
+  resolution: "framer-motion@npm:11.5.4"
+  dependencies:
+    tslib: "npm:^2.4.0"
+  peerDependencies:
+    "@emotion/is-prop-valid": "*"
+    react: ^18.0.0
+    react-dom: ^18.0.0
+  peerDependenciesMeta:
+    "@emotion/is-prop-valid":
+      optional: true
+    react:
+      optional: true
+    react-dom:
+      optional: true
+  checksum: 10c0/2405aad0ed3cbd2ad6ab2dedec5146483feb8e67f6f3d16f38bfea23f0e31a4fad5f1660f307767a5e9c27b40c708b64c0ba65841824a38144e401f3bab31566
+  languageName: node
+  linkType: hard
+
 "frontend@workspace:.":
   version: 0.0.0-use.local
   resolution: "frontend@workspace:."
@@ -2366,11 +2386,13 @@ __metadata:
     eslint-plugin-react: "npm:^7.35.0"
     eslint-plugin-react-hooks: "npm:^5.1.0-rc.0"
     eslint-plugin-react-refresh: "npm:^0.4.9"
+    framer-motion: "npm:^11.5.4"
     globals: "npm:^15.9.0"
     postcss: "npm:^8.4.44"
     react: "npm:^18.3.1"
     react-dom: "npm:^18.3.1"
     react-hot-toast: "npm:^2.4.1"
+    react-intersection-observer: "npm:^9.13.1"
     react-router-dom: "npm:^6.26.1"
     tailwindcss: "npm:^3.4.10"
     vite: "npm:^5.4.1"
@@ -3973,6 +3995,19 @@ __metadata:
     react: ">=16"
     react-dom: ">=16"
   checksum: 10c0/591ecec3c6adc1cdb70f00165a57baa3d7f75d0d30fa767213c36496bdcc6be2b2e6a3edbf7c04f7d726a1b17dcfb5e7feb2136b04b17c9ccb769894b970f365
+  languageName: node
+  linkType: hard
+
+"react-intersection-observer@npm:^9.13.1":
+  version: 9.13.1
+  resolution: "react-intersection-observer@npm:9.13.1"
+  peerDependencies:
+    react: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+    react-dom: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+  peerDependenciesMeta:
+    react-dom:
+      optional: true
+  checksum: 10c0/c64722db407e0ca83945bf97621ab4618fa74f3a70b528ff43988818d46feee8962bd12e70203d2d92b31030889a1f813d00e0aa3d781a7bc39fb293c277ee04
   languageName: node
   linkType: hard
 
