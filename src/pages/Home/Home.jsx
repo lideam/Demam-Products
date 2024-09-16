@@ -3,8 +3,7 @@ import { useInView } from "react-intersection-observer";
 import { About } from "./About";
 import { Categories } from "./Categories";
 import { Featured } from "./Featured";
-import { Footer } from "./Footer";
-import { Header } from "./Header";
+import { Header, Footer } from "../../components";
 import { Hero } from "./Hero";
 
 const fadeInVariant = (direction) => ({
@@ -13,7 +12,6 @@ const fadeInVariant = (direction) => ({
 });
 
 export const Home = () => {
-  // Setting up InView hooks for each section
   const [headerRef, headerInView] = useInView({ triggerOnce: true });
   const [heroRef, heroInView] = useInView({ triggerOnce: true });
   const [featuredRef, featuredInView] = useInView({ triggerOnce: true });
@@ -22,8 +20,7 @@ export const Home = () => {
   const [footerRef, footerInView] = useInView({ triggerOnce: true });
 
   return (
-    <div className="bg-white min-h-screen">
-      {/* Header Section */}
+    <div className="bg-[#f4efe9] min-h-screen">
       <motion.div
         ref={headerRef}
         initial="hidden"
@@ -33,7 +30,6 @@ export const Home = () => {
         <Header />
       </motion.div>
 
-      {/* Hero Section */}
       <motion.div
         ref={heroRef}
         initial="hidden"
@@ -43,7 +39,6 @@ export const Home = () => {
         <Hero />
       </motion.div>
 
-      {/* Featured Section */}
       <motion.div
         ref={featuredRef}
         initial="hidden"
@@ -52,8 +47,7 @@ export const Home = () => {
       >
         <Featured />
       </motion.div>
-
-      {/* About Section */}
+=
       <motion.div
         ref={aboutRef}
         initial="hidden"
@@ -62,8 +56,7 @@ export const Home = () => {
       >
         <About />
       </motion.div>
-
-      {/* Categories Section */}
+=
       <motion.div
         ref={categoriesRef}
         initial="hidden"
@@ -71,9 +64,7 @@ export const Home = () => {
         variants={fadeInVariant("down")}
       >
         <Categories />
-      </motion.div>
-
-      {/* Footer Section */}
+      </motion.div>=
       <motion.div
         ref={footerRef}
         initial="hidden"

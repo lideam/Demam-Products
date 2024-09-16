@@ -75,7 +75,7 @@ export const Featured = () => {
   ];
 
   return (
-    <div className="mt-4 pl-12 font-playfair">
+    <div className="my-20 pl-12 font-playfair">
       <div className="w-full flex justify-between pr-12">
         <h1 className="text-xl">Featured Products</h1>
         <p className=" underline cursor-pointer">View Store</p>

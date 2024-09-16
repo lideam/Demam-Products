@@ -37,15 +37,15 @@ export const Categories = () => {
         <h1 className="text-4xl font-extrabold">Our Store</h1>
         <p>Explore our range of products. </p>
       </header>
-      <div className="pl-12 py-8 flex justify-center items-center w-full gap-12">
+      <div className="pl-12 py-8 grid grid-cols-4 gap-12 w-full">
         <img
           src="https://images.pexels.com/photos/11403818/pexels-photo-11403818.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
           alt=""
-          className="w-[1000px]"
+          className="col-span-2 w-full h-auto object-cover"
         />
-        <div className="flex flex-wrap gap-20">
+        <div className="col-span-2 grid grid-cols-2 gap-8">
           {products.map((product, index) => (
-            <ProductCard ey={index} product={product} />
+            <ProductCard key={index} product={product} />
           ))}
         </div>
       </div>

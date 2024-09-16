@@ -42,3 +42,13 @@
 ::-ms-scrollbar-thumb:hover {
   background: #D17A5A; /* Terracotta for the thumb when hovered */
 }
+
+/* Override the default color */
+#nprogress .bar {
+  background: #8B4513; /* Set your desired color */
+}
+
+/* Customize the height of the progress bar */
+#nprogress .bar {
+  height: 4px; /* Adjust the thickness */
+}
