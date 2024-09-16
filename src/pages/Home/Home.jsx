@@ -3,7 +3,6 @@ import { useInView } from "react-intersection-observer";
 import { About } from "./About";
 import { Categories } from "./Categories";
 import { Featured } from "./Featured";
-import { Header, Footer } from "../../components";
 import { Hero } from "./Hero";
 
 const fadeInVariant = (direction) => ({
@@ -12,24 +11,13 @@ const fadeInVariant = (direction) => ({
 });
 
 export const Home = () => {
-  const [headerRef, headerInView] = useInView({ triggerOnce: true });
   const [heroRef, heroInView] = useInView({ triggerOnce: true });
   const [featuredRef, featuredInView] = useInView({ triggerOnce: true });
   const [aboutRef, aboutInView] = useInView({ triggerOnce: true });
   const [categoriesRef, categoriesInView] = useInView({ triggerOnce: true });
-  const [footerRef, footerInView] = useInView({ triggerOnce: true });
 
   return (
-    <div className="bg-[#f4efe9] min-h-screen">
-      <motion.div
-        ref={headerRef}
-        initial="hidden"
-        animate={headerInView ? "visible" : "hidden"}
-        variants={fadeInVariant("down")}
-      >
-        <Header />
-      </motion.div>
-
+    <div className="min-h-screen">
       <motion.div
         ref={heroRef}
         initial="hidden"
@@ -64,15 +52,6 @@ export const Home = () => {
         variants={fadeInVariant("down")}
       >
         <Categories />
-      </motion.div>
-
-      <motion.div
-        ref={footerRef}
-        initial="hidden"
-        animate={footerInView ? "visible" : "hidden"}
-        variants={fadeInVariant("up")}
-      >
-        <Footer />
       </motion.div>
     </div>
   );
