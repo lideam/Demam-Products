@@ -41,9 +41,9 @@ export const Categories = () => {
         <img
           src="https://images.pexels.com/photos/11403818/pexels-photo-11403818.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
           alt=""
-          className="col-span-2 w-full h-auto object-cover"
+          className="col-span-2 w-full 4"
         />
-        <div className="col-span-2 grid grid-cols-2 gap-8">
+        <div className="col-span-2 grid grid-cols-2 gap-8 items-center">
           {products.map((product, index) => (
             <ProductCard key={index} product={product} />
           ))}
