@@ -10,9 +10,8 @@ export const Hero = () => {
             src="https://images.pexels.com/photos/10870106/pexels-photo-10870106.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
             alt=""
             className="w-auto"
-            initial={{ opacity: 0, x: -100 }} // Start invisible and 100px to the left
-            animate={{ opacity: 1, x: 0 }} // Fade in and slide into view
-            transition={{ duration: 1.2 }}
+            initial={{ opacity: 0, x: -100 }} 
+            animate={{ opacity: 1, x: 0 }} 
           />
           <motion.img
             src="https://images.pexels.com/photos/3018845/pexels-photo-3018845.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"

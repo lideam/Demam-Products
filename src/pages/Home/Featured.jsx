@@ -1,6 +1,8 @@
+import { useRef } from "react";
 import { ProductCard } from "./ProductCard";
 
 export const Featured = () => {
+  const scrollRef = useRef(null);
   const products = [
     {
       name: "Revitalizing Face Cream",
@@ -72,18 +74,111 @@ export const Featured = () => {
       image:
         "https://images.pexels.com/photos/8128071/pexels-photo-8128071.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     },
+    {
+      name: "Calming Lip Balm",
+      price: 12.99,
+      category: "Lip Care",
+      image:
+        "https://images.pexels.com/photos/8128071/pexels-photo-8128071.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    },
+    {
+      name: "Calming Lip Balm",
+      price: 12.99,
+      category: "Lip Care",
+      image:
+        "https://images.pexels.com/photos/8128071/pexels-photo-8128071.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    },
+    {
+      name: "Calming Lip Balm",
+      price: 12.99,
+      category: "Lip Care",
+      image:
+        "https://images.pexels.com/photos/8128071/pexels-photo-8128071.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    },
+    {
+      name: "Calming Lip Balm",
+      price: 12.99,
+      category: "Lip Care",
+      image:
+        "https://images.pexels.com/photos/8128071/pexels-photo-8128071.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    },
+    {
+      name: "Calming Lip Balm",
+      price: 12.99,
+      category: "Lip Care",
+      image:
+        "https://images.pexels.com/photos/8128071/pexels-photo-8128071.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    },
+    {
+      name: "Calming Lip Balm",
+      price: 12.99,
+      category: "Lip Care",
+      image:
+        "https://images.pexels.com/photos/8128071/pexels-photo-8128071.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    },
+    {
+      name: "Calming Lip Balm",
+      price: 12.99,
+      category: "Lip Care",
+      image:
+        "https://images.pexels.com/photos/8128071/pexels-photo-8128071.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    },
+    {
+      name: "Calming Lip Balm",
+      price: 12.99,
+      category: "Lip Care",
+      image:
+        "https://images.pexels.com/photos/8128071/pexels-photo-8128071.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    },
+    {
+      name: "Calming Lip Balm",
+      price: 12.99,
+      category: "Lip Care",
+      image:
+        "https://images.pexels.com/photos/8128071/pexels-photo-8128071.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    },
+    {
+      name: "Calming Lip Balm",
+      price: 12.99,
+      category: "Lip Care",
+      image:
+        "https://images.pexels.com/photos/8128071/pexels-photo-8128071.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    },
   ];
+  const scroll = (direction) => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({
+        left: direction === "left" ? -300 : 300,
+        behavior: "smooth",
+      });
+    }
+  };
 
   return (
     <div className="my-20 pl-12 font-playfair">
       <div className="w-full flex justify-between pr-12">
         <h1 className="text-xl">Featured Products</h1>
-        <p className=" underline cursor-pointer">View Store</p>
+        <p className="underline cursor-pointer">View Store</p>
       </div>
-      <div className="mt-8 ml-20 w-[95%] overflow-x-hidden">
-        <div className="h-[600px] overflow-hidden w-[4000px] flex gap-8 overflow-x-scroll">
+      <div className="relative mt-8 ml-20 w-[95%]">
+        <button
+          onClick={() => scroll("left")}
+          className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-white border border-gray-300 p-2 rounded-full shadow-md z-10"
+        >
+          &lt;
+        </button>
+        <button
+          onClick={() => scroll("right")}
+          className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-white border border-gray-300 p-2 rounded-full shadow-md z-10"
+        >
+          &gt;
+        </button>
+        <div
+          ref={scrollRef}
+          className="h-[600px] overflow-hidden flex gap-8 scroll-smooth"
+        >
           {products.map((product, index) => (
-            <ProductCard ey={index} product={product} />
+            <ProductCard key={index} product={product} />
           ))}
         </div>
       </div>
