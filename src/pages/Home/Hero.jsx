@@ -36,7 +36,7 @@ export const Hero = () => {
           Experience the Power of Nature with Our Pure, Skin-Loving Cosmetics.
         </h1>
         <p className="font-semibold text-lg">Simple, natural, and effective.</p>
-        <Link to="/item">
+        <Link to="/store">
           <button className="border-2 border-clayBrown p-4 mt-12 w-full text-black hover:bg-clayBrown text-xl transition-colors duration-2000 hover:text-white">
             Explore
           </button>
