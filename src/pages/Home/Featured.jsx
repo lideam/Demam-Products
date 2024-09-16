@@ -163,13 +163,13 @@ export const Featured = () => {
       <div className="relative mt-8 ml-20 w-[95%]">
         <button
           onClick={() => scroll("left")}
-          className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-white border border-gray-300 p-2 rounded-full shadow-md z-10"
+          className="absolute bottom-[-10px] left-[45%] transform -translate-y-1/2 bg-transparent  border border-clayBrown p-4 rounded-full shadow-md z-10"
         >
           &lt;
         </button>
         <button
           onClick={() => scroll("right")}
-          className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-white border border-gray-300 p-2 rounded-full shadow-md z-10"
+          className="absolute bottom-[-10px] right-[45%] transform -translate-y-1/2 bg-transparent border border-clayBrown p-4 rounded-full shadow-md z-10"
         >
           &gt;
         </button>

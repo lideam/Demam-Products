@@ -47,7 +47,7 @@ export const Home = () => {
       >
         <Featured />
       </motion.div>
-=
+
       <motion.div
         ref={aboutRef}
         initial="hidden"
@@ -56,7 +56,7 @@ export const Home = () => {
       >
         <About />
       </motion.div>
-=
+
       <motion.div
         ref={categoriesRef}
         initial="hidden"
@@ -64,7 +64,8 @@ export const Home = () => {
         variants={fadeInVariant("down")}
       >
         <Categories />
-      </motion.div>=
+      </motion.div>
+
       <motion.div
         ref={footerRef}
         initial="hidden"
