@@ -186,10 +186,48 @@ export const Products = () => {
           isSearchable={false}
         />
       </div>
-      <div>
+      <div className="m-4 flex flex-wrap gap-12 items-center justify-center">
         {products.map((product, index) => (
           <ProductCard key={index} product={product} />
         ))}
+      </div>
+      <div class="flex items-center justify-center my-12">
+        <nav class="inline-flex shadow-md">
+          <a
+            href="#"
+            class="px-6 py-2 bg-[#A0522D] text-white border border-[#A0522D] hover:bg-[#8B4513] transition-colors duration-200"
+          >
+            Previous
+          </a>
+
+          <a
+            href="#"
+            class="px-6 py-2 bg-[#f4efe9] text-[#2E8B57] border border-[#A0522D]  transition-colors duration-200"
+          >
+            1
+          </a>
+
+          <a
+            href="#"
+            class="px-6 py-2 bg-[#f4efe9] text-[#2E8B57] border border-[#A0522D]  transition-colors duration-200"
+          >
+            2
+          </a>
+
+          <a
+            href="#"
+            class="px-6 py-2 bg-[#f4efe9] text-[#2E8B57] border border-[#A0522D]  transition-colors duration-200"
+          >
+            3
+          </a>
+
+          <a
+            href="#"
+            class="px-6 py-2 bg-[#A0522D] text-white border border-[#A0522D] hover:bg-[#8B4513] transition-colors duration-200"
+          >
+            Next
+          </a>
+        </nav>
       </div>
     </div>
   );
