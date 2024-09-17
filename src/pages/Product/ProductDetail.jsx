@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Featured } from "../Home/Featured";
 
 export const ProductDetail = () => {
   const [image, setImage] = useState([
@@ -18,50 +19,61 @@ export const ProductDetail = () => {
   };
 
   return (
-    <div className="my-8 mx-12 flex justify-around gap-12">
-      <div className="flex gap-2">
-        <div className="flex flex-col gap-4">
-          {Object.values(images).map((i, index) => (
+    <>
+      <div className="my-8 mx-20 flex justify-around gap-12">
+        <div className="flex gap-2">
+          <div className="flex flex-col gap-4">
+            {Object.values(images).map((i, index) => (
+              <img
+                src={i.url}
+                key={index}
+                className={`flex-shrink-0 w-80 h-40 p-2 cursor-pointer ${
+                  image[0] == i.id && "border-4 border-clayBrown"
+                }`}
+                onClick={() => setImage([i.id, i.url])}
+              />
+            ))}
+          </div>
+          <div>
             <img
-              src={i.url}
-              key={index}
-              className={`flex-shrink-0 w-80 h-40 p-2 cursor-pointer ${
-                image[0] == i.id && "border-4 border-clayBrown"
-              }`}
-              onClick={() => setImage([i.id, i.url])}
+              src={image[1]}
+              alt=""
+              className=" flex-shrink-0 w-[1000px] h-[600px]"
             />
-          ))}
+          </div>
         </div>
-        <div>
-          <img
-            src={image[1]}
-            alt=""
-            className=" flex-shrink-0 w-[1000px] h-[600px]"
-          />
+        <div className="w-full flex flex-col gap-4 font-playfair">
+          <header className="text-4xl font-bold text-clayBrown">
+            Organic Cotton T-Shirt
+          </header>
+          <ul className="flex gap-4 text-gray-500 cursor-pointer">
+            <li>Clothing</li>
+            <li>Men’s Apparel</li>
+            <li>Sustainable Fashion</li>
+            <li>Eco-Friendly Products</li>
+          </ul>
+          <p className="text-xl ml-4 w-[80%]">
+            Crafted from 100% organic cotton, this t-shirt offers a soft,
+            breathable fit for all-day comfort. The classic crew neck design is
+            both stylish and versatile, perfect for casual wear or layering.
+            Available in a range of earth-tone colors, it’s made with
+            sustainability in mind, making it an ideal choice for eco-conscious
+            shoppers.
+          </p>
+          <b className="text-4xl text-clayBrown">$29.99</b>
+          <div className="flex gap-12">
+            <input
+              type="number"
+              value={1}
+              className="border-2 border-clayBrown p-4  text-clayBrown outline-none text-xl transition-colors duration-2000 "
+            />
+            <button className="border-2 hover:border-clayBrown p-4 hover:text-black bg-clayBrown hover:bg-transparent text-xl transition-colors duration-2000 text-white">
+              Add To Cart
+            </button>
+          </div>
         </div>
       </div>
-      <div>
-        <header>Organic Cotton T-Shirt</header>
-        <ul>
-          <li>Clothing</li>
-          <li>Men’s Apparel</li>
-          <li>Sustainable Fashion</li>
-          <li>Eco-Friendly Products</li>
-        </ul>
-        <p>
-          Crafted from 100% organic cotton, this t-shirt offers a soft,
-          breathable fit for all-day comfort. The classic crew neck design is
-          both stylish and versatile, perfect for casual wear or layering.
-          Available in a range of earth-tone colors, it’s made with
-          sustainability in mind, making it an ideal choice for eco-conscious
-          shoppers.
-        </p>
-        <b>$29.99</b>
-        <div>
-          <input type="number" placeholder="Quantity" />
-          <button>Add To Cart</button>
-        </div>
-      </div>
-    </div>
+      <Featured />
+    </>
   );
 };
