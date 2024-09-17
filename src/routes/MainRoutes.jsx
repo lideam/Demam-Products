@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import LoadingProgress from "../utils/Loading";
-import { Home, Store } from "../pages";
+import { Home, ProductDetail, Store } from "../pages";
 import { Header, Footer } from "../components";
 
 export const MainRoutes = () => {
@@ -14,7 +14,7 @@ export const MainRoutes = () => {
           <Routes>
             <Route path="*" element={<Home />} />
             <Route path="/store" element={<Store />} />
-            <Route path="/store" element={<Store />} />
+            <Route path="/detail" element={<ProductDetail />} />
           </Routes>
           <Footer />
         </Suspense>

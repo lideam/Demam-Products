@@ -9,7 +9,7 @@ export const Header = () => {
           SOFT BEAUTY
         </Link>
         <div className="flex gap-2 cursor-pointer text-xl">
-          <i className="fa fa-user"></i>
+          <Link to='/detail' className="fa fa-user"></Link>
           <i className="fa fa-search"></i>
           <i className="fa fa-shopping-bag"></i>
         </div>

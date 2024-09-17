@@ -3,7 +3,6 @@ import { Header } from "./Header";
 import { Products } from "./Products";
 import { About } from "../Home/About";
 
-// Fade-in animation variant
 const fadeInVariant = (direction = "up", delay = 0) => ({
   hidden: { opacity: 0, y: direction === "up" ? 50 : -50 },
   visible: {
@@ -16,7 +15,6 @@ const fadeInVariant = (direction = "up", delay = 0) => ({
 export const Store = () => {
   return (
     <div className="px-24 py-12 w-full flex flex-col">
-      {/* Header section with animation */}
       <motion.div
         initial="hidden"
         animate="visible"
@@ -25,7 +23,6 @@ export const Store = () => {
         <Header />
       </motion.div>
 
-      {/* Products section with animation and slight delay */}
       <motion.div
         initial="hidden"
         animate="visible"
@@ -34,7 +31,6 @@ export const Store = () => {
         <Products />
       </motion.div>
 
-      {/* About section with animation and delay */}
       <motion.div
         initial="hidden"
         animate="visible"
