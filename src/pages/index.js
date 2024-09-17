@@ -1,4 +1,3 @@
 export { Home } from "./Home/Home";
-// export { ProductDetail } from "./Product/ProductDetail";
-export { Auth } from "./Auth/Auth";
+export { ProductDetail } from "./Product/ProductDetail";
 export { Store } from "./store/Store";
