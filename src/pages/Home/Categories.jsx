@@ -79,7 +79,7 @@ export const Categories = () => {
             src="https://i.pinimg.com/564x/14/91/8c/14918c17bb3cc6596c072cc64d7b06a6.jpg"
             alt=""
             className="absolute w-[500px] top-[-100px] right-0 transform rotate-[-10deg]"
-            custom={{ rotate: -10, delay: 0.4 }}
+            custom={{ rotate: -10, delay: 0.6 }}
             initial="initial"
             animate={inView ? "animate" : "initial"}
             variants={imageVariants}
@@ -88,7 +88,7 @@ export const Categories = () => {
             src="https://i.pinimg.com/564x/e0/ab/22/e0ab229d9a80a28d6e01a800406f885f.jpg"
             alt=""
             className="absolute w-[300px] bottom-[-100px] right-0 transform rotate-[10deg]"
-            custom={{ rotate: 10, delay: 0.6 }}
+            custom={{ rotate: 10, delay: 1.8 }}
             initial="initial"
             animate={inView ? "animate" : "initial"}
             variants={imageVariants}
@@ -97,7 +97,7 @@ export const Categories = () => {
             src="https://i.pinimg.com/564x/0e/40/e7/0e40e755c308e227045f9cfef3a241fa.jpg"
             alt=""
             className="absolute w-[300px] bottom-[-100px] left-0 transform rotate-[-10deg]"
-            custom={{ rotate: -10, delay: 0.8 }}
+            custom={{ rotate: -10, delay: 1.4 }}
             initial="initial"
             animate={inView ? "animate" : "initial"}
             variants={imageVariants}
@@ -106,7 +106,7 @@ export const Categories = () => {
             src="https://i.pinimg.com/564x/c6/f0/95/c6f0953371da594d35c2d9a99f3c673f.jpg"
             alt=""
             className="absolute w-[300px] bottom-0 left-[30%]"
-            custom={{ rotate: 0, delay: 1 }}
+            custom={{ rotate: 0, delay: 1.0 }}
             initial="initial"
             animate={inView ? "animate" : "initial"}
             variants={imageVariants}
