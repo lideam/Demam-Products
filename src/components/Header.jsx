@@ -6,7 +6,7 @@ export const Header = () => {
       <div className="w-full text-[#4a4a4a] flex flex-wrap items-center justify-between">
         <span></span>
         <Link to="/" className="text-3xl font-extrabold cursor-pointer">
-          SOFT BEAUTY
+          Demam Product
         </Link>
         <div className="flex gap-2 cursor-pointer text-xl">
           <Link to='/detail' className="fa fa-user"></Link>
@@ -15,10 +15,13 @@ export const Header = () => {
         </div>
       </div>
       <div className="w-full  flex justify-center gap-12 text-base cursor-pointer">
-        <span>Men Products</span>
-        <span>Women Products</span>
-        <span>Children Products</span>
+        <span>Face Products</span>
+        <span>Hair Products</span>
         <span>All Products</span>
+        <span>Accessories</span>
+        <span>About Us</span>
+        <span>Contact Us</span>
+       
       </div>
     </div>
   );
