@@ -1,6 +1,8 @@
+import Girl from "../../assets/about.png"
+
 export const About = () => {
   return (
-    <div className="bg-sandyBeige mt-[-40px] h-[600px] flex flex-wrap justify-between font-playfair items-center">
+    <div className="bg-[#59403b] mt-[-40px] h-[600px] text-[#b1a9a8] flex flex-wrap justify-between font-playfair items-center">
       <div className="p-32 w-[900px] flex flex-col gap-4">
         <h1 className="text-4xl font-bold">
           Discover our premium cosmetics and skincare products designed to
@@ -16,11 +18,7 @@ export const About = () => {
           excellence.
         </p>
       </div>
-      <img
-        src="https://images.pexels.com/photos/10850675/pexels-photo-10850675.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-        alt=""
-        className="h-full w-[600px]"
-      />
+      <img src={Girl} alt="" className="h-full w-[500px]" />
     </div>
   );
 }

@@ -14,7 +14,10 @@ export const Home = () => {
   const [heroRef, heroInView] = useInView({ triggerOnce: true });
   const [featuredRef, featuredInView] = useInView({ triggerOnce: true });
   const [aboutRef, aboutInView] = useInView({ triggerOnce: true });
-  const [categoriesRef, categoriesInView] = useInView({ triggerOnce: true });
+  const [categoriesRef, categoriesInView] = useInView({
+    triggerOnce: true,
+    threshold: 0.5, // Ensures at least half the section is in view before triggering
+  });
 
   return (
     <div className="min-h-screen">
