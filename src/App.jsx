@@ -1,15 +1,18 @@
 import { MainRoutes } from "./routes/MainRoutes";
-import { UtilProvider } from "./context";
-import { Routes, Route } from "react-router-dom";
-import { Auth } from "./pages";
+import { UtilProvider, AuthProvider, AuthContext } from "./context";
+import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 
 export default function App() {
   return (
-    <UtilProvider>
-      <Routes>
-        <Route path="/auth" element={<Auth />} />
-        <Route path="/" element={<MainRoutes />} />
-      </Routes>
-    </UtilProvider>
+    <Router>
+      <AuthProvider>
+        <UtilProvider>
+          <Routes>
+            {/* <Route path="/auth" element={<Auth />} /> */}
+            <Route path="*" element={<MainRoutes />} />
+          </Routes>
+        </UtilProvider>
+      </AuthProvider>
+    </Router>
   );
 }

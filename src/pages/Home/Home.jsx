@@ -1,51 +1,58 @@
-import { Header } from "./Header";
-import { Filter } from "./Filter";
-import { List } from "./List";
-import { Break } from "./Break";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { About } from "./About";
+import { Categories } from "./Categories";
 import { Featured } from "./Featured";
+import { Hero } from "./Hero";
+
+const fadeInVariant = (direction) => ({
+  hidden: { opacity: 0, y: direction === "down" ? -50 : 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 1, ease: "easeOut" } },
+});
 
 export const Home = () => {
+  const [heroRef, heroInView] = useInView({ triggerOnce: true });
+  const [featuredRef, featuredInView] = useInView({ triggerOnce: true });
+  const [aboutRef, aboutInView] = useInView({ triggerOnce: true });
+  const [categoriesRef, categoriesInView] = useInView({ triggerOnce: true });
+
   return (
-    <div className="flex flex-col gap-8">
-      <Header />
-      <Filter />
-      <List />
-      <Break />
-      <Featured />
-      <section className=" dark:bg-gray-800 lg:py-12 lg:flex lg:justify-center">
-        <div className="overflow-hidden bg-white dark:bg-gray-900 lg:mx-8 lg:flex lg:max-w-6xl lg:w-full lg:shadow-md lg:rounded-xl">
-          <div className="lg:w-1/2">
-            <div
-              className="h-64 bg-cover lg:h-full"
-              style={{
-                backgroundImage:
-                  "url('https://images.pexels.com/photos/208052/pexels-photo-208052.jpeg?auto=compress&cs=tinysrgb&w=600')",
-              }}
-            ></div>
-          </div>
+    <div className="min-h-screen">
+      <motion.div
+        ref={heroRef}
+        initial="hidden"
+        animate={heroInView ? "visible" : "hidden"}
+        variants={fadeInVariant("up")}
+      >
+        <Hero />
+      </motion.div>
 
-          <div className="max-w-xl px-6 py-12 lg:max-w-5xl lg:w-1/2">
-            <h2 className="text-2xl font-semibold text-gray-800 dark:text-white md:text-3xl">
-              Elevate Your Everyday<span className="text-blue-500"> Style</span>
-            </h2>
+      <motion.div
+        ref={featuredRef}
+        initial="hidden"
+        animate={featuredInView ? "visible" : "hidden"}
+        variants={fadeInVariant("down")}
+      >
+        <Featured />
+      </motion.div>
 
-            <p className="mt-4 text-gray-500 dark:text-gray-300">
-              Shop the essentials that make every day a little more beautiful.
-              From skincare must-haves to chic accessories, Bella Cosmo Shop has
-              everything you need to shine.
-            </p>
+      <motion.div
+        ref={aboutRef}
+        initial="hidden"
+        animate={aboutInView ? "visible" : "hidden"}
+        variants={fadeInVariant("up")}
+      >
+        <About />
+      </motion.div>
 
-            <div className="inline-flex w-full mt-6 sm:w-auto">
-              <a
-                href="#"
-                className="inline-flex items-center justify-center w-full px-6 py-2 text-sm text-white duration-300 bg-gray-800 rounded-lg hover:bg-gray-700 focus:ring focus:ring-gray-300 focus:ring-opacity-80"
-              >
-                Start Now
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+      <motion.div
+        ref={categoriesRef}
+        initial="hidden"
+        animate={categoriesInView ? "visible" : "hidden"}
+        variants={fadeInVariant("down")}
+      >
+        <Categories />
+      </motion.div>
     </div>
   );
 };

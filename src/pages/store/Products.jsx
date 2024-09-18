@@ -1,8 +1,37 @@
-import { useRef } from "react";
-import { ProductCard } from "./ProductCard";
+import Select from "react-select";
+import { ProductCard } from "../Home/ProductCard";
 
-export const Featured = () => {
-  const scrollRef = useRef(null);
+export const Products = () => {
+  const options = [
+    { value: "all", label: "All" },
+    { value: "women", label: "Women" },
+    { value: "men", label: "Men" },
+  ];
+
+  const customStyles = {
+    control: (provided) => ({
+      ...provided,
+      backgroundColor: "transparent",
+      borderColor: "#A0522D",
+      padding: "10px",
+      textAlign: "center",
+      outLine: "none",
+    }),
+    option: (provided, { isFocused }) => ({
+      ...provided,
+      backgroundColor: isFocused ? "rgba(0, 0, 0, 0.1)" : "transparent",
+      color: "#000",
+    }),
+    menu: (provided) => ({
+      ...provided,
+      backgroundColor: "transparent",
+    }),
+    singleValue: (provided) => ({
+      ...provided,
+      color: "#000",
+    }),
+  };
+
   const products = [
     {
       name: "Revitalizing Face Cream",
@@ -145,42 +174,60 @@ export const Featured = () => {
         "https://images.pexels.com/photos/8128071/pexels-photo-8128071.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     },
   ];
-  const scroll = (direction) => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollBy({
-        left: direction === "left" ? -300 : 300,
-        behavior: "smooth",
-      });
-    }
-  };
 
   return (
-    <div className="my-20 pl-12 font-playfair">
-      <div className="w-full flex justify-between pr-12">
-        <h1 className="text-xl">Featured Products</h1>
-        <p className="underline cursor-pointer">View Store</p>
+    <div className="my-8 font-playfair">
+      <div className="w-full flex items-center justify-between">
+        <h1 className="text-3xl">Our Products</h1>
+        <Select
+          options={options}
+          styles={customStyles}
+          defaultValue={options[0]}
+          isSearchable={false}
+        />
       </div>
-      <div className="relative mt-8 ml-20 w-[95%]">
-        <button
-          onClick={() => scroll("left")}
-          className="absolute bottom-[-10px] left-[45%] transform -translate-y-1/2 bg-transparent  border border-clayBrown p-4 rounded-full shadow-md z-10"
-        >
-          &lt;
-        </button>
-        <button
-          onClick={() => scroll("right")}
-          className="absolute bottom-[-10px] right-[45%] transform -translate-y-1/2 bg-transparent border border-clayBrown p-4 rounded-full shadow-md z-10"
-        >
-          &gt;
-        </button>
-        <div
-          ref={scrollRef}
-          className="h-[600px] overflow-hidden flex gap-8 scroll-smooth"
-        >
-          {products.map((product, index) => (
-            <ProductCard key={index} product={product} />
-          ))}
-        </div>
+      <div className="m-4 flex flex-wrap gap-12 items-center justify-center">
+        {products.map((product, index) => (
+          <ProductCard key={index} product={product} />
+        ))}
+      </div>
+      <div class="flex items-center justify-center my-12">
+        <nav class="inline-flex shadow-md">
+          <a
+            href="#"
+            class="px-6 py-2 bg-[#A0522D] text-white border border-[#A0522D] hover:bg-[#8B4513] transition-colors duration-200"
+          >
+            Previous
+          </a>
+
+          <a
+            href="#"
+            class="px-6 py-2 bg-[#f4efe9] text-[#2E8B57] border border-[#A0522D]  transition-colors duration-200"
+          >
+            1
+          </a>
+
+          <a
+            href="#"
+            class="px-6 py-2 bg-[#f4efe9] text-[#2E8B57] border border-[#A0522D]  transition-colors duration-200"
+          >
+            2
+          </a>
+
+          <a
+            href="#"
+            class="px-6 py-2 bg-[#f4efe9] text-[#2E8B57] border border-[#A0522D]  transition-colors duration-200"
+          >
+            3
+          </a>
+
+          <a
+            href="#"
+            class="px-6 py-2 bg-[#A0522D] text-white border border-[#A0522D] hover:bg-[#8B4513] transition-colors duration-200"
+          >
+            Next
+          </a>
+        </nav>
       </div>
     </div>
   );
