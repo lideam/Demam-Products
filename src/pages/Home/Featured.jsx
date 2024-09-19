@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useRef } from "react";
 import { ProductCard } from "./ProductCard";
 
@@ -158,18 +159,18 @@ export const Featured = () => {
     <div className="my-20 pl-12 font-playfair">
       <div className="w-full flex justify-between pr-12">
         <h1 className="text-xl">Featured Products</h1>
-        <p className="underline cursor-pointer">View Store</p>
+        <Link to='/store' className="underline cursor-pointer">View Store</Link>
       </div>
-      <div className="relative mt-8 ml-20 w-[95%]">
+      <div className="relative mt-8  md:ml-20 w-[95%]">
         <button
           onClick={() => scroll("left")}
-          className="absolute bottom-[-10px] left-[45%] transform -translate-y-1/2 bg-transparent  border border-clayBrown p-4 rounded-full shadow-md z-10"
+          className="absolute bottom-[-10px] left-[35%] transform -translate-y-1/2 bg-transparent  border border-clayBrown p-4 rounded-full shadow-md z-10"
         >
           &lt;
         </button>
         <button
           onClick={() => scroll("right")}
-          className="absolute bottom-[-10px] right-[45%] transform -translate-y-1/2 bg-transparent border border-clayBrown p-4 rounded-full shadow-md z-10"
+          className="absolute bottom-[-10px] right-[35%] transform -translate-y-1/2 bg-transparent border border-clayBrown p-4 rounded-full shadow-md z-10"
         >
           &gt;
         </button>
