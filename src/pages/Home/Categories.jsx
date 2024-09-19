@@ -62,14 +62,14 @@ export const Categories = () => {
       </header>
 
       <div
-        className="pl-12 py-8 grid grid-cols-4 gap-12 w-full justify-center items-center"
+        className="pl-12 py-8 flex flex-col-reverse md:grid md:grid-cols-4 gap-12 w-full justify-center items-center"
         ref={ref}
       >
-        <div className="relative w-full col-span-2 h-[800px]">
+        <div className="relative w-full md:col-span-2 h-[800px]">
           <motion.img
             src="https://i.pinimg.com/564x/98/d3/51/98d3513ffd2ef661090226965ec59929.jpg"
             alt=""
-            className="absolute w-[500px] top-[-100px] transform rotate-6"
+            className="absolute md:w-[500px] w-56 md:top-[-100px] transform rotate-6"
             custom={{ rotate: 6, delay: 0.2 }}
             initial="initial"
             animate={inView ? "animate" : "initial"}
@@ -78,7 +78,7 @@ export const Categories = () => {
           <motion.img
             src="https://i.pinimg.com/564x/14/91/8c/14918c17bb3cc6596c072cc64d7b06a6.jpg"
             alt=""
-            className="absolute w-[500px] top-[-100px] right-0 transform rotate-[-10deg]"
+            className="absolute md:w-[500px] w-56 md:top-[-100px] right-0 transform rotate-[-10deg]"
             custom={{ rotate: -10, delay: 0.6 }}
             initial="initial"
             animate={inView ? "animate" : "initial"}
@@ -87,7 +87,7 @@ export const Categories = () => {
           <motion.img
             src="https://i.pinimg.com/564x/e0/ab/22/e0ab229d9a80a28d6e01a800406f885f.jpg"
             alt=""
-            className="absolute w-[300px] bottom-[-100px] right-0 transform rotate-[10deg]"
+            className="absolute md:w-[300px] w-40 bottom-48 md:bottom-[-100px] right-0 transform rotate-[10deg]"
             custom={{ rotate: 10, delay: 1.8 }}
             initial="initial"
             animate={inView ? "animate" : "initial"}
@@ -96,7 +96,7 @@ export const Categories = () => {
           <motion.img
             src="https://i.pinimg.com/564x/0e/40/e7/0e40e755c308e227045f9cfef3a241fa.jpg"
             alt=""
-            className="absolute w-[300px] bottom-[-100px] left-0 transform rotate-[-10deg]"
+            className="absolute md:w-[300px] w-40 bottom-48 md:bottom-[-100px] left-0 transform rotate-[-10deg]"
             custom={{ rotate: -10, delay: 1.4 }}
             initial="initial"
             animate={inView ? "animate" : "initial"}
@@ -105,7 +105,7 @@ export const Categories = () => {
           <motion.img
             src="https://i.pinimg.com/564x/c6/f0/95/c6f0953371da594d35c2d9a99f3c673f.jpg"
             alt=""
-            className="absolute w-[300px] bottom-0 left-[30%]"
+            className="absolute md:w-[300px] w-40 bottom-48 md:bottom-0 left-[30%]"
             custom={{ rotate: 0, delay: 1.0 }}
             initial="initial"
             animate={inView ? "animate" : "initial"}
@@ -113,7 +113,7 @@ export const Categories = () => {
           />
         </div>
 
-        <div className="col-span-2 grid grid-cols-2 gap-8 items-center">
+        <div className="md:col-span-2 md:grid md:grid-cols-2 flex flex-wrap gap-8 items-center">
           {products.map((product, index) => (
             <ProductCard key={index} product={product} />
           ))}
