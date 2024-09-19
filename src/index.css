@@ -46,6 +46,7 @@
 /* Override the default color */
 #nprogress .bar {
   background: #8B4513; /* Set your desired color */
+  z-index: 9999;
 }
 
 /* Customize the height of the progress bar */

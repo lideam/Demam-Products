@@ -43,7 +43,7 @@ export const Hero = () => {
         <motion.img
           src="https://images.pexels.com/photos/5308633/pexels-photo-5308633.jpeg?auto=compress&cs=tinysrgb&w=600"
           alt=""
-          className="absolute lg:w-[300px] w-40 lg:h-[400px] mt-[-50%] lg:mt-[-30%] ml-[25%] lg:ml-[35%] z-100"
+          className="absolute lg:w-[300px] w-40 lg:h-[400px] mt-[-50%] lg:mt-[-30%] ml-[25%] lg:ml-[35%]"
           initial={{ opacity: 0, y: 100, rotate: 0 }}
           animate={{ opacity: 1, y: 0, rotate: 0 }}
           transition={{ duration: 1.8 }}
