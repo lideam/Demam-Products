@@ -16,7 +16,7 @@ export const About = () => {
           yourself, but nourishing the bonds that make life beautiful.
         </p>
       </div>
-      <img src={Girl} alt="" className="h-auto right-0 top-[-20%] absolute self-end w-auto" />
+      <img src={Girl} alt="" className="h-auto right-0 top-[-20%] md:top-[-9%] absolute self-end w-auto" />
     </div>
   );
 }

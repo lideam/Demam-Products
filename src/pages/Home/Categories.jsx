@@ -1,6 +1,8 @@
-import { ProductCard } from "./ProductCard";
+import { CategoryCard } from "../Product/CategoryCard";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import cleanser from "../../assets/bella/cleanser.png";
+import face from "../../assets/bella/face.png";
 
 export const Categories = () => {
   const { ref, inView } = useInView({
@@ -10,32 +12,14 @@ export const Categories = () => {
 
   const products = [
     {
-      name: "Revitalizing Face Cream",
-      price: 34.99,
-      category: "Skincare",
-      image:
-        "https://images.pexels.com/photos/11751106/pexels-photo-11751106.jpeg?auto=compress&cs=tinysrgb&w=600",
+      name: "QASIL FACEMASK AND CLEANSER",
+      body: "Qasil, made from crushed Gob tree leaves is a natural cleanser with lathering effect which is also utilized as a face mask and exfoliant. Qasil has antioxidant, antibacterial as well as oil balancing properties. It gently removes impurities, unclogs pores, and leaves the skin feeling refreshed and rejuvenated. Additionally, it's known to help soothe inflammation and promote a radiant complexion.",
+      image: cleanser,
     },
     {
-      name: "Hydrating Facial Serum",
-      price: 29.99,
-      category: "Skincare",
-      image:
-        "https://images.pexels.com/photos/5517064/pexels-photo-5517064.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    },
-    {
-      name: "Nourishing Body Lotion",
-      price: 24.99,
-      category: "Body Care",
-      image:
-        "https://images.pexels.com/photos/12352238/pexels-photo-12352238.jpeg?auto=compress&cs=tinysrgb&w=600",
-    },
-    {
-      name: "Soothing Eye Cream",
-      price: 19.99,
-      category: "Skincare",
-      image:
-        "https://images.pexels.com/photos/12035707/pexels-photo-12035707.jpeg?auto=compress&cs=tinysrgb&w=600",
+      name: "TURMERIC FACE MASK",
+      body: "Turmeric powder, derived from the Curcuma longa plant, is a vibrant yellow spice known for its medicinal properties. When used in face masks, it's cherished for its anti-inflammatory, antibacterial, and antioxidant qualities. Its active compound, curcumin, helps combat acne, reduce redness, and brighten the complexion.",
+      image: face,
     },
   ];
 
@@ -62,10 +46,10 @@ export const Categories = () => {
       </header>
 
       <div
-        className="pl-12 py-8 flex flex-col-reverse md:grid md:grid-cols-4 gap-12 w-full justify-center items-center"
+        className="pl-12 py-8 flex flex-col-reverse md:flex-row gap-12 w-full justify-between items-center"
         ref={ref}
       >
-        <div className="relative w-full md:col-span-2 h-[800px]">
+        <div className="relative w-full  h-[800px]">
           <motion.img
             src="https://i.pinimg.com/564x/98/d3/51/98d3513ffd2ef661090226965ec59929.jpg"
             alt=""
@@ -113,9 +97,9 @@ export const Categories = () => {
           />
         </div>
 
-        <div className="md:col-span-2 md:grid md:grid-cols-2 flex flex-wrap gap-8 items-center">
+        <div className="flex w-full justify-center flex-col gap-2 items-center">
           {products.map((product, index) => (
-            <ProductCard key={index} product={product} />
+            <CategoryCard key={index} product={product} />
           ))}
         </div>
       </div>

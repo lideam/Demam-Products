@@ -1,13 +1,41 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
 export const Header = () => {
   const [side, setSide] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  // Function to smoothly scroll to a section
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+      setSide(false); // Close sidebar on mobile if open
+    }
+  };
+
+  // Effect to handle scroll position and toggle fixed nav
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 300) {
+        // Adjust scroll threshold as needed
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
-    <div className="font-playfair fixed z-[999] bg-sandyBeige flex flex-col gap-4 w-full p-4 border-b border-gray-500">
-      <div className="w-full text-[#4a4a4a] flex flex-wrap items-center justify-between">
+    <div className="font-playfair fixed z-[999] bg-sandyBeige w-full p-4 border-b border-gray-500">
+      {!isScrolled && <div className="w-full text-[#4a4a4a] flex flex-wrap items-center justify-between">
         <span>
           <i
             className="fa-solid md:hidden fa-bars"
@@ -22,17 +50,22 @@ export const Header = () => {
           <i className="fa fa-search"></i>
           <i className="fa fa-shopping-bag"></i>
         </div>
-      </div>
-      <div className="w-full hidden md:flex justify-center gap-12 text-base cursor-pointer">
-        <span>Face Products</span>
-        <span>Hair Products</span>
-        <span>All Products</span>
-        <span>Accessories</span>
-        <span>About Us</span>
-        <span>Contact Us</span>
+      </div>}
+
+      {/* Fixed nav spans when scrolling */}
+      <div
+        className={`w-full hidden md:flex text-xl justify-center gap-12 text-base cursor-pointer ${
+          isScrolled ? "fixed top-0 bg-sandyBeige z-50" : ""
+        }`}
+      >
+        <span onClick={() => scrollToSection("hero")}>Home</span>
+        <span onClick={() => scrollToSection("featured")}>Featured</span>
+        <span onClick={() => scrollToSection("categories")}>Our Products</span>
+        <span onClick={() => scrollToSection("about")}>About Us</span>
+        <span onClick={() => scrollToSection("footer")}>Contact Us</span>
       </div>
 
-      {/* AnimatePresence to handle mounting and unmounting with animation */}
+      {/* Sidebar for mobile */}
       <AnimatePresence>
         {side && (
           <motion.div
@@ -54,36 +87,42 @@ export const Header = () => {
             <motion.span
               whileHover={{ scale: 1.1, color: "#f97316" }}
               className="mb-4 cursor-pointer hover:underline"
+              onClick={() => scrollToSection("hero")}
             >
               Face Products
             </motion.span>
             <motion.span
               whileHover={{ scale: 1.1, color: "#f97316" }}
               className="mb-4 cursor-pointer hover:underline"
+              onClick={() => scrollToSection("featured")}
             >
               Hair Products
             </motion.span>
             <motion.span
               whileHover={{ scale: 1.1, color: "#f97316" }}
               className="mb-4 cursor-pointer hover:underline"
+              onClick={() => scrollToSection("categories")}
             >
               All Products
             </motion.span>
             <motion.span
               whileHover={{ scale: 1.1, color: "#f97316" }}
               className="mb-4 cursor-pointer hover:underline"
+              onClick={() => scrollToSection("about")}
             >
               Accessories
             </motion.span>
             <motion.span
               whileHover={{ scale: 1.1, color: "#f97316" }}
               className="mb-4 cursor-pointer hover:underline"
+              onClick={() => scrollToSection("about")}
             >
               About Us
             </motion.span>
             <motion.span
               whileHover={{ scale: 1.1, color: "#f97316" }}
               className="mb-4 cursor-pointer hover:underline"
+              onClick={() => scrollToSection("categories")}
             >
               Contact Us
             </motion.span>

@@ -16,12 +16,13 @@ export const Home = () => {
   const [aboutRef, aboutInView] = useInView({ triggerOnce: true });
   const [categoriesRef, categoriesInView] = useInView({
     triggerOnce: true,
-    threshold: 0.5, // Ensures at least half the section is in view before triggering
+    threshold: 0.5,
   });
 
   return (
     <div className="min-h-screen">
       <motion.div
+        id="hero"
         ref={heroRef}
         initial="hidden"
         animate={heroInView ? "visible" : "hidden"}
@@ -31,6 +32,7 @@ export const Home = () => {
       </motion.div>
 
       <motion.div
+        id="featured"
         ref={featuredRef}
         initial="hidden"
         animate={featuredInView ? "visible" : "hidden"}
@@ -40,6 +42,7 @@ export const Home = () => {
       </motion.div>
 
       <motion.div
+        id="about"
         ref={aboutRef}
         initial="hidden"
         animate={aboutInView ? "visible" : "hidden"}
@@ -49,6 +52,7 @@ export const Home = () => {
       </motion.div>
 
       <motion.div
+        id="categories"
         ref={categoriesRef}
         initial="hidden"
         animate={categoriesInView ? "visible" : "hidden"}
@@ -59,3 +63,4 @@ export const Home = () => {
     </div>
   );
 };
+

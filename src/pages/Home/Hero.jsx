@@ -15,7 +15,7 @@ export const Hero = () => {
         <p className="mt-4 lg:font-semibold lg:text-lg">
           Simple, natural, and effective.
         </p>
-        <Link to="/store">
+        <Link to="/">
           <button className="border-2 border-clayBrown p-4 mt-12 w-full text-black hover:bg-clayBrown text-xl transition-colors duration-2000 hover:text-white">
             Explore
           </button>
@@ -46,7 +46,7 @@ export const Hero = () => {
         <motion.img
           src={three}
           alt=""
-          className="absolute lg:w-[600px] w-40 lg:h-auto mt-[-50%] lg:mt-[-40%] ml-[25%] lg:ml-[25%]"
+          className="absolute lg:w-[600px] w-auto lg:h-auto mt-[-70%] lg:mt-[-40%] ml-[0] lg:ml-[25%]"
           initial={{ opacity: 0, y: 100, rotate: 0 }}
           animate={{ opacity: 1, y: 0, rotate: 0 }}
           transition={{ duration: 1.8 }}

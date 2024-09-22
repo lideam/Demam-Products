@@ -1,6 +1,6 @@
 export const Footer = () => {
   return (
-    <div className="w-full flex flex-col py-10 border-t-2 border-clayBrown">
+    <div id="footer" className="w-full flex flex-col py-10 border-t-2 border-clayBrown">
       <div className="flex flex-wrap gap-8 justify-around px-12">
         
         {/* Newsletter Subscription */}
