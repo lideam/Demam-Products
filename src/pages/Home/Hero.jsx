@@ -1,5 +1,8 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import one from "../../assets/bella/1.jpg"
+import two from "../../assets/bella/2.jpg";
+import three from "../../assets/bella/33.png";
 
 export const Hero = () => {
   return (
@@ -22,16 +25,16 @@ export const Hero = () => {
         <span className="flex justify-center w-full">
           <span className="w-52 h-72 lg:w-[600px] lg:h-[600px] transform lg:rotate-0 rotate-[-10deg]">
             <motion.img
-              src="https://images.pexels.com/photos/3018845/pexels-photo-3018845.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+              src={one}
               alt=""
               initial={{ opacity: 0, x: 100, rotate: 6 }}
               animate={{ opacity: 1, x: 0, rotate: 0 }}
               transition={{ duration: 1.5 }}
             />
           </span>
-          <span className="w-52 h-72 lg:w-auto lg:h-auto transform lg:rotate-0 rotate-[10deg]">
+          <span className="w-52 h-72 lg:w-[600px] lg:h-auto transform lg:rotate-0 rotate-[10deg]">
             <motion.img
-              src="https://images.pexels.com/photos/10870106/pexels-photo-10870106.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+              src={two}
               alt=""
               className="w-full"
               initial={{ opacity: 0, x: -100, rotate: -6 }}
@@ -41,9 +44,9 @@ export const Hero = () => {
           </span>
         </span>
         <motion.img
-          src="https://images.pexels.com/photos/5308633/pexels-photo-5308633.jpeg?auto=compress&cs=tinysrgb&w=600"
+          src={three}
           alt=""
-          className="absolute lg:w-[300px] w-40 lg:h-[400px] mt-[-50%] lg:mt-[-30%] ml-[25%] lg:ml-[35%]"
+          className="absolute lg:w-[600px] w-40 lg:h-auto mt-[-50%] lg:mt-[-40%] ml-[25%] lg:ml-[25%]"
           initial={{ opacity: 0, y: 100, rotate: 0 }}
           animate={{ opacity: 1, y: 0, rotate: 0 }}
           transition={{ duration: 1.8 }}

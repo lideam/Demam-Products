@@ -1,24 +1,22 @@
-import Girl from "../../assets/about.png"
+import Girl from "../../assets/bella/girls.png"
 
 export const About = () => {
   return (
-    <div className="bg-[#59403b] mt-[-40px] h-[600px] text-[#b1a9a8] flex flex-col-reverse md:flex-row justify-between font-playfair items-center">
-      <div className=" p-4 md:p-32 w-screen md:w-[900px] flex flex-col gap-4">
+    <div className="bg-[#59403b] relative mt-[-40px] h-[600px] text-[#b1a9a8] flex flex-col-reverse md:flex-row justify-between font-playfair items-center">
+      <div className=" p-4 md:p-32 w-auto md:w-[900px] flex flex-col gap-4">
         <h1 className="text-2xl md:text-4xl font-bold">
-          Discover our premium cosmetics and skincare products designed to
-          enhance your natural beauty.
+          Demam is a small, female owned business focusing on natural beauty
+          products like qasil and turmeric face cleansers and masks.
         </h1>
         <p>
-          we are passionate about delivering high-quality cosmetics and skincare
-          products designed to enhance your natural beauty. With a commitment to
-          excellence, we meticulously craft each product to meet the highest
-          standards of quality and effectiveness. Our mission is to provide you
-          with premium solutions that help you feel confident and radiant every
-          day. Join us on a journey to discover beauty with purpose and
-          excellence.
+          The word Demam translates to a beautiful person in and out, who
+          radiates beautiful energy. Our products are more than just skincare;
+          it’s the power of togetherness. The power of beautiful connections
+          between people. With each application, you’re not just pampering
+          yourself, but nourishing the bonds that make life beautiful.
         </p>
       </div>
-      <img src={Girl} alt="" className="h-full w-56 self-end md:w-[500px]" />
+      <img src={Girl} alt="" className="h-auto right-0 top-[-20%] absolute self-end w-auto" />
     </div>
   );
 }
