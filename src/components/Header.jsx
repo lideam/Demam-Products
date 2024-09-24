@@ -6,20 +6,17 @@ export const Header = () => {
   const [side, setSide] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // Function to smoothly scroll to a section
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
-      setSide(false); // Close sidebar on mobile if open
+      setSide(false);
     }
   };
 
-  // Effect to handle scroll position and toggle fixed nav
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 300) {
-        // Adjust scroll threshold as needed
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
@@ -35,22 +32,25 @@ export const Header = () => {
 
   return (
     <div className="font-playfair fixed z-[999] bg-sandyBeige w-full p-4 border-b border-gray-500">
-      {!isScrolled && <div className="w-full text-[#4a4a4a] flex flex-wrap items-center justify-between">
-        <span>
-          <i
-            className="fa-solid md:hidden fa-bars"
-            onClick={() => setSide(true)}
-          ></i>
-        </span>
-        <Link to="/" className="text-3xl font-extrabold cursor-pointer">
-          Demam Product
-        </Link>
-        <div className="flex gap-2 cursor-pointer text-xl">
-          <Link to="/detail" className="fa fa-user"></Link>
-          <i className="fa fa-search"></i>
-          <i className="fa fa-shopping-bag"></i>
+      {!isScrolled && (
+        <div className="w-full text-[#4a4a4a] flex flex-wrap items-center justify-between">
+          <span>
+            <i
+              className="fa-solid md:hidden fa-bars"
+              onClick={() => setSide(true)}
+            ></i>
+          </span>
+          <Link to="/" className="text-3xl font-extrabold cursor-pointer">
+            Demam Product
+          </Link>
+          <div className="flex items-center justify-center">
+            <span className="bg-white px-2 flex justify-center items-center text-xl border-clayBrown border-y-2 border-l-2">
+              0
+            </span>
+            <i className="fa fa-shopping-bag px-2 text-xl border-clayBrown border-y-2 border-r-2"></i>
+          </div>
         </div>
-      </div>}
+      )}
 
       {/* Fixed nav spans when scrolling */}
       <div
@@ -89,28 +89,21 @@ export const Header = () => {
               className="mb-4 cursor-pointer hover:underline"
               onClick={() => scrollToSection("hero")}
             >
-              Face Products
+              Home
             </motion.span>
             <motion.span
               whileHover={{ scale: 1.1, color: "#f97316" }}
               className="mb-4 cursor-pointer hover:underline"
               onClick={() => scrollToSection("featured")}
             >
-              Hair Products
+              Featured
             </motion.span>
             <motion.span
               whileHover={{ scale: 1.1, color: "#f97316" }}
               className="mb-4 cursor-pointer hover:underline"
               onClick={() => scrollToSection("categories")}
             >
-              All Products
-            </motion.span>
-            <motion.span
-              whileHover={{ scale: 1.1, color: "#f97316" }}
-              className="mb-4 cursor-pointer hover:underline"
-              onClick={() => scrollToSection("about")}
-            >
-              Accessories
+              Our Products
             </motion.span>
             <motion.span
               whileHover={{ scale: 1.1, color: "#f97316" }}
@@ -122,7 +115,7 @@ export const Header = () => {
             <motion.span
               whileHover={{ scale: 1.1, color: "#f97316" }}
               className="mb-4 cursor-pointer hover:underline"
-              onClick={() => scrollToSection("categories")}
+              onClick={() => scrollToSection("footer")}
             >
               Contact Us
             </motion.span>

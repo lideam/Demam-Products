@@ -2,7 +2,7 @@ import Girl from "../../assets/bella/girls.png"
 
 export const About = () => {
   return (
-    <div className="bg-[#59403b] relative mt-[-40px] h-[600px] text-[#b1a9a8] flex flex-col-reverse md:flex-row justify-between font-playfair items-center">
+    <div className="bg-[#59403b] relative mt-20 h-[600px] text-[#b1a9a8] flex flex-col-reverse md:flex-row justify-between font-playfair items-center">
       <div className=" p-4 md:p-32 w-auto md:w-[900px] flex flex-col gap-4">
         <h1 className="text-2xl md:text-4xl font-bold">
           Demam is a small, female owned business focusing on natural beauty
