@@ -20,14 +20,14 @@ export const ProductDetail = () => {
 
   return (
     <>
-      <div className="my-8 mx-20 flex justify-around gap-12">
-        <div className="flex gap-2">
-          <div className="flex flex-col gap-4">
+      <div className="my-8 mx-4 lg:mx-20 flex flex-wrap justify-around gap-12">
+        <div className="flex gap-2 flex-wrap">
+          <div className="flex lg:flex-col flex-row gap-4">
             {Object.values(images).map((i, index) => (
               <img
                 src={i.url}
                 key={index}
-                className={`flex-shrink-0 w-80 h-40 p-2 cursor-pointer ${
+                className={`flex-shrink-0 w-40 lg:w-80 lg:h-40 p-2 cursor-pointer ${
                   image[0] == i.id && "border-4 border-clayBrown"
                 }`}
                 onClick={() => setImage([i.id, i.url])}
@@ -60,8 +60,8 @@ export const ProductDetail = () => {
             sustainability in mind, making it an ideal choice for eco-conscious
             shoppers.
           </p>
-          <b className="text-4xl text-clayBrown">$29.99</b>
-          <div className="flex gap-12">
+          <b className="text-xl lg:text-4xl text-clayBrown">$29.99</b>
+          <div className="flex flex-wrap gap-12">
             <input
               type="number"
               value={1}

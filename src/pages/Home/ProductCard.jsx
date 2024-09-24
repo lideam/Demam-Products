@@ -1,7 +1,13 @@
+import { Link } from "react-router-dom";
+
 export const ProductCard = ({ product }) => {
   return (
     <div className="relative font-playfai w-[300px] h-[500px] flex-shrink-0">
-      <img src={product.image} className="w-[300px] h-[400px]" alt="" />
+      <Link to="/detail">
+        {" "}
+        <img src={product.image} className="w-[300px] h-[400px]" alt="" />
+      </Link>
+
       <div className="flex flex-col items-center gap-2">
         <h2 className="text-xl">{product.name}</h2>
         <span className="flex justify-between w-full">

@@ -63,6 +63,12 @@ export const Header = () => {
         <span onClick={() => scrollToSection("categories")}>Our Products</span>
         <span onClick={() => scrollToSection("about")}>About Us</span>
         <span onClick={() => scrollToSection("footer")}>Contact Us</span>
+        {isScrolled && <div className="flex items-center justify-center absolute right-20">
+          <span className="bg-white px-2 flex justify-center items-center text-xl border-clayBrown border-y-2 border-l-2">
+            0
+          </span>
+          <i className="fa fa-shopping-bag px-2 text-xl border-clayBrown border-y-2 border-r-2"></i>
+        </div>}
       </div>
 
       {/* Sidebar for mobile */}
