@@ -7,7 +7,7 @@ export const ProductCard = ({ product }) => {
 
   return (
     <div className="relative font-playfai w-[300px] h-[500px] flex-shrink-0">
-      <Link to="/detail">
+      <Link to={`/${product._id}/detail`}>
         {" "}
         <img src={product.image} className="w-[300px] h-[400px]" alt="" />
       </Link>

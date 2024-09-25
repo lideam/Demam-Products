@@ -34,7 +34,7 @@ export const MainRoutes = () => {
     window.addEventListener("load", handleLoad);
     window.addEventListener("load", calculateLoadingPercent);
 
-    const interval = setInterval(calculateLoadingPercent, 100); // Update every 100ms
+    const interval = setInterval(calculateLoadingPercent, 100); 
 
     return () => {
       window.removeEventListener("load", handleLoad);
@@ -55,7 +55,7 @@ export const MainRoutes = () => {
             <Routes key={location.key}>
               <Route path="/" element={<Home />} />
               <Route path="/store" element={<Store />} />
-              <Route path="/detail" element={<ProductDetail />} />
+              <Route path="/:id/detail" element={<ProductDetail />} />
               <Route path="*" element={<Home />} />
             </Routes>
           </div>

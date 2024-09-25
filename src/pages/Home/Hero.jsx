@@ -41,7 +41,7 @@ export const Hero = ({ heroInView }) => {
           >
             Simple, natural, and effective.
           </motion.p>
-          <Link to="/">
+          <Link to="/store">
             <motion.button
               className="border-2 border-clayBrown p-4 m-4 w-full text-black hover:bg-clayBrown text-xl transition-colors duration-2000 hover:text-white"
               whileHover={{ scale: 1.05 }}
