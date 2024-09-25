@@ -4,7 +4,7 @@ import one from "../../assets/bella/1.jpg";
 
 export const Hero = () => {
   return (
-    <div className="relative">
+    <div className="relative bg-transparent bg-opacity-20 backdrop-blur-2xl rounded-lg shadow-2xl p-6 m-20">
       <div className="lg:mx-32 mx-8 flex lg:flex-row flex-col-reverse justify-center items-center">
         <div className="z-10 ">
           <h1 className="text-[#4a4a4a] text-2xl lg:text-7xl font-playfair font-extrabold">
