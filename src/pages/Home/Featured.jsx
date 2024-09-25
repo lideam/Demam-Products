@@ -201,7 +201,7 @@ export const Featured = () => {
           className="h-[600px] overflow-hidden flex gap-8 scroll-smooth"
         >
           {products.map((product, index) => (
-            <ProductCard key={index} product={product} />
+            <ProductCard key={index} product={product} id={index} />
           ))}
         </div>
       </div>

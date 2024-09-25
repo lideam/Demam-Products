@@ -1,6 +1,10 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { ProductContext } from "../../context";
 
-export const ProductCard = ({ product }) => {
+export const ProductCard = ({ product, id }) => {
+  const { addToCart, checkCart, removeFromCart } = useContext(ProductContext);
+
   return (
     <div className="relative font-playfai w-[300px] h-[500px] flex-shrink-0">
       <Link to="/detail">
@@ -14,9 +18,21 @@ export const ProductCard = ({ product }) => {
           <p className="text-xl">${product.price}</p>
           <p>{product.category}</p>
         </span>
-        <button className="border-2 border-clayBrown p-1 w-full text-black hover:bg-clayBrown text-xl transition-colors duration-2000 hover:text-white">
-          Add to cart
-        </button>
+        {checkCart(id) ? (
+          <button
+            onClick={() => removeFromCart(id)}
+            className="border-2 border-clayBrown p-1 w-full hover:bg-transparent hover:text-black bg-clayBrown text-xl transition-colors duration-2000 text-white"
+          >
+            Remove from cart
+          </button>
+        ) : (
+          <button
+            onClick={() => addToCart(id)}
+            className="border-2 border-clayBrown p-1 w-full text-black hover:bg-clayBrown text-xl transition-colors duration-2000 hover:text-white"
+          >
+            Add to cart
+          </button>
+        )}
         <div className="absolute top-4 right-4">
           <button className="relative p-3 rounded-full bg-dark-green text-white hover:bg-light-green transition-colors duration-300">
             <i className="fa-solid fa-bookmark text-xl"></i>

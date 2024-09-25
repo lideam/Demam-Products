@@ -1,11 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import { ProductContext } from "../context";
 
 export const Header = () => {
   const [side, setSide] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-
+  const { cart } = useContext(ProductContext);
+  console.log(cart);
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
@@ -45,7 +47,7 @@ export const Header = () => {
           </Link>
           <div className="flex items-center justify-center">
             <span className="bg-white px-2 flex justify-center items-center text-xl border-clayBrown border-y-2 border-l-2">
-              0
+              {cart.length}
             </span>
             <i className="fa fa-shopping-bag px-2 text-xl border-clayBrown border-y-2 border-r-2"></i>
           </div>
@@ -54,7 +56,7 @@ export const Header = () => {
 
       {/* Fixed nav spans when scrolling */}
       <div
-        className={`w-full hidden md:flex text-xl justify-center gap-12 text-base cursor-pointer ${
+        className={`w-full hidden md:flex text-xl justify-center gap-12  cursor-pointer ${
           isScrolled ? "fixed top-0 bg-sandyBeige z-50" : ""
         }`}
       >
@@ -63,12 +65,14 @@ export const Header = () => {
         <span onClick={() => scrollToSection("categories")}>Our Products</span>
         <span onClick={() => scrollToSection("about")}>About Us</span>
         <span onClick={() => scrollToSection("footer")}>Contact Us</span>
-        {isScrolled && <div className="flex items-center justify-center absolute right-20">
-          <span className="bg-white px-2 flex justify-center items-center text-xl border-clayBrown border-y-2 border-l-2">
-            0
-          </span>
-          <i className="fa fa-shopping-bag px-2 text-xl border-clayBrown border-y-2 border-r-2"></i>
-        </div>}
+        {isScrolled && (
+          <div className="flex items-center justify-center absolute right-20">
+            <span className="bg-white px-2 flex justify-center items-center text-xl border-clayBrown border-y-2 border-l-2">
+              {cart.length}
+            </span>
+            <i className="fa fa-shopping-bag px-2 text-xl border-clayBrown border-y-2 border-r-2"></i>
+          </div>
+        )}
       </div>
 
       {/* Sidebar for mobile */}

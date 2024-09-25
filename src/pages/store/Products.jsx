@@ -188,7 +188,7 @@ export const Products = () => {
       </div>
       <div className="m-4 flex flex-wrap gap-12 items-center justify-center">
         {products.map((product, index) => (
-          <ProductCard key={index} product={product} />
+          <ProductCard key={index} product={product} id={index} />
         ))}
       </div>
       <div class="flex items-center justify-center my-12">
