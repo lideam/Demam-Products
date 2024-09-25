@@ -98,7 +98,7 @@ export const Cart = ({ open, setOpen }) => {
                                     onChange={(e) =>
                                       handleQuantityChange(e, product._id)
                                     }
-                                    className="w-16 disabled:cursor-not-allowed px-2 outline-none border border-clayBrown"
+                                    className="w-16 font-bold disabled:cursor-not-allowed px-2 outline-none border border-clayBrown"
                                   />
                                   Qty
                                 </p>
