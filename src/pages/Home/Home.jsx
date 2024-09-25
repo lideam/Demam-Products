@@ -28,7 +28,7 @@ export const Home = () => {
         animate={heroInView ? "visible" : "hidden"}
         variants={fadeInVariant("up")}
       >
-        <Hero />
+        <Hero heroInView={heroInView} />
       </motion.div>
 
       <motion.div
