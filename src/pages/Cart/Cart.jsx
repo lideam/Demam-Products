@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   Dialog,
   DialogBackdrop,
@@ -9,9 +9,27 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 import { ProductContext } from "../../context";
 
 export const Cart = ({ open, setOpen }) => {
-  const { cart, removeFromCart } = useContext(ProductContext);
+  const { cart, removeFromCart, updateQuantity } = useContext(ProductContext);
+  const [total, setTotal] = useState(0);
+
+  useEffect(() => {
+    let tot = 0;
+    cart.forEach((product) => {
+      tot += product.price * product.quantity;
+    });
+    setTotal(tot);
+  }, [cart]);
+
+  const handleQuantityChange = (e, productId) => {
+    const newQuantity = Number(e.target.value);
+    updateQuantity(productId, newQuantity);
+  };
   return (
-    <Dialog open={open} onClose={setOpen} className="relative z-[9999]">
+    <Dialog
+      open={open}
+      onClose={() => setOpen(false)}
+      className="relative z-[9999]"
+    >
       <DialogBackdrop
         transition
         className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity duration-500 ease-in-out data-[closed]:opacity-0"
@@ -50,11 +68,12 @@ export const Cart = ({ open, setOpen }) => {
                         className="-my-6 divide-y divide-gray-200"
                       >
                         {cart.map((product) => (
-                          <li key={product.id} className="flex py-6">
+                          <li key={product._id} className="flex py-6">
                             <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                               <img
                                 src={product.image}
                                 className="h-full w-full object-cover object-center"
+                                alt={product.name}
                               />
                             </div>
 
@@ -64,7 +83,7 @@ export const Cart = ({ open, setOpen }) => {
                                   <h3>
                                     <a href={product.href}>{product.name}</a>
                                   </h3>
-                                  <p className="ml-4">{product.price}</p>
+                                  <p className="ml-4">${product.price}</p>
                                 </div>
                                 <p className="mt-1 text-sm text-gray-500">
                                   {product.category}
@@ -73,11 +92,15 @@ export const Cart = ({ open, setOpen }) => {
                               <div className="flex flex-1 items-end justify-between text-sm">
                                 <p className="text-gray-500 flex gap-2">
                                   <input
-                                    type="numer"
-                                    value={1}
-                                    className="w-10 disabled:cursor-not-allowed px-2 outline-none border border-clayBrown"
+                                    type="number"
+                                    value={product.quantity}
+                                    min="1"
+                                    onChange={(e) =>
+                                      handleQuantityChange(e, product._id)
+                                    }
+                                    className="w-16 disabled:cursor-not-allowed px-2 outline-none border border-clayBrown"
                                   />
-                                  Qty {product.quantity}
+                                  Qty
                                 </p>
 
                                 <div className="flex">
@@ -93,6 +116,16 @@ export const Cart = ({ open, setOpen }) => {
                             </div>
                           </li>
                         ))}
+
+                        {cart.length === 0 && (
+                          <dotlottie-player
+                            src="https://lottie.host/97d093b5-b29a-48af-a265-0e2aaf44a314/KwB3HbFN1n.json"
+                            background="transparent"
+                            speed="1"
+                            loop
+                            autoplay
+                          ></dotlottie-player>
+                        )}
                       </ul>
                     </div>
                   </div>
@@ -101,7 +134,7 @@ export const Cart = ({ open, setOpen }) => {
                 <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                   <div className="flex justify-between text-base font-medium text-gray-900">
                     <p>Subtotal</p>
-                    <p>$262.00</p>
+                    <p>${total.toFixed(2)}</p>
                   </div>
                   <p className="mt-0.5 text-sm text-gray-500">
                     Shipping and taxes calculated at checkout.

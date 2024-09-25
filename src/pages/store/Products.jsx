@@ -35,7 +35,6 @@ export const Products = () => {
 
   const { data, loading, error } = useFetch("api/products");
 
-  console.log(data, loading, error);
 
   return (
     <div className="my-8 font-playfair">
