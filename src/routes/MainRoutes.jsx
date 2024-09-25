@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import LoadingProgress from "../utils/Loading";
-import { Home, ProductDetail, Store } from "../pages";
+import { Cart, Home, ProductDetail, Store } from "../pages";
 import { Header, Footer } from "../components";
 
 export const MainRoutes = () => {

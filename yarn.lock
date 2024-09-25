@@ -647,7 +647,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@headlessui/react@npm:^2.1.4":
+"@headlessui/react@npm:^2.1.8":
   version: 2.1.8
   resolution: "@headlessui/react@npm:2.1.8"
   dependencies:
@@ -2584,7 +2584,7 @@ __metadata:
   dependencies:
     "@eslint/js": "npm:^9.9.0"
     "@fontsource/playfair-display": "npm:^5.1.0"
-    "@headlessui/react": "npm:^2.1.4"
+    "@headlessui/react": "npm:^2.1.8"
     "@heroicons/react": "npm:^2.1.5"
     "@shadcn/ui": "npm:^0.0.4"
     "@tailwindcss/aspect-ratio": "npm:^0.4.2"
@@ -2599,6 +2599,7 @@ __metadata:
     eslint-plugin-react-refresh: "npm:^0.4.9"
     framer-motion: "npm:^11.5.4"
     globals: "npm:^15.9.0"
+    headlessui: "npm:^0.0.0"
     nprogress: "npm:^0.2.0"
     postcss: "npm:^8.4.44"
     react: "npm:^18.3.1"
@@ -2873,6 +2874,13 @@ __metadata:
   dependencies:
     function-bind: "npm:^1.1.2"
   checksum: 10c0/3769d434703b8ac66b209a4cca0737519925bbdb61dd887f93a16372b14694c63ff4e797686d87c90f08168e81082248b9b028bad60d4da9e0d1148766f56eb9
+  languageName: node
+  linkType: hard
+
+"headlessui@npm:^0.0.0":
+  version: 0.0.0
+  resolution: "headlessui@npm:0.0.0"
+  checksum: 10c0/7659a8dac09c1771edd49603dabbae24bff94c6122fd01952a7660d659a457f9e997c45505a4224a70cf8332a4443b87c5500b8d35dd6fc00d99ac5afcd5eeb3
   languageName: node
   linkType: hard
 

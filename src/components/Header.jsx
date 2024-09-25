@@ -2,12 +2,14 @@ import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ProductContext } from "../context";
+import { Cart } from "../pages";
 
 export const Header = () => {
   const [side, setSide] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const { cart } = useContext(ProductContext);
-  console.log(cart);
+  const [open, setOpen] = useState(false);
+  
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
@@ -49,7 +51,7 @@ export const Header = () => {
             <span className="bg-white px-2 flex justify-center items-center text-xl border-clayBrown border-y-2 border-l-2">
               {cart.length}
             </span>
-            <i className="fa fa-shopping-bag px-2 text-xl border-clayBrown border-y-2 border-r-2"></i>
+            <i onClick={() => setOpen(true)} className="fa fa-shopping-bag cursor-pointer px-2 text-xl border-clayBrown border-y-2 border-r-2"></i>
           </div>
         </div>
       )}
@@ -70,7 +72,7 @@ export const Header = () => {
             <span className="bg-white px-2 flex justify-center items-center text-xl border-clayBrown border-y-2 border-l-2">
               {cart.length}
             </span>
-            <i className="fa fa-shopping-bag px-2 text-xl border-clayBrown border-y-2 border-r-2"></i>
+            <i onClick={() => setOpen(true)} className="fa fa-shopping-bag cursor-pointer px-2 text-xl border-clayBrown border-y-2 border-r-2"></i>
           </div>
         )}
       </div>
@@ -138,6 +140,7 @@ export const Header = () => {
           </motion.div>
         )}
       </AnimatePresence>
+      <Cart open={open} setOpen={setOpen} />
     </div>
   );
 };
