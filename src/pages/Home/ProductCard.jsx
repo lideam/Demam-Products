@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { ProductContext } from "../../context";
 
-export const ProductCard = ({ product, id }) => {
+export const ProductCard = ({ product }) => {
   const { addToCart, checkCart, removeFromCart } = useContext(ProductContext);
 
   return (
@@ -18,16 +18,16 @@ export const ProductCard = ({ product, id }) => {
           <p className="text-xl">${product.price}</p>
           <p>{product.category}</p>
         </span>
-        {checkCart(id) ? (
+        {checkCart(product) ? (
           <button
-            onClick={() => removeFromCart(id)}
+            onClick={() => removeFromCart(product)}
             className="border-2 border-clayBrown p-1 w-full hover:bg-transparent hover:text-black bg-clayBrown text-xl transition-colors duration-2000 text-white"
           >
             Remove from cart
           </button>
         ) : (
           <button
-            onClick={() => addToCart(id)}
+            onClick={() => addToCart(product)}
             className="border-2 border-clayBrown p-1 w-full text-black hover:bg-clayBrown text-xl transition-colors duration-2000 hover:text-white"
           >
             Add to cart

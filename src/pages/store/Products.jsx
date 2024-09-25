@@ -51,9 +51,9 @@ export const Products = () => {
         />
       </div>
       <div className="m-4 flex flex-wrap gap-12 items-center justify-center">
-        {/* {products.map((product, index) => (
-          <ProductCard key={index} product={product} id={index} />
-        ))} */}
+        {!loading && data && data.map((product, index) => (
+          <ProductCard key={index} product={product} />
+        ))}
       </div>
       <div className="flex items-center justify-center my-12">
         <nav className="inline-flex shadow-md">
