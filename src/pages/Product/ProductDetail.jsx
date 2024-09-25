@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Featured } from "../Home/Featured";
 
-export const ProductDetail = () => {
+const ProductDetail = () => {
   const [image, setImage] = useState([
     1,
     "https://imgs.search.brave.com/V4PHzJCCbTx1cSKAtvrBASPRmozfMkHI5yUJxhoJIuU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/bGFnaXJsdXNhLmNv/bS9jZG4vc2hvcC9w/cm9kdWN0cy9MQUdf/cHJvX3ByaW1lcl9H/RUIxOTZfMzUweC5q/cGc",
@@ -77,3 +77,5 @@ export const ProductDetail = () => {
     </>
   );
 };
+
+export default ProductDetail;

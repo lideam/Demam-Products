@@ -12,7 +12,7 @@ const fadeInVariant = (direction = "up", delay = 0) => ({
   },
 });
 
-export const Store = () => {
+const Store = () => {
   return (
     <div className="px-24 py-12 w-full flex flex-col">
       <motion.div
@@ -41,3 +41,4 @@ export const Store = () => {
     </div>
   );
 };
+export default Store;

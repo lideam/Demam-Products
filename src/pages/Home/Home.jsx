@@ -10,7 +10,7 @@ const fadeInVariant = (direction) => ({
   visible: { opacity: 1, y: 0, transition: { duration: 1, ease: "easeOut" } },
 });
 
-export const Home = () => {
+const Home = () => {
   const [heroRef, heroInView] = useInView({ triggerOnce: true });
   const [featuredRef, featuredInView] = useInView({ triggerOnce: true });
   const [aboutRef, aboutInView] = useInView({ triggerOnce: true });
@@ -64,3 +64,4 @@ export const Home = () => {
   );
 };
 
+export default Home;

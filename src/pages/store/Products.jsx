@@ -1,6 +1,7 @@
 import Select from "react-select";
 import { ProductCard } from "../Home/ProductCard";
 import { useFetch } from "../../hooks/useFetch";
+import { useState } from "react";
 
 export const Products = () => {
   const options = [
@@ -16,7 +17,7 @@ export const Products = () => {
       borderColor: "#A0522D",
       padding: "10px",
       textAlign: "center",
-      outLine: "none",
+      outline: "none",
     }),
     option: (provided, { isFocused }) => ({
       ...provided,
@@ -35,6 +36,49 @@ export const Products = () => {
 
   const { data, loading, error } = useFetch("api/products");
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsPerPage = 15;
+
+  
+  const totalPages = Math.ceil((data?.length || 0) / productsPerPage);
+
+  
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = data?.slice(indexOfFirstProduct, indexOfLastProduct);
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const renderPaginationButtons = () => {
+    const buttons = [];
+    for (let i = 1; i <= totalPages; i++) {
+      buttons.push(
+        <a
+          key={i}
+          href="#"
+          onClick={() => setCurrentPage(i)}
+          className={`px-6 py-2 border border-[#A0522D] transition-colors duration-200 ${
+            currentPage === i
+              ? "bg-[#A0522D] text-white"
+              : "bg-home text-[#2E8B57]"
+          }`}
+        >
+          {i}
+        </a>
+      );
+    }
+    return buttons;
+  };
 
   return (
     <div className="my-8 font-playfair">
@@ -49,8 +93,8 @@ export const Products = () => {
       </div>
       <div className="m-4 flex flex-wrap gap-12 items-center justify-center">
         {!loading &&
-          data &&
-          data.map((product, index) => (
+          currentProducts &&
+          currentProducts.map((product, index) => (
             <ProductCard key={index} product={product} />
           ))}
       </div>
@@ -58,35 +102,26 @@ export const Products = () => {
         <nav className="inline-flex shadow-md">
           <a
             href="#"
-            className="px-6 py-2 bg-[#A0522D] text-white border border-[#A0522D] hover:bg-[#8B4513] transition-colors duration-200"
+            onClick={handlePreviousPage}
+            className={`px-6 py-2 border border-[#A0522D] transition-colors duration-200 ${
+              currentPage === 1
+                ? "cursor-not-allowed"
+                : "bg-[#A0522D] text-white"
+            }`}
           >
             Previous
           </a>
 
-          <a
-            href="#"
-            className="px-6 py-2 bg-home text-[#2E8B57] border border-[#A0522D]  transition-colors duration-200"
-          >
-            1
-          </a>
+          {renderPaginationButtons()}
 
           <a
             href="#"
-            className="px-6 py-2 bg-home text-[#2E8B57] border border-[#A0522D]  transition-colors duration-200"
-          >
-            2
-          </a>
-
-          <a
-            href="#"
-            className="px-6 py-2 bg-home text-[#2E8B57] border border-[#A0522D]  transition-colors duration-200"
-          >
-            3
-          </a>
-
-          <a
-            href="#"
-            className="px-6 py-2 bg-[#A0522D] text-white border border-[#A0522D] hover:bg-[#8B4513] transition-colors duration-200"
+            onClick={handleNextPage}
+            className={`px-6 py-2 border border-[#A0522D] transition-colors duration-200 ${
+              currentPage === totalPages
+                ? "cursor-not-allowed"
+                : "bg-[#A0522D] text-white"
+            }`}
           >
             Next
           </a>
