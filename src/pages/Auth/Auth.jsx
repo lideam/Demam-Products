@@ -3,7 +3,7 @@ import Makeup from "../../assets/cos.png";
 import { Login } from "./Login";
 import { Register } from "./Register";
 import { useState } from "react";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 
 export const Auth = () => {
   const [login, setLogin] = useState(true);
@@ -48,7 +48,10 @@ export const Auth = () => {
             <li></li>
           </ul>
         </div>
-        <Link to='/' className="absolute left-1/2 top-12 font-bold text-2xl bg-blue-700 text-white p-4 rounded-lg">
+        <Link
+          to="/"
+          className="absolute left-1/2 top-12 font-bold text-2xl bg-blue-700 text-white p-4 rounded-lg"
+        >
           Bella Cosmo
         </Link>
         <div className="md:flex md:items-center md:justify-center w-full sm:w-auto md:h-full w-2/5 xl:w-2/5 p-8 md:p-10 lg:p-14 sm:rounded-lg md:rounded-none bg-white">
@@ -58,16 +61,20 @@ export const Auth = () => {
                 {login ? "Welcome Back!" : "Hey There!"}
               </h2>
               <p className="mt-2 text-sm text-gray-500">
-                {login ? "Please sign in to your account" : "Create new account"}
+                {login
+                  ? "Please sign in to your account"
+                  : "Create new account"}
               </p>
             </div>
             <div className="">{login ? <Login /> : <Register />}</div>
 
-            <p class="flex flex-col items-center justify-center mt-10 text-center text-md text-gray-500">
-              <span>{login ? "Don't have an account?" : "Already have an account?"}</span>
+            <p className="flex flex-col items-center justify-center mt-10 text-center text-md text-gray-500">
+              <span>
+                {login ? "Don't have an account?" : "Already have an account?"}
+              </span>
               <a
                 onClick={() => setLogin(!login)}
-                class="text-indigo-400 hover:text-blue-500 no-underline hover:underline cursor-pointer transition ease-in duration-300"
+                className="text-indigo-400 hover:text-blue-500 no-underline hover:underline cursor-pointer transition ease-in duration-300"
               >
                 Sign {login ? "up" : "in"}
               </a>

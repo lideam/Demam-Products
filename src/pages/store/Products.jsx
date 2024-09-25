@@ -1,5 +1,6 @@
 import Select from "react-select";
 import { ProductCard } from "../Home/ProductCard";
+import { useFetch } from "../../hooks/useFetch";
 
 export const Products = () => {
   const options = [
@@ -32,148 +33,11 @@ export const Products = () => {
     }),
   };
 
-  const products = [
-    {
-      name: "Revitalizing Face Cream",
-      price: 34.99,
-      category: "Skincare",
-      image:
-        "https://images.pexels.com/photos/11751106/pexels-photo-11751106.jpeg?auto=compress&cs=tinysrgb&w=600",
-    },
-    {
-      name: "Hydrating Facial Serum",
-      price: 29.99,
-      category: "Skincare",
-      image:
-        "https://images.pexels.com/photos/5517064/pexels-photo-5517064.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    },
-    {
-      name: "Nourishing Body Lotion",
-      price: 24.99,
-      category: "Body Care",
-      image:
-        "https://images.pexels.com/photos/12352238/pexels-photo-12352238.jpeg?auto=compress&cs=tinysrgb&w=600",
-    },
-    {
-      name: "Soothing Eye Cream",
-      price: 19.99,
-      category: "Skincare",
-      image:
-        "https://images.pexels.com/photos/12035707/pexels-photo-12035707.jpeg?auto=compress&cs=tinysrgb&w=600",
-    },
-    {
-      name: "Exfoliating Scrub",
-      price: 27.99,
-      category: "Skincare",
-      image:
-        "https://images.pexels.com/photos/8128062/pexels-photo-8128062.jpeg?auto=compress&cs=tinysrgb&w=600",
-    },
-    {
-      name: "Deep Cleanse Face Mask",
-      price: 22.99,
-      category: "Skincare",
-      image:
-        "https://images.pexels.com/photos/3373730/pexels-photo-3373730.jpeg?auto=compress&cs=tinysrgb&w=600",
-    },
-    {
-      name: "Moisturizing Hand Cream",
-      price: 18.99,
-      category: "Body Care",
-      image:
-        "https://images.pexels.com/photos/4699180/pexels-photo-4699180.jpeg?auto=compress&cs=tinysrgb&w=600",
-    },
-    {
-      name: "Refreshing Facial Mist",
-      price: 16.99,
-      category: "Skincare",
-      image:
-        "https://images.pexels.com/photos/6808150/pexels-photo-6808150.jpeg?auto=compress&cs=tinysrgb&w=600",
-    },
-    {
-      name: "Anti-Aging Night Cream",
-      price: 39.99,
-      category: "Skincare",
-      image:
-        "https://images.pexels.com/photos/5128075/pexels-photo-5128075.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    },
-    {
-      name: "Calming Lip Balm",
-      price: 12.99,
-      category: "Lip Care",
-      image:
-        "https://images.pexels.com/photos/8128071/pexels-photo-8128071.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    },
-    {
-      name: "Calming Lip Balm",
-      price: 12.99,
-      category: "Lip Care",
-      image:
-        "https://images.pexels.com/photos/8128071/pexels-photo-8128071.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    },
-    {
-      name: "Calming Lip Balm",
-      price: 12.99,
-      category: "Lip Care",
-      image:
-        "https://images.pexels.com/photos/8128071/pexels-photo-8128071.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    },
-    {
-      name: "Calming Lip Balm",
-      price: 12.99,
-      category: "Lip Care",
-      image:
-        "https://images.pexels.com/photos/8128071/pexels-photo-8128071.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    },
-    {
-      name: "Calming Lip Balm",
-      price: 12.99,
-      category: "Lip Care",
-      image:
-        "https://images.pexels.com/photos/8128071/pexels-photo-8128071.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    },
-    {
-      name: "Calming Lip Balm",
-      price: 12.99,
-      category: "Lip Care",
-      image:
-        "https://images.pexels.com/photos/8128071/pexels-photo-8128071.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    },
-    {
-      name: "Calming Lip Balm",
-      price: 12.99,
-      category: "Lip Care",
-      image:
-        "https://images.pexels.com/photos/8128071/pexels-photo-8128071.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    },
-    {
-      name: "Calming Lip Balm",
-      price: 12.99,
-      category: "Lip Care",
-      image:
-        "https://images.pexels.com/photos/8128071/pexels-photo-8128071.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    },
-    {
-      name: "Calming Lip Balm",
-      price: 12.99,
-      category: "Lip Care",
-      image:
-        "https://images.pexels.com/photos/8128071/pexels-photo-8128071.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    },
-    {
-      name: "Calming Lip Balm",
-      price: 12.99,
-      category: "Lip Care",
-      image:
-        "https://images.pexels.com/photos/8128071/pexels-photo-8128071.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    },
-    {
-      name: "Calming Lip Balm",
-      price: 12.99,
-      category: "Lip Care",
-      image:
-        "https://images.pexels.com/photos/8128071/pexels-photo-8128071.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    },
-  ];
+  const { data, loading, error } = useFetch(
+    "http://localhost:5000/api/products"
+  );
+
+  console.log(data, loading, error);
 
   return (
     <div className="my-8 font-playfair">
@@ -187,43 +51,43 @@ export const Products = () => {
         />
       </div>
       <div className="m-4 flex flex-wrap gap-12 items-center justify-center">
-        {products.map((product, index) => (
+        {/* {products.map((product, index) => (
           <ProductCard key={index} product={product} id={index} />
-        ))}
+        ))} */}
       </div>
-      <div class="flex items-center justify-center my-12">
-        <nav class="inline-flex shadow-md">
+      <div className="flex items-center justify-center my-12">
+        <nav className="inline-flex shadow-md">
           <a
             href="#"
-            class="px-6 py-2 bg-[#A0522D] text-white border border-[#A0522D] hover:bg-[#8B4513] transition-colors duration-200"
+            className="px-6 py-2 bg-[#A0522D] text-white border border-[#A0522D] hover:bg-[#8B4513] transition-colors duration-200"
           >
             Previous
           </a>
 
           <a
             href="#"
-            class="px-6 py-2 bg-home text-[#2E8B57] border border-[#A0522D]  transition-colors duration-200"
+            className="px-6 py-2 bg-home text-[#2E8B57] border border-[#A0522D]  transition-colors duration-200"
           >
             1
           </a>
 
           <a
             href="#"
-            class="px-6 py-2 bg-home text-[#2E8B57] border border-[#A0522D]  transition-colors duration-200"
+            className="px-6 py-2 bg-home text-[#2E8B57] border border-[#A0522D]  transition-colors duration-200"
           >
             2
           </a>
 
           <a
             href="#"
-            class="px-6 py-2 bg-home text-[#2E8B57] border border-[#A0522D]  transition-colors duration-200"
+            className="px-6 py-2 bg-home text-[#2E8B57] border border-[#A0522D]  transition-colors duration-200"
           >
             3
           </a>
 
           <a
             href="#"
-            class="px-6 py-2 bg-[#A0522D] text-white border border-[#A0522D] hover:bg-[#8B4513] transition-colors duration-200"
+            className="px-6 py-2 bg-[#A0522D] text-white border border-[#A0522D] hover:bg-[#8B4513] transition-colors duration-200"
           >
             Next
           </a>
