@@ -46,7 +46,7 @@ export const Categories = () => {
       </header>
 
       <div
-        className="pl-12 py-8 flex flex-col-reverse md:flex-row gap-12 w-full justify-between items-center"
+        className="pl-12 py-8 flex flex-col md:flex-row gap-12 w-full justify-between items-center"
         ref={ref}
       >
         <div className="relative w-full  h-[800px]">

@@ -16,7 +16,7 @@ const Home = () => {
   const [aboutRef, aboutInView] = useInView({ triggerOnce: true });
   const [categoriesRef, categoriesInView] = useInView({
     triggerOnce: true,
-    threshold: 0.5,
+    threshold: 0.2,
   });
 
   return (
