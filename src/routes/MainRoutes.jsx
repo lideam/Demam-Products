@@ -22,7 +22,7 @@ export const MainRoutes = () => {
   }, [location.pathname]);
 
   return (
-    <div className="bg-[#f4efe9] min-h-screen max-w-screen overflow-x-hidden">
+    <div className="bg-home min-h-screen max-w-screen overflow-x-hidden">
       {isLoading ? (
         <LoadingProgress />
       ) : (

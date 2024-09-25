@@ -18,7 +18,7 @@ export const Hero = ({ heroInView }) => {
         transition={{ duration: 1, type: "spring", stiffness: 100, delay: 0.2 }}
       />
       <motion.div
-        className="relative bg-transparent bg-opacity-20 min-h-[80vh] backdrop-blur-xl rounded-lg shadow-2xl p-6 m-20"
+        className="relative bg-transparent bg-opacity-20 h-[80vh] backdrop-blur-xl rounded-lg shadow-2xl p-6 m-20"
         initial={{ opacity: 0, y: 50 }}
         animate={heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
         transition={{ duration: 1 }}

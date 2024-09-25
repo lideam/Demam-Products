@@ -202,21 +202,21 @@ export const Products = () => {
 
           <a
             href="#"
-            class="px-6 py-2 bg-[#f4efe9] text-[#2E8B57] border border-[#A0522D]  transition-colors duration-200"
+            class="px-6 py-2 bg-home text-[#2E8B57] border border-[#A0522D]  transition-colors duration-200"
           >
             1
           </a>
 
           <a
             href="#"
-            class="px-6 py-2 bg-[#f4efe9] text-[#2E8B57] border border-[#A0522D]  transition-colors duration-200"
+            class="px-6 py-2 bg-home text-[#2E8B57] border border-[#A0522D]  transition-colors duration-200"
           >
             2
           </a>
 
           <a
             href="#"
-            class="px-6 py-2 bg-[#f4efe9] text-[#2E8B57] border border-[#A0522D]  transition-colors duration-200"
+            class="px-6 py-2 bg-home text-[#2E8B57] border border-[#A0522D]  transition-colors duration-200"
           >
             3
           </a>

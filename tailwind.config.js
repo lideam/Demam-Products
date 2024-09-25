@@ -14,6 +14,7 @@ export default {
         terracotta: "#D17A5A",
         slateGrey: "#708090",
         clayBrown: "#8B4513",
+        home: "#f4efe9",
       },
     },
   },

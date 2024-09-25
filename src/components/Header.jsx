@@ -35,7 +35,7 @@ export const Header = () => {
   }, []);
 
   return (
-    <div className="font-playfair fixed z-[999] bg-sandyBeige w-full p-4 border-b border-gray-500">
+    <div className="font-playfair fixed z-[999] bg-home w-full p-4 border-b border-gray-500">
       {!isScrolled && (
         <div className="w-full text-[#4a4a4a] flex flex-wrap items-center justify-between">
           <span>
@@ -51,15 +51,19 @@ export const Header = () => {
             <span className="bg-white px-2 flex justify-center items-center text-xl border-clayBrown border-y-2 border-l-2">
               {cart.length}
             </span>
-            <i onClick={() => setOpen(true)} className="fa fa-shopping-bag cursor-pointer px-2 text-xl border-clayBrown border-y-2 border-r-2"></i>
+            <i
+              onClick={() => setOpen(true)}
+              className="fa fa-shopping-bag cursor-pointer px-2 text-xl border-clayBrown border-y-2 border-r-2"
+            ></i>
           </div>
         </div>
       )}
 
-      {/* Fixed nav spans when scrolling */}
       <div
-        className={`w-full hidden md:flex text-xl justify-center gap-12  cursor-pointer ${
-          isScrolled ? "fixed top-0 bg-sandyBeige z-50" : ""
+        className={`w-full hidden md:flex text-xl justify-center gap-12 mt-4  cursor-pointer ${
+          isScrolled
+            ? "fixed top-0 bg-home p-4 left-0 z-50 border-b mt-0 border-gray-500"
+            : ""
         }`}
       >
         <span onClick={() => scrollToSection("hero")}>Home</span>
@@ -72,7 +76,10 @@ export const Header = () => {
             <span className="bg-white px-2 flex justify-center items-center text-xl border-clayBrown border-y-2 border-l-2">
               {cart.length}
             </span>
-            <i onClick={() => setOpen(true)} className="fa fa-shopping-bag cursor-pointer px-2 text-xl border-clayBrown border-y-2 border-r-2"></i>
+            <i
+              onClick={() => setOpen(true)}
+              className="fa fa-shopping-bag cursor-pointer px-2 text-xl border-clayBrown border-y-2 border-r-2"
+            ></i>
           </div>
         )}
       </div>
