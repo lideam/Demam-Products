@@ -9,6 +9,11 @@ export const ProductProvider = ({ children }) => {
     return savedCart ? JSON.parse(savedCart) : [];
   });
 
+  const [saved, setSaved] = useState(() => {
+    const savedCart = localStorage.getItem("saved");
+    return savedCart ? JSON.parse(savedCart) : [];
+  });
+
   const addToCart = (product) => {
     const existingProductIndex = cart.findIndex(
       (item) => item._id === product._id
@@ -29,6 +34,20 @@ export const ProductProvider = ({ children }) => {
       localStorage.setItem("cart", JSON.stringify(newCart));
       toast.success(`Increased quantity of ${product.name}!`);
     }
+  };
+
+  const addToSave = (product) => {
+    const newSaved = [...saved, product];
+    setSaved(newSaved);
+    localStorage.setItem("saved", JSON.stringify(newSaved));
+    toast.success(`${product.name} added to saved!`);
+  };
+
+  const removeFromSave = (product) => {
+    const newSaved = saved.filter((item) => item._id !== product._id);
+    setSaved(newSaved);
+    localStorage.setItem("saved", JSON.stringify(newSaved));
+    toast.success(`${product.name} removed from saved!`);
   };
 
   const removeFromCart = (product) => {
@@ -56,6 +75,9 @@ export const ProductProvider = ({ children }) => {
     checkCart,
     removeFromCart,
     updateQuantity,
+    saved,
+    addToSave,
+    removeFromSave,
   };
 
   return (
