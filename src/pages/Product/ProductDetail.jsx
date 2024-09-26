@@ -25,7 +25,7 @@ const ProductDetail = () => {
   console.log(data);
   return (
     <>
-      <div className="my-8 mx-4 lg:mx-20 flex flex-row justify-around gap-12">
+      {data && !loading && <div className="my-8 mx-4 lg:mx-20 flex flex-row justify-around gap-12">
         <div className="flex gap-2 flex-row">
           <div className="flex lg:flex-col flex-row gap-4">
             {Object.values(images).map((i, index) => (
@@ -67,7 +67,7 @@ const ProductDetail = () => {
             </button>
           </div>
         </div>
-      </div>
+      </div>}
       <Featured />
     </>
   );
