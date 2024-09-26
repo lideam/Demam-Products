@@ -40,7 +40,7 @@ export const Cart = ({ open, setOpen }) => {
           <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
             <DialogPanel
               transition
-              className="pointer-events-auto w-screen max-w-md transform transition duration-500 ease-in-out data-[closed]:translate-x-full sm:duration-700"
+              className="pointer-events-auto w-screen max-w-md relative transform transition duration-500 ease-in-out data-[closed]:translate-x-full sm:duration-700"
             >
               <div className="flex h-full flex-col overflow-y-scroll bg-home font-playfair space-x-1 shadow-xl">
                 <div className="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
@@ -161,6 +161,25 @@ export const Cart = ({ open, setOpen }) => {
                     </p>
                   </div>
                 </div>
+                <form className="bg-white m-3 absolute z-100 bottom-0 w-[95%] rounded-md">
+                  <header className="text-center m-4 text-2xl font-bold text-clayBrown">
+                    Place Order
+                  </header>
+                  <div className="flex flex-col gap-2 mx-4">
+                    <label className="text-clayBrown">Phone Number</label>
+                    <input
+                      type="text"
+                      className="outline-none border border-clayBrown w-full p-2 rounded-md"
+                      placeholder="+251 --- -- -- --"
+                    />
+                  </div>
+                  <a
+                    href="#"
+                    className="flex m-7 items-center justify-center rounded-md border border-transparent bg-clayBrown px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-[#492c18]"
+                  >
+                    Order
+                  </a>
+                </form>
               </div>
             </DialogPanel>
           </div>
