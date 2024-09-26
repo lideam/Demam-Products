@@ -61,6 +61,10 @@ export const ProductProvider = ({ children }) => {
     return cart.some((item) => item._id === product._id);
   };
 
+  const checkSave = (product) => {
+    return saved.some((item) => item._id === product._id);
+  };
+
   const updateQuantity = (productId, quantity) => {
     setCart((prevCart) =>
       prevCart.map((item) =>
@@ -78,6 +82,7 @@ export const ProductProvider = ({ children }) => {
     saved,
     addToSave,
     removeFromSave,
+    checkSave,
   };
 
   return (

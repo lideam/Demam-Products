@@ -3,7 +3,14 @@ import { Link } from "react-router-dom";
 import { ProductContext } from "../../context";
 
 export const ProductCard = ({ product }) => {
-  const { addToCart, checkCart, removeFromCart } = useContext(ProductContext);
+  const {
+    addToCart,
+    checkCart,
+    removeFromCart,
+    addToSave,
+    removeFromSave,
+    checkSave,
+  } = useContext(ProductContext);
 
   return (
     <div className="relative font-playfai w-[300px] h-[500px] flex-shrink-0">
@@ -34,8 +41,17 @@ export const ProductCard = ({ product }) => {
           </button>
         )}
         <div className="absolute top-4 right-4">
-          <button className="relative p-3 rounded-full bg-dark-green text-white hover:bg-light-green transition-colors duration-300">
-            <i className="fa-solid fa-bookmark text-xl"></i>
+          <button
+            onClick={() =>
+              checkSave(product) ? removeFromSave(product) : addToSave(product)
+            }
+            className="relative p-3 rounded-full bg-dark-green text-white hover:bg-light-green transition-colors duration-300"
+          >
+            <i
+              className={`fa-solid fa-bookmark text-xl ${
+                checkSave(product) && "text-clayBrown"
+              }`}
+            ></i>
             <span className="absolute inset-0 bg-dark-green opacity-40 rounded-full"></span>
           </button>
         </div>
