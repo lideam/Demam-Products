@@ -11,6 +11,7 @@ import { ProductContext } from "../../context";
 export const Cart = ({ open, setOpen }) => {
   const { cart, removeFromCart, updateQuantity } = useContext(ProductContext);
   const [total, setTotal] = useState(0);
+  const [order, setOrder] = useState(false);
 
   useEffect(() => {
     let tot = 0;
@@ -140,12 +141,12 @@ export const Cart = ({ open, setOpen }) => {
                     Shipping and taxes calculated at checkout.
                   </p>
                   <div className="mt-6">
-                    <a
-                      href="#"
-                      className="flex items-center justify-center rounded-md border border-transparent bg-clayBrown px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-[#492c18]"
+                    <button
+                      onClick={() => setOrder(true)}
+                      className="flex w-full items-center justify-center rounded-md border border-transparent bg-clayBrown px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-[#492c18]"
                     >
                       Checkout
-                    </a>
+                    </button>
                   </div>
                   <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                     <p>
@@ -161,9 +162,23 @@ export const Cart = ({ open, setOpen }) => {
                     </p>
                   </div>
                 </div>
-                <form className="bg-white m-3 absolute z-100 bottom-0 w-[95%] rounded-md">
-                  <header className="text-center m-4 text-2xl font-bold text-clayBrown">
+                <form
+                  className={`bg-white m-3 transition-transform duration-300 ease-in-out absolute bottom-0 z-100 ${
+                    !order ? "translate-y-full" : "translate-y-0"
+                  } w-[95%] rounded-md`}
+                >
+                  <header className="text-center m-4 text-2xl flex justify-between items-center font-bold text-clayBrown">
+                    <span></span>
                     Place Order
+                    <button
+                      type="button"
+                      onClick={() => setOrder(false)}
+                      className="relative -m-2 p-2 text-gray-400 hover:text-gray-500"
+                    >
+                      <span className="absolute -inset-0.5" />
+                      <span className="sr-only">Close panel</span>
+                      <XMarkIcon aria-hidden="true" className="h-6 w-6" />
+                    </button>
                   </header>
                   <div className="flex flex-col gap-2 mx-4">
                     <label className="text-clayBrown">Phone Number</label>
