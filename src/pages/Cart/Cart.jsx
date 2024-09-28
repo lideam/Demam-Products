@@ -72,7 +72,7 @@ export const Cart = ({ open, setOpen }) => {
                           <li key={product._id} className="flex py-6">
                             <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                               <img
-                                src={product.image}
+                                src={product.image1Url}
                                 className="h-full w-full object-cover object-center"
                                 alt={product.name}
                               />

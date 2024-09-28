@@ -16,7 +16,7 @@ export const ProductCard = ({ product }) => {
     <div className="relative font-playfai w-[300px] h-[500px] flex-shrink-0">
       <Link to={`/${product._id}/detail`}>
         {" "}
-        <img src={product.image} className="w-[300px] h-[400px]" alt="" />
+        <img src={product.image1Url} className="w-[300px] h-[400px]" alt="" />
       </Link>
 
       <div className="flex flex-col items-center gap-2">

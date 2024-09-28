@@ -44,7 +44,7 @@ export const MainRoutes = () => {
   }, [location.pathname]);
   return (
     <div className="bg-home min-h-screen max-w-full overflow-x-hidden">
-      {loadingPercent <= 90 ? (
+      {loadingPercent <= 98 ? (
         <LoadingProgress loadingPercent={loadingPercent} />
       ) : (
         <Suspense
