@@ -14,13 +14,13 @@ export const ProductProvider = ({ children }) => {
     return savedCart ? JSON.parse(savedCart) : [];
   });
 
-  const addToCart = (product) => {
+  const addToCart = (product, q = 1) => {
     const existingProductIndex = cart.findIndex(
       (item) => item._id === product._id
     );
 
     if (existingProductIndex === -1) {
-      const newCart = [...cart, { ...product, quantity: 1 }];
+      const newCart = [...cart, { ...product, quantity: q }];
       setCart(newCart);
       localStorage.setItem("cart", JSON.stringify(newCart));
       toast.success(`${product.name} added to cart!`);
@@ -61,6 +61,10 @@ export const ProductProvider = ({ children }) => {
     return cart.some((item) => item._id === product._id);
   };
 
+  const getCart = (product) => {
+    return cart.find((item) => item._id === product._id) || null;
+  };
+
   const checkSave = (product) => {
     return saved.some((item) => item._id === product._id);
   };
@@ -83,6 +87,7 @@ export const ProductProvider = ({ children }) => {
     addToSave,
     removeFromSave,
     checkSave,
+    getCart,
   };
 
   return (

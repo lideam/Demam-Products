@@ -7,14 +7,20 @@ const ProductDetail = () => {
   const [image, setImage] = useState(null);
   const { id } = useParams();
   const { data, loading, error } = useFetch(`api/products/${id}`);
-  const { addToCart, removeFromCart, checkCart } = useContext(ProductContext);
+  const {
+    addToCart,
+    removeFromCart,
+    checkCart,
+    handleQuantityChange,
+    getCart,
+  } = useContext(ProductContext);
   console.log(data);
   return (
     <>
       {data && !loading && (
-        <div className="my-8 mx-4 lg:mx-20 flex flex-row justify-around gap-12">
-          <div className="flex gap-2 flex-row">
-            <div className="flex lg:flex-col flex-row gap-4">
+        <div className="my-8 mx-4 lg:mx-20 flex flex-col lg:flex-row justify-around gap-12">
+          <div className="flex gap-2 flex-col-reverse lg:flex-row">
+            <div className="flex lg:flex-col max-h-screen overflow-x-scroll lg:overflow-hidden p-4 flex-row gap-4">
               {data.image1Url && (
                 <img
                   className={`flex-shrink-0 w-40 lg:w-80 lg:h-40 p-2 cursor-pointer ${
@@ -63,12 +69,26 @@ const ProductDetail = () => {
             <div className="flex flex-wrap gap-12">
               <input
                 type="number"
-                value={1}
+                value={getCart(data)?.quantity}
+                min="1"
+                onChange={(e) => handleQuantityChange(e, data._id)}
                 className="border-2 border-clayBrown p-4  text-clayBrown outline-none text-xl transition-colors duration-2000 "
               />
-              <button className="border-2 hover:border-clayBrown p-4 hover:text-black bg-clayBrown hover:bg-transparent text-xl transition-colors duration-2000 text-white">
-                Add To Cart
-              </button>
+              {checkCart(data) ? (
+                <button
+                  onClick={() => removeFromCart(data)}
+                  className="border-2 border-clayBrown p-4 text-black hover:bg-clayBrown bg-transparent text-xl transition-colors duration-2000 hover:text-white"
+                >
+                  Remove From Cart
+                </button>
+              ) : (
+                <button
+                  onClick={() => addToCart(data)}
+                  className="border-2 hover:border-clayBrown p-4 hover:text-black bg-clayBrown hover:bg-transparent text-xl transition-colors duration-2000 text-white"
+                >
+                  Add To Cart
+                </button>
+              )}
             </div>
           </div>
         </div>
