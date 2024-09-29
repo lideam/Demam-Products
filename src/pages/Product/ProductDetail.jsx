@@ -1,20 +1,44 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { Featured } from "../Home/Featured";
 import { useFetch } from "../../hooks/";
 import { useParams } from "react-router-dom";
 import { ProductContext } from "../../context";
+import { Loader } from "../../utils/Loader";
+
 const ProductDetail = () => {
   const [image, setImage] = useState(null);
   const { id } = useParams();
-  const { data, loading, error } = useFetch(`api/products/${id}`);
-  const {
-    addToCart,
-    removeFromCart,
-    checkCart,
-    handleQuantityChange,
-    getCart,
-  } = useContext(ProductContext);
-  console.log(data);
+  const { data, loading } = useFetch(`api/products/${id}`);
+  const { addToCart, removeFromCart, checkCart, updateQuantity, getCart } =
+    useContext(ProductContext);
+
+  const [quantity, setQuantity] = useState(1);
+
+  useEffect(() => {
+    if (data) {
+      const cartItem = getCart(data);
+      if (cartItem) {
+        setQuantity(cartItem.quantity);
+      }
+      setImage(data.image1Url);
+    }
+  }, [data]);
+
+  const handleQuantityChange = (e) => {
+    const newQuantity = parseInt(e.target.value);
+    setQuantity(newQuantity);
+
+    if (getCart(data)) {
+      updateQuantity(data._id, newQuantity);
+    } else {
+      addToCart(data, newQuantity);
+    }
+  };
+
+  if (!data || loading) {
+    return <Loader />;
+  }
+
   return (
     <>
       {data && !loading && (
@@ -69,9 +93,9 @@ const ProductDetail = () => {
             <div className="flex flex-wrap gap-12">
               <input
                 type="number"
-                value={getCart(data)?.quantity}
+                value={quantity}
                 min="1"
-                onChange={(e) => handleQuantityChange(e, data._id)}
+                onChange={handleQuantityChange}
                 className="border-2 border-clayBrown p-4  text-clayBrown outline-none text-xl transition-colors duration-2000 "
               />
               {checkCart(data) ? (
@@ -83,7 +107,7 @@ const ProductDetail = () => {
                 </button>
               ) : (
                 <button
-                  onClick={() => addToCart(data)}
+                  onClick={() => addToCart(data, quantity)}
                   className="border-2 hover:border-clayBrown p-4 hover:text-black bg-clayBrown hover:bg-transparent text-xl transition-colors duration-2000 text-white"
                 >
                   Add To Cart

@@ -2,6 +2,7 @@ import Select from "react-select";
 import { ProductCard } from "../Home/ProductCard";
 import { useFetch } from "../../hooks/useFetch";
 import { useState } from "react";
+import { Loader } from "../../utils/Loader";
 
 export const Products = () => {
   const options = [
@@ -79,6 +80,10 @@ export const Products = () => {
     }
     return buttons;
   };
+
+  if (!data || loading) {
+    return <Loader />;
+  }
 
   return (
     <div className="my-8 font-playfair">
