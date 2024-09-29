@@ -14,7 +14,7 @@ const fadeInVariant = (direction = "up", delay = 0) => ({
 
 const Store = () => {
   return (
-    <div className="px-24 py-12 w-full flex flex-col">
+    <div className="lg:px-24 px-2 lg:py-12 w-full flex flex-col">
       <motion.div
         initial="hidden"
         animate="visible"
