@@ -8,7 +8,7 @@ import {
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { ProductContext } from "../../context";
 import { usePlaceOrder } from "../../hooks/usePlaceOrder";
-import toast from "react-hot-toast"; // Import react-hot-toast
+import toast from "react-hot-toast";
 
 export const Cart = ({ open, setOpen }) => {
   const { cart, removeFromCart, updateQuantity } = useContext(ProductContext);
@@ -46,7 +46,6 @@ export const Cart = ({ open, setOpen }) => {
       totalPrice: total,
     };
 
-    // Show a loading toast while placing the order
     const toastId = toast.loading("Placing your order...");
 
     const response = await placeOrder(orderDetails);
