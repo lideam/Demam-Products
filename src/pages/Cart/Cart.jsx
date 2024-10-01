@@ -7,11 +7,17 @@ import {
 } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { ProductContext } from "../../context";
+import { usePlaceOrder } from "../../hooks/usePlaceOrder";
+import toast from "react-hot-toast"; // Import react-hot-toast
 
 export const Cart = ({ open, setOpen }) => {
   const { cart, removeFromCart, updateQuantity } = useContext(ProductContext);
   const [total, setTotal] = useState(0);
   const [order, setOrder] = useState(false);
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [customerName, setCustomerName] = useState("");
+
+  const { placeOrder, loading, error, success } = usePlaceOrder();
 
   useEffect(() => {
     let tot = 0;
@@ -25,6 +31,35 @@ export const Cart = ({ open, setOpen }) => {
     const newQuantity = Number(e.target.value);
     updateQuantity(productId, newQuantity);
   };
+
+  const handleOrderSubmit = async (e) => {
+    e.preventDefault();
+
+    const orderDetails = {
+      customerName,
+      phoneNumber,
+      orderItems: cart.map((product) => ({
+        product: product._id,
+        quantity: product.quantity,
+        price: product.price,
+      })),
+      totalPrice: total,
+    };
+
+    // Show a loading toast while placing the order
+    const toastId = toast.loading("Placing your order...");
+
+    const response = await placeOrder(orderDetails);
+
+    if (success) {
+      toast.success("Order placed successfully!", { id: toastId });
+      setOrder(false);
+      setOpen(false);
+    } else if (error) {
+      toast.error(`Failed to place order: ${error}`, { id: toastId });
+    }
+  };
+
   return (
     <Dialog
       open={open}
@@ -35,7 +70,6 @@ export const Cart = ({ open, setOpen }) => {
         transition
         className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity duration-500 ease-in-out data-[closed]:opacity-0"
       />
-
       <div className="fixed inset-0 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
           <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
@@ -77,7 +111,6 @@ export const Cart = ({ open, setOpen }) => {
                                 alt={product.name}
                               />
                             </div>
-
                             <div className="ml-4 flex flex-1 flex-col">
                               <div>
                                 <div className="flex justify-between text-base font-medium text-gray-900">
@@ -117,7 +150,6 @@ export const Cart = ({ open, setOpen }) => {
                             </div>
                           </li>
                         ))}
-
                         {cart.length === 0 && (
                           <dotlottie-player
                             src="https://lottie.host/97d093b5-b29a-48af-a265-0e2aaf44a314/KwB3HbFN1n.json"
@@ -156,20 +188,20 @@ export const Cart = ({ open, setOpen }) => {
                         onClick={() => setOpen(false)}
                         className="font-medium text-clayBrown hover:text-clayBrown"
                       >
-                        Continue Shopping
-                        <span aria-hidden="true"> &rarr;</span>
+                        Continue Shopping<span aria-hidden="true"> &rarr;</span>
                       </button>
                     </p>
                   </div>
                 </div>
+
                 <form
+                  onSubmit={handleOrderSubmit}
                   className={`bg-white m-3 transition-transform duration-300 ease-in-out absolute bottom-0 z-100 ${
                     !order ? "translate-y-full" : "translate-y-0"
                   } w-[95%] rounded-md`}
                 >
                   <header className="text-center m-4 text-2xl flex justify-between items-center font-bold text-clayBrown">
-                    <span></span>
-                    Place Order
+                    <span></span> Place Order
                     <button
                       type="button"
                       onClick={() => setOrder(false)}
@@ -181,19 +213,33 @@ export const Cart = ({ open, setOpen }) => {
                     </button>
                   </header>
                   <div className="flex flex-col gap-2 mx-4">
+                    <label className="text-clayBrown">Name</label>
+                    <input
+                      type="text"
+                      value={customerName}
+                      onChange={(e) => setCustomerName(e.target.value)}
+                      required
+                      className="outline-none border border-clayBrown w-full p-2 rounded-md"
+                      placeholder="Full Name"
+                    />
                     <label className="text-clayBrown">Phone Number</label>
                     <input
                       type="text"
+                      value={phoneNumber}
+                      onChange={(e) => setPhoneNumber(e.target.value)}
+                      required
                       className="outline-none border border-clayBrown w-full p-2 rounded-md"
                       placeholder="+251 --- -- -- --"
                     />
                   </div>
-                  <a
-                    href="#"
+                  <button
+                    type="submit"
+                    disabled={loading}
                     className="flex m-7 items-center justify-center rounded-md border border-transparent bg-clayBrown px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-[#492c18]"
                   >
-                    Order
-                  </a>
+                    {loading ? "Placing Order..." : "Order"}
+                  </button>
+                  {error && <p className="text-red-500 text-center">{error}</p>}
                 </form>
               </div>
             </DialogPanel>
