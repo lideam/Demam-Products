@@ -1,21 +1,20 @@
 import { createContext, useState, useContext } from "react";
 
-const UtilContext = createContext();
+export const UtilContext = createContext();
 
 export const UtilProvider = ({ children }) => {
-  const [isCartsVisible, setIsCartsVisible] = useState(false);
-
-  const toggleCartsVisibility = () => {
-    setIsCartsVisible((prev) => !prev);
-  };
+  const [links, setLinks] = useState([
+    { label: "Home", id: "hero" },
+    { label: "Featured", id: "featured" },
+    { label: "Our Products", id: "categories" },
+    { label: "About Us", id: "about" },
+    { label: "Contact Us", id: "footer" },
+  ]);
 
   return (
-    <UtilContext.Provider value={{ isCartsVisible, toggleCartsVisibility }}>
+    <UtilContext.Provider value={{ links, setLinks }}>
       {children}
     </UtilContext.Provider>
   );
 };
 
-export const useUtilContext = () => {
-  return useContext(UtilContext);
-};

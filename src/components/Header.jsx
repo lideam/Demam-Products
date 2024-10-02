@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { ProductContext } from "../context";
+import { ProductContext, UtilContext } from "../context";
 import { Cart } from "../pages";
 
 export const Header = () => {
@@ -10,14 +10,7 @@ export const Header = () => {
   const { cart } = useContext(ProductContext);
   const [open, setOpen] = useState(false);
 
-  // Links array for easy management
-  const links = [
-    { label: "Home", id: "hero" },
-    { label: "Featured", id: "featured" },
-    { label: "Our Products", id: "categories" },
-    { label: "About Us", id: "about" },
-    { label: "Contact Us", id: "footer" },
-  ];
+  const { links } = useContext(UtilContext);
 
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
