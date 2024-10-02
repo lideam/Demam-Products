@@ -7,17 +7,12 @@ import {
 } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { ProductContext } from "../../context";
-import { usePlaceOrder } from "../../hooks/usePlaceOrder";
-import toast from "react-hot-toast";
+import { OrderForm } from "./OrderForm";
 
 export const Cart = ({ open, setOpen }) => {
   const { cart, removeFromCart, updateQuantity } = useContext(ProductContext);
   const [total, setTotal] = useState(0);
   const [order, setOrder] = useState(false);
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [customerName, setCustomerName] = useState("");
-
-  const { placeOrder, loading, error, success } = usePlaceOrder();
 
   useEffect(() => {
     let tot = 0;
@@ -30,33 +25,6 @@ export const Cart = ({ open, setOpen }) => {
   const handleQuantityChange = (e, productId) => {
     const newQuantity = Number(e.target.value);
     updateQuantity(productId, newQuantity);
-  };
-
-  const handleOrderSubmit = async (e) => {
-    e.preventDefault();
-
-    const orderDetails = {
-      customerName,
-      phoneNumber,
-      orderItems: cart.map((product) => ({
-        product: product._id,
-        quantity: product.quantity,
-        price: product.price,
-      })),
-      totalPrice: total,
-    };
-
-    const toastId = toast.loading("Placing your order...");
-
-    const response = await placeOrder(orderDetails);
-
-    if (success) {
-      toast.success("Order placed successfully!", { id: toastId });
-      setOrder(false);
-      setOpen(false);
-    } else if (error) {
-      toast.error(`Failed to place order: ${error}`, { id: toastId });
-    }
   };
 
   return (
@@ -169,12 +137,13 @@ export const Cart = ({ open, setOpen }) => {
                     <p>${total.toFixed(2)}</p>
                   </div>
                   <p className="mt-0.5 text-sm text-gray-500">
-                    Shipping and taxes calculated at checkout.
+                    Payment on delivery.
                   </p>
                   <div className="mt-6">
                     <button
                       onClick={() => setOrder(true)}
-                      className="flex w-full items-center justify-center rounded-md border border-transparent bg-clayBrown px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-[#492c18]"
+                      disabled={cart.length === 0}
+                      className="flex w-full items-center disabled:bg-[#966644] disabled:cursor-not-allowed justify-center rounded-md border border-transparent bg-clayBrown px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-[#492c18]"
                     >
                       Checkout
                     </button>
@@ -192,54 +161,9 @@ export const Cart = ({ open, setOpen }) => {
                     </p>
                   </div>
                 </div>
-
-                <form
-                  onSubmit={handleOrderSubmit}
-                  className={`bg-white m-3 transition-transform duration-300 ease-in-out absolute bottom-0 z-100 ${
-                    !order ? "translate-y-full" : "translate-y-0"
-                  } w-[95%] rounded-md`}
-                >
-                  <header className="text-center m-4 text-2xl flex justify-between items-center font-bold text-clayBrown">
-                    <span></span> Place Order
-                    <button
-                      type="button"
-                      onClick={() => setOrder(false)}
-                      className="relative -m-2 p-2 text-gray-400 hover:text-gray-500"
-                    >
-                      <span className="absolute -inset-0.5" />
-                      <span className="sr-only">Close panel</span>
-                      <XMarkIcon aria-hidden="true" className="h-6 w-6" />
-                    </button>
-                  </header>
-                  <div className="flex flex-col gap-2 mx-4">
-                    <label className="text-clayBrown">Name</label>
-                    <input
-                      type="text"
-                      value={customerName}
-                      onChange={(e) => setCustomerName(e.target.value)}
-                      required
-                      className="outline-none border border-clayBrown w-full p-2 rounded-md"
-                      placeholder="Full Name"
-                    />
-                    <label className="text-clayBrown">Phone Number</label>
-                    <input
-                      type="text"
-                      value={phoneNumber}
-                      onChange={(e) => setPhoneNumber(e.target.value)}
-                      required
-                      className="outline-none border border-clayBrown w-full p-2 rounded-md"
-                      placeholder="+251 --- -- -- --"
-                    />
-                  </div>
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="flex m-7 items-center justify-center rounded-md border border-transparent bg-clayBrown px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-[#492c18]"
-                  >
-                    {loading ? "Placing Order..." : "Order"}
-                  </button>
-                  {error && <p className="text-red-500 text-center">{error}</p>}
-                </form>
+                {order && (
+                  <OrderForm order={order} setOrder={setOrder} total={total} />
+                )}
               </div>
             </DialogPanel>
           </div>

@@ -10,15 +10,14 @@ export const ProductProvider = ({ children }) => {
   });
 
   const [saved, setSaved] = useState(() => {
-    const savedCart = localStorage.getItem("saved");
-    return savedCart ? JSON.parse(savedCart) : [];
+    const savedItems = localStorage.getItem("saved");
+    return savedItems ? JSON.parse(savedItems) : [];
   });
 
   const addToCart = (product, q = 1) => {
     const existingProductIndex = cart.findIndex(
       (item) => item._id === product._id
     );
-
     if (existingProductIndex === -1) {
       const newCart = [...cart, { ...product, quantity: q }];
       setCart(newCart);
@@ -57,17 +56,12 @@ export const ProductProvider = ({ children }) => {
     toast.success(`${product.name} removed from cart!`);
   };
 
-  const checkCart = (product) => {
-    return cart.some((item) => item._id === product._id);
-  };
+  const checkCart = (product) => cart.some((item) => item._id === product._id);
 
-  const getCart = (product) => {
-    return cart.find((item) => item._id === product._id) || null;
-  };
+  const getCart = (product) =>
+    cart.find((item) => item._id === product._id) || null;
 
-  const checkSave = (product) => {
-    return saved.some((item) => item._id === product._id);
-  };
+  const checkSave = (product) => saved.some((item) => item._id === product._id);
 
   const updateQuantity = (productId, quantity) => {
     setCart((prevCart) =>
@@ -75,6 +69,31 @@ export const ProductProvider = ({ children }) => {
         item._id === productId ? { ...item, quantity } : item
       )
     );
+    localStorage.setItem("cart", JSON.stringify(cart));
+  };
+
+  const placeOrder = async (orderDetails) => {
+    try {
+      const response = await fetch("/api/orders", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(orderDetails),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to place order");
+      }
+
+      const data = await response.json();
+      toast.success("Order placed successfully!");
+      setCart([]);
+      localStorage.removeItem("cart");
+    } catch (err) {
+      toast.error(err.message || "Something went wrong.");
+      throw err;
+    }
   };
 
   const value = {
@@ -88,6 +107,7 @@ export const ProductProvider = ({ children }) => {
     removeFromSave,
     checkSave,
     getCart,
+    placeOrder,
   };
 
   return (
