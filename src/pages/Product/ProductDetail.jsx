@@ -2,7 +2,7 @@ import { useContext, useState, useEffect } from "react";
 import { Featured } from "../Home/Featured";
 import { useFetch } from "../../hooks/";
 import { useParams } from "react-router-dom";
-import { ProductContext } from "../../context";
+import { ProductContext, UtilContext } from "../../context";
 import { Loader } from "../../utils/Loader";
 
 const ProductDetail = () => {
@@ -13,6 +13,15 @@ const ProductDetail = () => {
     useContext(ProductContext);
 
   const [quantity, setQuantity] = useState(1);
+  const { set } = useContext(UtilContext);
+
+  useEffect(() => {
+    set([
+      { label: "Home", path: "/", type: "route" },
+      { label: "Store", path: "/store", type: "route" },
+      { label: "Contact Us", id: "footer", type: "scroll" },
+    ]);
+  }, [set]);
 
   useEffect(() => {
     if (data) {
