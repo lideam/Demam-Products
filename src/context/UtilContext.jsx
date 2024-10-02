@@ -11,9 +11,16 @@ export const UtilProvider = ({ children }) => {
     { label: "Store", path: "/store", type: "route" },
     { label: "Contact Us", id: "footer", type: "scroll" },
   ]);
-  const set = (list) => {
-    setLinks(list);
+
+  const set = (newLinks) => {
+    setLinks((prevLinks) => {
+      if (JSON.stringify(prevLinks) !== JSON.stringify(newLinks)) {
+        return newLinks;
+      }
+      return prevLinks;
+    });
   };
+
   return (
     <UtilContext.Provider value={{ links, set }}>
       {children}

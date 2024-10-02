@@ -9,6 +9,7 @@ export const ProductProvider = ({ children }) => {
     const savedCart = localStorage.getItem("cart");
     return savedCart ? JSON.parse(savedCart) : [];
   });
+  const [orderComplete, setOrderComplete] = useState(false);
 
   const [saved, setSaved] = useState(() => {
     const savedItems = localStorage.getItem("saved");
@@ -92,6 +93,7 @@ export const ProductProvider = ({ children }) => {
 
       toast.success("Order placed successfully!");
       setCart([]);
+      setOrderComplete(true);
       localStorage.removeItem("cart");
     } catch (err) {
       toast.error(err.message || "Something went wrong.");
@@ -101,6 +103,7 @@ export const ProductProvider = ({ children }) => {
 
   const value = {
     cart,
+    orderComplete,
     addToCart,
     checkCart,
     removeFromCart,

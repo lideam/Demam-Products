@@ -1,14 +1,33 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { ProductContext } from "../../context";
 import toast from "react-hot-toast";
 
 export const OrderForm = ({ order, setOrder, total }) => {
+  const { cart, placeOrder } = useContext(ProductContext);
   const [customerName, setCustomerName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const { cart, placeOrder } = useContext(ProductContext);
+
+  // Load saved name and phone number from local storage when the component mounts
+  useEffect(() => {
+    const savedName = localStorage.getItem("customerName");
+    const savedPhoneNumber = localStorage.getItem("phoneNumber");
+
+    if (savedName) {
+      setCustomerName(savedName);
+    }
+    if (savedPhoneNumber) {
+      setPhoneNumber(savedPhoneNumber);
+    }
+  }, []);
+
+  // Save name and phone number to local storage whenever they change
+  useEffect(() => {
+    localStorage.setItem("customerName", customerName);
+    localStorage.setItem("phoneNumber", phoneNumber);
+  }, [customerName, phoneNumber]);
 
   const handleOrderSubmit = async (e) => {
     e.preventDefault();

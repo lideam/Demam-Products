@@ -10,7 +10,8 @@ import { ProductContext } from "../../context";
 import { OrderForm } from "./OrderForm";
 
 export const Cart = ({ open, setOpen }) => {
-  const { cart, removeFromCart, updateQuantity } = useContext(ProductContext);
+  const { cart, removeFromCart, updateQuantity, orderComplete } =
+    useContext(ProductContext);
   const [total, setTotal] = useState(0);
   const [order, setOrder] = useState(false);
 
@@ -117,15 +118,18 @@ export const Cart = ({ open, setOpen }) => {
                             </div>
                           </li>
                         ))}
-                        {cart.length === 0 && (
-                          <dotlottie-player
-                            src="https://lottie.host/97d093b5-b29a-48af-a265-0e2aaf44a314/KwB3HbFN1n.json"
-                            background="transparent"
-                            speed="1"
-                            loop
-                            autoplay
-                          ></dotlottie-player>
-                        )}
+                        {cart.length === 0 &&
+                          (orderComplete ? (
+                            <dotlottie-player
+                              src="https://lottie.host/97d093b5-b29a-48af-a265-0e2aaf44a314/KwB3HbFN1n.json"
+                              background="transparent"
+                              speed="1"
+                              loop
+                              autoplay
+                            ></dotlottie-player>
+                          ) : (
+                            <></>
+                          ))}
                       </ul>
                     </div>
                   </div>
