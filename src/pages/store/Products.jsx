@@ -1,52 +1,45 @@
 import Select from "react-select";
 import { ProductCard } from "../Home/ProductCard";
 import { useFetch } from "../../hooks/useFetch";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Loader } from "../../utils/Loader";
 
 export const Products = () => {
-  const options = [
-    { value: "all", label: "All" },
-    { value: "women", label: "Women" },
-    { value: "men", label: "Men" },
-  ];
-
-  const customStyles = {
-    control: (provided) => ({
-      ...provided,
-      backgroundColor: "transparent",
-      borderColor: "#A0522D",
-      padding: "10px",
-      textAlign: "center",
-      outline: "none",
-    }),
-    option: (provided, { isFocused }) => ({
-      ...provided,
-      backgroundColor: isFocused ? "rgba(0, 0, 0, 0.1)" : "transparent",
-      color: "#000",
-    }),
-    menu: (provided) => ({
-      ...provided,
-      backgroundColor: "transparent",
-    }),
-    singleValue: (provided) => ({
-      ...provided,
-      color: "#000",
-    }),
-  };
-
-  const { data, loading, error } = useFetch("api/products");
-
+  const { data, loading } = useFetch("api/products");
+  const [options, setOptions] = useState([{ value: "all", label: "All" }]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedCategory, setSelectedCategory] = useState(options[0]);
+  const [searchTerm, setSearchTerm] = useState("");
   const productsPerPage = 15;
 
-  
-  const totalPages = Math.ceil((data?.length || 0) / productsPerPage);
+  useEffect(() => {
+    if (data) {
+      const categories = [...new Set(data.map((product) => product.category))];
+      const categoryOptions = categories.map((category) => ({
+        value: category,
+        label: category.charAt(0).toUpperCase() + category.slice(1),
+      }));
+      setOptions([{ value: "all", label: "All" }, ...categoryOptions]);
+    }
+  }, [data]);
 
-  
+  const filteredProducts = (data || []).filter((product) => {
+    const matchesCategory =
+      selectedCategory.value === "all" ||
+      product.category === selectedCategory.value;
+    const matchesSearch = product.name
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
+
+  const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = data?.slice(indexOfFirstProduct, indexOfLastProduct);
+  const currentProducts = filteredProducts.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
 
   const handleNextPage = () => {
     if (currentPage < totalPages) {
@@ -81,7 +74,7 @@ export const Products = () => {
     return buttons;
   };
 
-  if (!data || loading) {
+  if (loading) {
     return <Loader />;
   }
 
@@ -91,17 +84,48 @@ export const Products = () => {
         <h1 className="text-3xl">Our Products</h1>
         <Select
           options={options}
-          styles={customStyles}
+          styles={{
+            control: (provided) => ({
+              ...provided,
+              backgroundColor: "transparent",
+              borderColor: "#A0522D",
+              padding: "10px",
+              textAlign: "center",
+              outline: "none",
+            }),
+            option: (provided, { isFocused }) => ({
+              ...provided,
+              backgroundColor: isFocused ? "rgba(0, 0, 0, 0.1)" : "transparent",
+              color: "#000",
+            }),
+            menu: (provided) => ({
+              ...provided,
+              backgroundColor: "transparent",
+            }),
+            singleValue: (provided) => ({
+              ...provided,
+              color: "#000",
+            }),
+          }}
           defaultValue={options[0]}
           isSearchable={false}
+          onChange={setSelectedCategory}
         />
       </div>
+      <input
+        type="text"
+        placeholder="Search products..."
+        className="border border-[#A0522D] p-2 my-4 w-full outline-none"
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
       <div className="m-4 flex flex-wrap gap-12 items-center justify-center">
-        {!loading &&
-          currentProducts &&
+        {currentProducts.length > 0 ? (
           currentProducts.map((product, index) => (
             <ProductCard key={index} product={product} />
-          ))}
+          ))
+        ) : (
+          <p className="text-lg">No products found</p>
+        )}
       </div>
       <div className="flex items-center justify-center my-12">
         <nav className="inline-flex shadow-md">
@@ -116,9 +140,7 @@ export const Products = () => {
           >
             Previous
           </a>
-
           {renderPaginationButtons()}
-
           <a
             href="#"
             onClick={handleNextPage}
