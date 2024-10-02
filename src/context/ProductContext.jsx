@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import axios from "axios";
 import { toast } from "react-hot-toast";
 
 export const ProductContext = createContext();
@@ -74,19 +75,16 @@ export const ProductProvider = ({ children }) => {
 
   const placeOrder = async (orderDetails) => {
     try {
-      const response = await fetch("/api/orders", {
-        method: "POST",
+      const response = await axios.post("/api/orders", orderDetails, {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(orderDetails),
       });
 
-      if (!response.ok) {
+      if (response.status !== 200) {
         throw new Error("Failed to place order");
       }
 
-      const data = await response.json();
       toast.success("Order placed successfully!");
       setCart([]);
       localStorage.removeItem("cart");
