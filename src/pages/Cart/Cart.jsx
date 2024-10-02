@@ -119,7 +119,7 @@ export const Cart = ({ open, setOpen }) => {
                           </li>
                         ))}
                         {cart.length === 0 &&
-                          (orderComplete ? (
+                          (!orderComplete ? (
                             <dotlottie-player
                               src="https://lottie.host/97d093b5-b29a-48af-a265-0e2aaf44a314/KwB3HbFN1n.json"
                               background="transparent"
@@ -128,7 +128,16 @@ export const Cart = ({ open, setOpen }) => {
                               autoplay
                             ></dotlottie-player>
                           ) : (
-                            <></>
+                            <div>
+                              <dotlottie-player
+                                src="https://lottie.host/aa22acc4-5917-4f4b-bdb2-4a441575bd1f/rUyp0Einww.json"
+                                background="transparent"
+                                speed="1"
+                                loop
+                                autoplay
+                              ></dotlottie-player>
+                              <h1 className="text-xl text-clayBrown text-center">Order Complete</h1>
+                            </div>
                           ))}
                       </ul>
                     </div>

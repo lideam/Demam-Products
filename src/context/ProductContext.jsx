@@ -18,6 +18,7 @@ export const ProductProvider = ({ children }) => {
   const backendUrl = import.meta.env.VITE_REACT_APP_BACKEND_URL;
 
   const addToCart = (product, q = 1) => {
+    setOrderComplete(false);
     const existingProductIndex = cart.findIndex(
       (item) => item._id === product._id
     );
