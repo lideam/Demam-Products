@@ -14,6 +14,7 @@ export const ProductProvider = ({ children }) => {
     const savedItems = localStorage.getItem("saved");
     return savedItems ? JSON.parse(savedItems) : [];
   });
+  const backendUrl = import.meta.env.VITE_REACT_APP_BACKEND_URL;
 
   const addToCart = (product, q = 1) => {
     const existingProductIndex = cart.findIndex(
@@ -75,13 +76,17 @@ export const ProductProvider = ({ children }) => {
 
   const placeOrder = async (orderDetails) => {
     try {
-      const response = await axios.post("/api/orders", orderDetails, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await axios.post(
+        `${backendUrl}api/orders`,
+        orderDetails,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
-      if (response.status !== 200) {
+      if (response.status !== 201) {
         throw new Error("Failed to place order");
       }
 
