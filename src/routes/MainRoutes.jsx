@@ -19,13 +19,19 @@ export const MainRoutes = () => {
 
     const calculateLoadingPercent = () => {
       const resources = performance.getEntriesByType("resource");
-      const totalResources = resources.length;
-      const loadedResources = resources.filter(
-        (resource) => resource.responseEnd > 0
-      ).length;
+      if (resources && resources.length > 0) {
+        const totalResources = resources.length;
+        const loadedResources = resources.filter(
+          (resource) => resource.responseEnd > 0
+        ).length;
 
-      if (totalResources > 0) {
-        setLoadingPercent(Math.floor((loadedResources / totalResources) * 100));
+        if (totalResources > 0) {
+          setLoadingPercent(
+            Math.floor((loadedResources / totalResources) * 100)
+          );
+        }
+      } else {
+        setLoadingPercent(100);
       }
     };
 
@@ -34,7 +40,7 @@ export const MainRoutes = () => {
     window.addEventListener("load", handleLoad);
     window.addEventListener("load", calculateLoadingPercent);
 
-    const interval = setInterval(calculateLoadingPercent, 100); 
+    const interval = setInterval(calculateLoadingPercent, 100);
 
     return () => {
       window.removeEventListener("load", handleLoad);
@@ -42,9 +48,10 @@ export const MainRoutes = () => {
       clearInterval(interval);
     };
   }, [location.pathname]);
+
   return (
     <div className="bg-home min-h-screen max-w-full overflow-x-hidden">
-      {loadingPercent <= 98 ? (
+      {loadingPercent <= 99 ? (
         <LoadingProgress loadingPercent={loadingPercent} />
       ) : (
         <Suspense

@@ -4,6 +4,8 @@ import { About } from "./About";
 import { Categories } from "./Categories";
 import { Featured } from "./Featured";
 import { Hero } from "./Hero";
+import { useContext, useEffect } from "react";
+import { UtilContext } from "../../context";
 
 const fadeInVariant = (direction) => ({
   hidden: { opacity: 0, y: direction === "down" ? -50 : 50 },
@@ -18,7 +20,17 @@ const Home = () => {
     triggerOnce: true,
     threshold: 0.2,
   });
-
+  const { set } = useContext(UtilContext);
+  useEffect(() => {
+    set([
+      { label: "Home", id: "hero", type: "scroll" },
+      { label: "Featured", id: "featured", type: "scroll" },
+      { label: "Our Products", id: "categories", type: "scroll" },
+      { label: "About Us", id: "about", type: "scroll" },
+      { label: "Store", path: "/store", type: "route" },
+      { label: "Contact Us", id: "footer", type: "scroll" },
+    ]);
+  }, [set]);
   return (
     <div className="min-h-screen">
       <motion.div

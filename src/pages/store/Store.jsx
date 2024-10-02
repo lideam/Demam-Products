@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Header } from "./Header";
 import { Products } from "./Products";
 import { About } from "../Home/About";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { UtilContext } from "../../context";
 
 const fadeInVariant = (direction = "up", delay = 0) => ({
@@ -16,11 +16,16 @@ const fadeInVariant = (direction = "up", delay = 0) => ({
 
 const Store = () => {
   const { set } = useContext(UtilContext);
-  set([
-    { label: "Products", id: "hero" },
-    { label: "About Us", id: "about" },
-    { label: "Contact Us", id: "footer" },
-  ]);
+
+  useEffect(() => {
+    set([
+      { label: "Home", path: "/", type: "route" },
+      { label: "Our Products", id: "hero", type: "scroll" },
+      { label: "About Us", id: "about", type: "scroll" },
+      { label: "Contact Us", id: "footer", type: "scroll" },
+    ]);
+  }, [set]);
+
   return (
     <div className="lg:px-24 px-2 lg:py-12 w-full flex flex-col">
       <motion.div
@@ -51,4 +56,5 @@ const Store = () => {
     </div>
   );
 };
+
 export default Store;
