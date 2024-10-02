@@ -9,7 +9,16 @@ export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const { cart } = useContext(ProductContext);
   const [open, setOpen] = useState(false);
-  
+
+  // Links array for easy management
+  const links = [
+    { label: "Home", id: "hero" },
+    { label: "Featured", id: "featured" },
+    { label: "Our Products", id: "categories" },
+    { label: "About Us", id: "about" },
+    { label: "Contact Us", id: "footer" },
+  ];
+
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
@@ -20,18 +29,11 @@ export const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 300) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 300);
     };
 
     window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
@@ -66,11 +68,12 @@ export const Header = () => {
             : ""
         }`}
       >
-        <span onClick={() => scrollToSection("hero")}>Home</span>
-        <span onClick={() => scrollToSection("featured")}>Featured</span>
-        <span onClick={() => scrollToSection("categories")}>Our Products</span>
-        <span onClick={() => scrollToSection("about")}>About Us</span>
-        <span onClick={() => scrollToSection("footer")}>Contact Us</span>
+        {links.map((link) => (
+          <span key={link.id} onClick={() => scrollToSection(link.id)}>
+            {link.label}
+          </span>
+        ))}
+
         {isScrolled && (
           <div className="flex items-center justify-center absolute right-20">
             <span className="bg-white px-2 flex justify-center items-center text-xl border-clayBrown border-y-2 border-l-2">
@@ -103,41 +106,16 @@ export const Header = () => {
               transition={{ duration: 1, ease: "easeInOut" }}
             />
 
-            <motion.span
-              whileHover={{ scale: 1.1, color: "#f97316" }}
-              className="mb-4 cursor-pointer hover:underline"
-              onClick={() => scrollToSection("hero")}
-            >
-              Home
-            </motion.span>
-            <motion.span
-              whileHover={{ scale: 1.1, color: "#f97316" }}
-              className="mb-4 cursor-pointer hover:underline"
-              onClick={() => scrollToSection("featured")}
-            >
-              Featured
-            </motion.span>
-            <motion.span
-              whileHover={{ scale: 1.1, color: "#f97316" }}
-              className="mb-4 cursor-pointer hover:underline"
-              onClick={() => scrollToSection("categories")}
-            >
-              Our Products
-            </motion.span>
-            <motion.span
-              whileHover={{ scale: 1.1, color: "#f97316" }}
-              className="mb-4 cursor-pointer hover:underline"
-              onClick={() => scrollToSection("about")}
-            >
-              About Us
-            </motion.span>
-            <motion.span
-              whileHover={{ scale: 1.1, color: "#f97316" }}
-              className="mb-4 cursor-pointer hover:underline"
-              onClick={() => scrollToSection("footer")}
-            >
-              Contact Us
-            </motion.span>
+            {links.map((link) => (
+              <motion.span
+                key={link.id}
+                whileHover={{ scale: 1.1, color: "#f97316" }}
+                className="mb-4 cursor-pointer hover:underline"
+                onClick={() => scrollToSection(link.id)}
+              >
+                {link.label}
+              </motion.span>
+            ))}
 
             <motion.i
               className="fa-regular fa-circle-xmark absolute top-10 right-10 text-3xl cursor-pointer"
@@ -147,6 +125,7 @@ export const Header = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
       <Cart open={open} setOpen={setOpen} />
     </div>
   );
