@@ -3,6 +3,7 @@ import { ProductCard } from "../Home/ProductCard";
 import { useFetch } from "../../hooks/useFetch";
 import { useState, useEffect } from "react";
 import { Loader } from "../../utils/Loader";
+import no from "../../assets/no.gif";
 
 export const Products = () => {
   const { data, loading } = useFetch("api/products");
@@ -27,9 +28,9 @@ export const Products = () => {
     const matchesCategory =
       selectedCategory.value === "all" ||
       product.category === selectedCategory.value;
-    const matchesSearch = product.name
-      .toLowerCase()
-      .includes(searchTerm.toLowerCase());
+    const matchesSearch =
+      product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      product.description.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesCategory && matchesSearch;
   });
 
@@ -74,7 +75,7 @@ export const Products = () => {
     return buttons;
   };
 
-  if (loading) {
+  if (loading || !data) {
     return <Loader />;
   }
 
@@ -92,6 +93,7 @@ export const Products = () => {
               padding: "10px",
               textAlign: "center",
               outline: "none",
+              overflowX: "hidden",
             }),
             option: (provided, { isFocused }) => ({
               ...provided,
@@ -124,7 +126,10 @@ export const Products = () => {
             <ProductCard key={index} product={product} />
           ))
         ) : (
-          <p className="text-lg">No products found</p>
+          <p className="text-2xl flex w-full items-center flex-col">
+            <img src={no} className="w-60" alt="" />
+            No products found
+          </p>
         )}
       </div>
       <div className="flex items-center justify-center my-12">
