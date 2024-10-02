@@ -53,6 +53,26 @@ export const Header = () => {
           </div>
         </div>
       )}
+      {isScrolled &&<div className="w-full md:hidden text-[#4a4a4a] flex flex-wrap items-center justify-between">
+        <span>
+          <i
+            className="fa-solid md:hidden fa-bars"
+            onClick={() => setSide(true)}
+          ></i>
+        </span>
+        <Link to="/" className="text-3xl font-extrabold cursor-pointer">
+          Demam Product
+        </Link>
+        <div className="flex items-center justify-center">
+          <span className="bg-white px-2 flex justify-center items-center text-xl border-clayBrown border-y-2 border-l-2">
+            {cart.length}
+          </span>
+          <i
+            onClick={() => setOpen(true)}
+            className="fa fa-shopping-bag cursor-pointer px-2 text-xl border-clayBrown border-y-2 border-r-2"
+          ></i>
+        </div>
+      </div>}
 
       <div
         className={`w-full hidden md:flex text-xl justify-center gap-12 mt-4  cursor-pointer ${
