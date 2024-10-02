@@ -93,12 +93,13 @@ export const Products = () => {
               padding: "10px",
               textAlign: "center",
               outline: "none",
-              overflowX: "hidden",
+              width: "150px",
             }),
             option: (provided, { isFocused }) => ({
               ...provided,
-              backgroundColor: isFocused ? "rgba(0, 0, 0, 0.1)" : "transparent",
+              backgroundColor: isFocused ? "#E6CCB2" : "#f4efe9",
               color: "#000",
+              width: "auto",
             }),
             menu: (provided) => ({
               ...provided,
