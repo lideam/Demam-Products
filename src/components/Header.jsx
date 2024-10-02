@@ -61,11 +61,17 @@ export const Header = () => {
             : ""
         }`}
       >
-        {links.map((link) => (
-          <span key={link.id} onClick={() => scrollToSection(link.id)}>
-            {link.label}
-          </span>
-        ))}
+        {links.map((link) =>
+          link.type === "scroll" ? (
+            <span key={link.id} onClick={() => scrollToSection(link.id)}>
+              {link.label}
+            </span>
+          ) : (
+            <Link key={link.path} to={link.path}>
+              {link.label}
+            </Link>
+          )
+        )}
 
         {isScrolled && (
           <div className="flex items-center justify-center absolute right-20">
@@ -99,16 +105,26 @@ export const Header = () => {
               transition={{ duration: 1, ease: "easeInOut" }}
             />
 
-            {links.map((link) => (
-              <motion.span
-                key={link.id}
-                whileHover={{ scale: 1.1, color: "#f97316" }}
-                className="mb-4 cursor-pointer hover:underline"
-                onClick={() => scrollToSection(link.id)}
-              >
-                {link.label}
-              </motion.span>
-            ))}
+            {links.map((link) =>
+              link.type === "scroll" ? (
+                <motion.span
+                  key={link.id}
+                  whileHover={{ scale: 1.1, color: "#f97316" }}
+                  className="mb-4 cursor-pointer hover:underline"
+                  onClick={() => scrollToSection(link.id)}
+                >
+                  {link.label}
+                </motion.span>
+              ) : (
+                <motion.span
+                  key={link.path}
+                  whileHover={{ scale: 1.1, color: "#f97316" }}
+                  className="mb-4 cursor-pointer hover:underline"
+                >
+                  <Link to={link.path}>{link.label}</Link>
+                </motion.span>
+              )
+            )}
 
             <motion.i
               className="fa-regular fa-circle-xmark absolute top-10 right-10 text-3xl cursor-pointer"
