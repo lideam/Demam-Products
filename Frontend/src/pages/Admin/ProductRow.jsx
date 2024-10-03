@@ -60,7 +60,7 @@ export const ProductRow = ({ product, handleUpdate }) => {
       <tr>
         <td className="p-4 border-b flex justify-center border-slate-200">
           {isEditing ? (
-            <div className="flex flex-col items-center">
+            <div className="flex items-center gap-2">
               {imageUrls.map((url, index) => (
                 <div key={index}>
                   <input
@@ -68,7 +68,7 @@ export const ProductRow = ({ product, handleUpdate }) => {
                     value={url}
                     onChange={(e) => handleUrlChange(index, e.target.value)}
                     placeholder={`Image URL ${index + 1}`}
-                    className="border rounded p-1 w-40"
+                    className="border rounded p-1 w-40 outline-none"
                   />
                   {url && (
                     <img
