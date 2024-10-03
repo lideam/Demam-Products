@@ -1,5 +1,5 @@
 import { ButtonComp, InputComp } from "../../../components";
-import Logo from "../../assets/logo.png";
+import Logo from "../../../assets/bella/1.jpg";
 import { useContext, useState } from "react";
 // import { AuthContext } from "../../context";
 

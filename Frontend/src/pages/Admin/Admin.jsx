@@ -1,5 +1,7 @@
+import { Login } from "./Auth/Login"
+
 export const Admin = () => {
   return (
-    <div>Admin</div>
+    <div><Login /></div>
   )
 }
