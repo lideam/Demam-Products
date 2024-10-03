@@ -1,18 +1,18 @@
 import { ButtonComp, InputComp } from "../../../components";
 import Logo from "../../../assets/bella/1.jpg";
 import { useContext, useState } from "react";
-// import { AuthContext } from "../../context";
+import { AuthContext } from "../../../context";
 
 export const Login = () => {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  //   const { loginUser } = useContext(AuthContext);
+  const { loginUser } = useContext(AuthContext);
 
   const log = async (e) => {
     e.preventDefault();
     setLoading(true);
-    // await loginUser(phone, password);
+    await loginUser(phone, password);
     setLoading(false);
   };
 
