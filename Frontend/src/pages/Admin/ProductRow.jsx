@@ -1,26 +1,30 @@
 import React, { useState } from "react";
 import { useDropzone } from "react-dropzone";
+import axios from "axios";
+import { toast } from "react-hot-toast";
 
-export const ProductRow = ({ product, handleDeleteClick }) => {
+export const ProductRow = ({ product, handleUpdate }) => {
+  const backendUrl = import.meta.env.VITE_REACT_APP_BACKEND_URL;
   const [isEditing, setIsEditing] = useState(false);
   const [editedProduct, setEditedProduct] = useState({
     ...product,
-    images: [],
+    image1Url: product.image1Url,
+    image2Url: product.image2Url,
+    image3Url: product.image3Url,
   });
 
+  const [images, setImages] = useState([]);
+
   const onDrop = (acceptedFiles) => {
-    const images = acceptedFiles
+    const selectedImages = acceptedFiles
       .slice(0, 3)
       .map((file) => URL.createObjectURL(file));
-    setEditedProduct((prev) => ({
-      ...prev,
-      images: images,
-    }));
+    setImages(selectedImages);
   };
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
-    accept: "image/*", // Only accept image files
+    accept: "image/*",
     multiple: true,
   });
 
@@ -29,14 +33,44 @@ export const ProductRow = ({ product, handleDeleteClick }) => {
     setEditedProduct((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSaveClick = () => {
-    console.log("Saved Product:", editedProduct);
+  const handleSaveClick = async () => {
+    try {
+      const formData = new FormData();
+      const updatedProduct = { ...editedProduct };
+
+      if (images.length > 0) {
+        images.forEach((image, index) => {
+          formData.append(`image${index + 1}`, image);
+        });
+      }
+
+      formData.append("name", updatedProduct.name);
+      formData.append("description", updatedProduct.description);
+      formData.append("price", updatedProduct.price);
+      formData.append("category", updatedProduct.category);
+      formData.append("stock", updatedProduct.stock);
+
+      const response = await axios.put(
+        `${backendUrl}api/products/${product._id}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      handleUpdate(response.data.product);
+      toast.success("Product updated successfully!");
+    } catch (error) {
+      toast.error("Error updating product. Please try again.");
+      console.error("Error updating product:", error);
+    }
     setIsEditing(false);
   };
 
   return (
     <>
-      <tr key={product._id}>
+      <tr>
         <td className="p-4 border-b flex justify-center border-slate-200">
           {isEditing ? (
             <div
@@ -46,9 +80,9 @@ export const ProductRow = ({ product, handleDeleteClick }) => {
               <input {...getInputProps()} />
               <p>Drag & drop images here, or click to select (up to 3)</p>
               <div></div>
-              {editedProduct.images.length > 0 ? (
+              {images.length > 0 ? (
                 <div className="flex justify-between">
-                  {editedProduct.images.map((img, index) => (
+                  {images.map((img, index) => (
                     <img
                       key={index}
                       src={img}
@@ -107,6 +141,8 @@ export const ProductRow = ({ product, handleDeleteClick }) => {
             </td>
             <td className="p-4 border-b border-slate-200">
               <input
+                type="number"
+                min="0"
                 name="price"
                 value={editedProduct.price}
                 onChange={handleInputChange}
@@ -159,7 +195,7 @@ export const ProductRow = ({ product, handleDeleteClick }) => {
               ></button>
               <button
                 className="fa fa-trash p-2 ml-2 rounded-md text-white hover:bg-red-700 bg-red-500"
-                onClick={() => handleDeleteClick(product._id)}
+                // onClick={() => handleDeleteClick(product._id)}
               ></button>
             </td>
           </>
@@ -167,15 +203,16 @@ export const ProductRow = ({ product, handleDeleteClick }) => {
       </tr>
       {isEditing && (
         <tr key={product._id}>
-            <td className="text-center text-xl text-clayBrown">Product Description</td>
+          <td className="text-center text-xl text-clayBrown">
+            Product Description
+          </td>
           <td colSpan={5}>
             <textarea
-              name=""
-              id=""
+              name="description"
+              value={editedProduct.description || ""} // Ensure it's controlled
+              onChange={handleInputChange}
               className="outline-none border border-clayBrown w-full p-2"
-            >
-              {editedProduct.description}
-            </textarea>
+            />
           </td>
         </tr>
       )}

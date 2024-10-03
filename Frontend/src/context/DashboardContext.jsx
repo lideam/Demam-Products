@@ -63,6 +63,7 @@ export const DashboardProvider = ({ children }) => {
 
   const value = {
     products,
+    setProducts,
     orders,
     admins,
     loading,

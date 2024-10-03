@@ -2,10 +2,10 @@ import React, { useContext, useState, useEffect } from "react";
 import { DashboardContext } from "../../context/DashboardContext";
 import { FaSortUp, FaSortDown } from "react-icons/fa";
 import { useDropzone } from "react-dropzone";
-import {ProductRow} from "./ProductRow";
+import { ProductRow } from "./ProductRow";
 
 export const ProductTable = () => {
-  const { products } = useContext(DashboardContext);
+  const { products, setProducts } = useContext(DashboardContext);
   const [searchTerm, setSearchTerm] = useState("");
   const [sortedProducts, setSortedProducts] = useState(products);
   const [currentPage, setCurrentPage] = useState(1);
@@ -64,12 +64,13 @@ export const ProductTable = () => {
     }));
   };
 
-  const handleDeleteClick = () => {
-    // Here you would usually make a call to update the product
-    console.log("Updated product:", editedProduct);
-    setEditRowId(null);
+  const handleUpdateProduct = (updatedProduct) => {
+    setProducts((prevProducts) =>
+      prevProducts.map((product) =>
+        product._id === updatedProduct._id ? updatedProduct : product
+      )
+    );
   };
-
 
   return (
     <div>
@@ -182,7 +183,7 @@ export const ProductTable = () => {
                 <ProductRow
                   key={product._id}
                   product={product}
-                  handleDeleteClick={handleDeleteClick}
+                  handleUpdate={handleUpdateProduct}
                 />
               ))}
             </tbody>
