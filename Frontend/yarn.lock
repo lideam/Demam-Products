@@ -1885,6 +1885,41 @@ __metadata:
   languageName: node
   linkType: hard
 
+"demam@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "demam@workspace:."
+  dependencies:
+    "@eslint/js": "npm:^9.9.0"
+    "@fontsource/playfair-display": "npm:^5.1.0"
+    "@headlessui/react": "npm:^2.1.8"
+    "@heroicons/react": "npm:^2.1.5"
+    "@shadcn/ui": "npm:^0.0.4"
+    "@tailwindcss/aspect-ratio": "npm:^0.4.2"
+    "@types/react": "npm:^18.3.3"
+    "@types/react-dom": "npm:^18.3.0"
+    "@vitejs/plugin-react": "npm:^4.3.1"
+    autoprefixer: "npm:^10.4.20"
+    axios: "npm:^1.7.7"
+    eslint: "npm:^9.9.0"
+    eslint-plugin-react: "npm:^7.35.0"
+    eslint-plugin-react-hooks: "npm:^5.1.0-rc.0"
+    eslint-plugin-react-refresh: "npm:^0.4.9"
+    framer-motion: "npm:^11.5.4"
+    globals: "npm:^15.9.0"
+    headlessui: "npm:^0.0.0"
+    nprogress: "npm:^0.2.0"
+    postcss: "npm:^8.4.44"
+    react: "npm:^18.3.1"
+    react-dom: "npm:^18.3.1"
+    react-hot-toast: "npm:^2.4.1"
+    react-intersection-observer: "npm:^9.13.1"
+    react-router-dom: "npm:^6.26.2"
+    react-select: "npm:^5.8.0"
+    tailwindcss: "npm:^3.4.10"
+    vite: "npm:^5.4.1"
+  languageName: unknown
+  linkType: soft
+
 "didyoumean@npm:^1.2.2":
   version: 1.2.2
   resolution: "didyoumean@npm:1.2.2"
@@ -2577,41 +2612,6 @@ __metadata:
   checksum: 10c0/2405aad0ed3cbd2ad6ab2dedec5146483feb8e67f6f3d16f38bfea23f0e31a4fad5f1660f307767a5e9c27b40c708b64c0ba65841824a38144e401f3bab31566
   languageName: node
   linkType: hard
-
-"frontend@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "frontend@workspace:."
-  dependencies:
-    "@eslint/js": "npm:^9.9.0"
-    "@fontsource/playfair-display": "npm:^5.1.0"
-    "@headlessui/react": "npm:^2.1.8"
-    "@heroicons/react": "npm:^2.1.5"
-    "@shadcn/ui": "npm:^0.0.4"
-    "@tailwindcss/aspect-ratio": "npm:^0.4.2"
-    "@types/react": "npm:^18.3.3"
-    "@types/react-dom": "npm:^18.3.0"
-    "@vitejs/plugin-react": "npm:^4.3.1"
-    autoprefixer: "npm:^10.4.20"
-    axios: "npm:^1.7.7"
-    eslint: "npm:^9.9.0"
-    eslint-plugin-react: "npm:^7.35.0"
-    eslint-plugin-react-hooks: "npm:^5.1.0-rc.0"
-    eslint-plugin-react-refresh: "npm:^0.4.9"
-    framer-motion: "npm:^11.5.4"
-    globals: "npm:^15.9.0"
-    headlessui: "npm:^0.0.0"
-    nprogress: "npm:^0.2.0"
-    postcss: "npm:^8.4.44"
-    react: "npm:^18.3.1"
-    react-dom: "npm:^18.3.1"
-    react-hot-toast: "npm:^2.4.1"
-    react-intersection-observer: "npm:^9.13.1"
-    react-router-dom: "npm:^6.26.2"
-    react-select: "npm:^5.8.0"
-    tailwindcss: "npm:^3.4.10"
-    vite: "npm:^5.4.1"
-  languageName: unknown
-  linkType: soft
 
 "fs-extra@npm:^11.1.0":
   version: 11.2.0
