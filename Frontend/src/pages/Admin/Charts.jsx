@@ -53,7 +53,7 @@ export const Charts = () => {
       {
         label: "Stock by Category",
         data: categoryStock,
-        backgroundColor: "rgba(75, 192, 192, 0.6)",
+        backgroundColor: "#8B4513",
       },
     ],
   };
@@ -81,8 +81,8 @@ export const Charts = () => {
         label: "Orders Over Time",
         data: orderCounts,
         fill: false,
-        backgroundColor: "rgba(153, 102, 255, 1)",
-        borderColor: "rgba(153, 102, 255, 0.6)",
+        backgroundColor: "#8B4513",
+        borderColor: "#8B4513",
       },
     ],
   };
