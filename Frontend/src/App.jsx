@@ -10,7 +10,7 @@ export default function App() {
         <ProductProvider>
           <UtilProvider>
             <Routes>
-              <Route path="/superadmin" element={<AdminRoutes />} />
+              <Route path="/superadmin/*" element={<AdminRoutes />} />
               <Route path="*" element={<MainRoutes />} />
             </Routes>
           </UtilProvider>
