@@ -22,7 +22,7 @@ export const ProductCard = ({ product }) => {
       <div className="flex flex-col items-center gap-2">
         <h2 className="text-xl">{product.name}</h2>
         <span className="flex justify-between w-full">
-          <p className="text-xl">${product.price}</p>
+          <p className="text-xl">{product.price} ETB</p>
           <p>{product.category}</p>
         </span>
         {checkCart(product) ? (
@@ -40,7 +40,7 @@ export const ProductCard = ({ product }) => {
             Add to cart
           </button>
         )}
-        <div className="absolute top-4 right-4">
+        {/* <div className="absolute top-4 right-4">
           <button
             onClick={() =>
               checkSave(product) ? removeFromSave(product) : addToSave(product)
@@ -54,7 +54,7 @@ export const ProductCard = ({ product }) => {
             ></i>
             <span className="absolute inset-0 bg-dark-green opacity-40 rounded-full"></span>
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   );

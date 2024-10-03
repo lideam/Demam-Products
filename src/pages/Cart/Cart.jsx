@@ -85,7 +85,7 @@ export const Cart = ({ open, setOpen }) => {
                                   <h3>
                                     <a href={product.href}>{product.name}</a>
                                   </h3>
-                                  <p className="ml-4">${product.price}</p>
+                                  <p className="ml-4">ETB{product.price}</p>
                                 </div>
                                 <p className="mt-1 text-sm text-gray-500">
                                   {product.category}
@@ -136,7 +136,9 @@ export const Cart = ({ open, setOpen }) => {
                                 loop
                                 autoplay
                               ></dotlottie-player>
-                              <h1 className="text-xl text-clayBrown text-center">Order Complete</h1>
+                              <h1 className="text-xl text-clayBrown text-center">
+                                Order Complete
+                              </h1>
                             </div>
                           ))}
                       </ul>
@@ -147,7 +149,7 @@ export const Cart = ({ open, setOpen }) => {
                 <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                   <div className="flex justify-between text-base font-medium text-gray-900">
                     <p>Subtotal</p>
-                    <p>${total.toFixed(2)}</p>
+                    <p>ETB{total.toFixed(2)}</p>
                   </div>
                   <p className="mt-0.5 text-sm text-gray-500">
                     Payment on delivery.

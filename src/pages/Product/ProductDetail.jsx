@@ -98,7 +98,9 @@ const ProductDetail = () => {
               <li>{data.category}</li>
             </ul>
             <p className="text-xl ml-4 w-[80%]">{data.description}</p>
-            <b className="text-xl lg:text-4xl text-clayBrown">${data.price}</b>
+            <b className="text-xl lg:text-4xl text-clayBrown">
+              ETB{data.price}
+            </b>
             <div className="flex flex-wrap gap-12">
               <input
                 type="number"
