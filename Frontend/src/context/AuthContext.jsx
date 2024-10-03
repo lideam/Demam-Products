@@ -19,8 +19,33 @@ export const AuthProvider = ({ children }) => {
       ? jwtDecode(localStorage.getItem("authTokens"))
       : null
   );
+  const [myprofile, setProfile] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (authTokens && user) {
+      const id = user._id;
+      const getProfile = async () => {
+        setLoading(true);
+        try {
+          const token = authTokens;
+          const response = await axios.get(`${backendUrl}api/admin/me`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          setProfile(response.data.data);
+        } catch (error) {
+          toast.error("Error fetching profile data");
+          logoutUser();
+        } finally {
+          setLoading(false);
+        }
+      };
+      getProfile();
+    }
+  }, [authTokens, user]);
 
   let loginUser = async (ph, pass) => {
     try {
@@ -63,6 +88,7 @@ export const AuthProvider = ({ children }) => {
     user,
     loginUser,
     logoutUser,
+    myprofile,
     authTokens,
     loading,
     setLoading,
