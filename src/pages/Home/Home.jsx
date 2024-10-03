@@ -152,6 +152,7 @@ const Home = () => {
       { label: "Our Products", id: "categories", type: "scroll" },
       { label: "Store", id: "store", type: "scroll" },
       { label: "About Us", id: "about", type: "scroll" },
+      { label: "Testimonials", id: "test", type: "scroll" },
       { label: "Contact Us", id: "footer", type: "scroll" },
     ]);
   }, [set]);
