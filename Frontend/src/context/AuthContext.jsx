@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }) => {
         setLoading(true);
         try {
           const token = authTokens ? authTokens.access : null;
-          const response = await axios.get(`${backendUrl}api/parents`, {
+          const response = await axios.get(`${backendUrl}api/admin/me`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -50,7 +50,7 @@ export const AuthProvider = ({ children }) => {
     try {
       setLoading(true);
       let response = await axios.post(
-        `${backendUrl}auth/jwt/create`,
+        `${backendUrl}api/admin/login`,
         {
           phone: ph,
           password: pass,
@@ -75,34 +75,6 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  let updateToken = async () => {
-    if (authTokens) {
-      try {
-        let response = await axios.post(
-          `${backendUrl}auth/jwt/refresh/`,
-          {
-            refresh: authTokens?.refresh,
-          },
-          { timeout: 20000 }
-        );
-
-        if (response.status === 200) {
-          const data = response.data;
-          setAuthTokens(data);
-          setUser(jwtDecode(data.access));
-          localStorage.setItem("authTokens", JSON.stringify(data));
-        } else {
-          logoutUser();
-        }
-      } catch (error) {
-        toast.error(error.message);
-        logoutUser();
-      }
-    } else {
-      logoutUser();
-    }
-  };
-
   let logoutUser = () => {
     setLoading(true);
     setUser(null);
@@ -111,16 +83,6 @@ export const AuthProvider = ({ children }) => {
     toast.success("Logged out successfully");
     setLoading(false);
   };
-
-  useEffect(() => {
-    let interval = setInterval(() => {
-      if (authTokens) {
-        updateToken();
-      }
-    }, 1000 * 60 * 60 * 24);
-
-    return () => clearInterval(interval);
-  }, [authTokens]);
 
   const value = {
     user,
