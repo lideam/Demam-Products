@@ -1,8 +1,9 @@
 import React, { useContext, useState, useEffect } from "react";
 import { DashboardContext } from "../../context/DashboardContext";
 import { FaSortUp, FaSortDown } from "react-icons/fa";
-import { useDropzone } from "react-dropzone";
+import axios from "axios";
 import { ProductRow } from "./ProductRow";
+import { toast } from "react-hot-toast";
 
 export const ProductTable = () => {
   const { products, setProducts } = useContext(DashboardContext);
@@ -11,8 +12,6 @@ export const ProductTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
   const [sortDirection, setSortDirection] = useState({ key: "", order: "asc" });
-  const [editRowId, setEditRowId] = useState(null);
-  const [editedProduct, setEditedProduct] = useState({});
 
   useEffect(() => {
     const filteredProducts = products.filter((product) =>
@@ -51,25 +50,41 @@ export const ProductTable = () => {
     setCurrentPage((prev) => Math.min(prev + 1, totalPages));
   const handlePrevious = () => setCurrentPage((prev) => Math.max(prev - 1, 1));
 
-  const handleEditClick = (product) => {
-    setEditRowId(product._id);
-    setEditedProduct(product);
+  const handleUpdateProduct = async (product) => {
+    try {
+      const response = await axios.put(
+        `${import.meta.env.VITE_REACT_APP_BACKEND_URL}api/products/${
+          product._id
+        }`,
+        product,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      setProducts((prev) =>
+        prev.map((p) => (p._id === product._id ? response.data.product : p))
+      );
+      toast.success("Product updated successfully!");
+    } catch (error) {
+      toast.error("Error updating product. Please try again.");
+      console.error("Error updating product:", error);
+    }
   };
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setEditedProduct((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleUpdateProduct = (updatedProduct) => {
-    setProducts((prevProducts) =>
-      prevProducts.map((product) =>
-        product._id === updatedProduct._id ? updatedProduct : product
-      )
-    );
+  const handleDeleteProduct = async (id) => {
+    try {
+      await axios.delete(
+        `${import.meta.env.VITE_REACT_APP_BACKEND_URL}api/products/${id}`
+      );
+      setProducts((prev) => prev.filter((product) => product._id !== id));
+      toast.success("Product deleted successfully!");
+    } catch (error) {
+      toast.error("Error deleting product. Please try again.");
+      console.error("Error deleting product:", error);
+    }
   };
 
   return (
@@ -184,6 +199,7 @@ export const ProductTable = () => {
                   key={product._id}
                   product={product}
                   handleUpdate={handleUpdateProduct}
+                  handleDelete={handleDeleteProduct}
                 />
               ))}
             </tbody>
