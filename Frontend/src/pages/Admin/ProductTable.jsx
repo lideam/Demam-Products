@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { DashboardContext } from "../../context/DashboardContext";
 import { FaSortUp, FaSortDown } from "react-icons/fa";
+import { useDropzone } from "react-dropzone"; // Import useDropzone from react-dropzone
 
 export const ProductTable = () => {
   const { products } = useContext(DashboardContext);
@@ -9,6 +10,8 @@ export const ProductTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
   const [sortDirection, setSortDirection] = useState({ key: "", order: "asc" });
+  const [editRowId, setEditRowId] = useState(null);
+  const [editedProduct, setEditedProduct] = useState({});
 
   useEffect(() => {
     const filteredProducts = products.filter((product) =>
@@ -46,6 +49,40 @@ export const ProductTable = () => {
   const handleNext = () =>
     setCurrentPage((prev) => Math.min(prev + 1, totalPages));
   const handlePrevious = () => setCurrentPage((prev) => Math.max(prev - 1, 1));
+
+  const handleEditClick = (product) => {
+    setEditRowId(product._id);
+    setEditedProduct(product);
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setEditedProduct((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSaveClick = () => {
+    // Here you would usually make a call to update the product
+    console.log("Updated product:", editedProduct);
+    setEditRowId(null);
+  };
+
+  // Handle image upload
+  const onDrop = (acceptedFiles) => {
+    const images = acceptedFiles.map((file) => URL.createObjectURL(file));
+    setEditedProduct((prev) => ({
+      ...prev,
+      images: images.slice(0, 3), // Limit to 3 images
+    }));
+  };
+
+  const { getRootProps, getInputProps } = useDropzone({
+    onDrop,
+    accept: "image/*", // Only accept image files
+    multiple: true,
+  });
 
   return (
     <div>
@@ -92,7 +129,7 @@ export const ProductTable = () => {
                 </th>
                 <th
                   onClick={() => handleSort("name")}
-                  className="p-4 transition-colors cursor-pointer border-y border-slate-200 "
+                  className="p-4 transition-colors cursor-pointer border-y border-slate-200"
                 >
                   <p className="flex items-center justify-between gap-2 font-sans text-sm font-normal leading-none">
                     Product Name (click)
@@ -106,9 +143,9 @@ export const ProductTable = () => {
                 </th>
                 <th
                   onClick={() => handleSort("price")}
-                  className="p-4 transition-colors cursor-pointer border-y border-slate-200 "
+                  className="p-4 transition-colors cursor-pointer border-y border-slate-200"
                 >
-                  <p className="flex items-center justify-between gap-2 font-sans text-sm font-normal leading-none ">
+                  <p className="flex items-center justify-between gap-2 font-sans text-sm font-normal leading-none">
                     Price (click)
                     {sortDirection.key === "price" &&
                       (sortDirection.order === "asc" ? (
@@ -120,9 +157,9 @@ export const ProductTable = () => {
                 </th>
                 <th
                   onClick={() => handleSort("category")}
-                  className="p-4 transition-colors cursor-pointer border-y border-slate-200 "
+                  className="p-4 transition-colors cursor-pointer border-y border-slate-200"
                 >
-                  <p className="flex items-center justify-between gap-2 font-sans text-sm font-normal leading-none ">
+                  <p className="flex items-center justify-between gap-2 font-sans text-sm font-normal leading-none">
                     Category (click)
                     {sortDirection.key === "category" &&
                       (sortDirection.order === "asc" ? (
@@ -134,9 +171,9 @@ export const ProductTable = () => {
                 </th>
                 <th
                   onClick={() => handleSort("stock")}
-                  className="p-4 transition-colors cursor-pointer border-y border-slate-200 "
+                  className="p-4 transition-colors cursor-pointer border-y border-slate-200"
                 >
-                  <p className="flex items-center justify-between gap-2 font-sans text-sm font-normal leading-none ">
+                  <p className="flex items-center justify-between gap-2 font-sans text-sm font-normal leading-none">
                     Stock (click)
                     {sortDirection.key === "stock" &&
                       (sortDirection.order === "asc" ? (
@@ -148,7 +185,7 @@ export const ProductTable = () => {
                 </th>
                 <th>
                   <p className="p-4 font-sans text-sm font-normal leading-none">
-                    actions
+                    Actions
                   </p>
                 </th>
               </tr>
@@ -157,28 +194,97 @@ export const ProductTable = () => {
               {currentProducts.map((product) => (
                 <tr key={product._id}>
                   <td className="p-4 border-b flex justify-center border-slate-200">
-                    <img
-                      src={product.image1Url}
-                      alt=""
-                      className="w-32 h-32 rounded-xl"
-                    />
+                    {editRowId === product._id ? (
+                      <div
+                        {...getRootProps()}
+                        className="border-dashed border-2 border-gray-400 p-4 rounded-lg text-center"
+                      >
+                        <input {...getInputProps()} />
+                        <p>Drag & drop images here, or click to select</p>
+                        {editedProduct.images &&
+                          editedProduct.images.map((img, index) => (
+                            <img
+                              key={index}
+                              src={img}
+                              alt={`Image ${index + 1}`}
+                              className="w-16 h-16 mt-2"
+                            />
+                          ))}
+                      </div>
+                    ) : (
+                      <img
+                        src={product.image1Url}
+                        alt=""
+                        className="w-32 h-32 rounded-xl"
+                      />
+                    )}
                   </td>
-                  <td className="p-4 border-b border-slate-200">
-                    {product.name}
-                  </td>
-                  <td className="p-4 border-b border-slate-200">
-                    {product.price}
-                  </td>
-                  <td className="p-4 border-b border-slate-200">
-                    {product.category}
-                  </td>
-                  <td className="p-4 border-b border-slate-200">
-                    {product.stock}
-                  </td>
-                  <td className="p-4 border-b border-slate-200 ">
-                    <button className="fa fa-edit p-2 mr-2 rounded-md text-white hover:bg-green-700 bg-green-500"></button>
-                    <button className="fa fa-trash p-2 ml-2 rounded-md text-white hover:bg-red-700 bg-red-500"></button>
-                  </td>
+                  {editRowId === product._id ? (
+                    <>
+                      <td className="p-4 border-b border-slate-200">
+                        <input
+                          name="name"
+                          value={editedProduct.name}
+                          onChange={handleInputChange}
+                          className="border rounded p-2 w-full"
+                        />
+                      </td>
+                      <td className="p-4 border-b border-slate-200">
+                        <input
+                          name="price"
+                          value={editedProduct.price}
+                          onChange={handleInputChange}
+                          className="border rounded p-2 w-full"
+                        />
+                      </td>
+                      <td className="p-4 border-b border-slate-200">
+                        <input
+                          name="category"
+                          value={editedProduct.category}
+                          onChange={handleInputChange}
+                          className="border rounded p-2 w-full"
+                        />
+                      </td>
+                      <td className="p-4 border-b border-slate-200">
+                        <input
+                          name="stock"
+                          value={editedProduct.stock}
+                          onChange={handleInputChange}
+                          className="border rounded p-2 w-full"
+                        />
+                      </td>
+                      <td className="p-4 border-b border-slate-200 ">
+                        <button
+                          className="fa fa-save p-2 mr-2 rounded-md text-white hover:bg-blue-700 bg-blue-500"
+                          onClick={handleSaveClick}
+                        >
+                          Save
+                        </button>
+                      </td>
+                    </>
+                  ) : (
+                    <>
+                      <td className="p-4 border-b border-slate-200">
+                        {product.name}
+                      </td>
+                      <td className="p-4 border-b border-slate-200">
+                        ${product.price}
+                      </td>
+                      <td className="p-4 border-b border-slate-200">
+                        {product.category}
+                      </td>
+                      <td className="p-4 border-b border-slate-200">
+                        {product.stock}
+                      </td>
+                      <td className="p-4 border-b border-slate-200 ">
+                        <button
+                          className="fa fa-edit p-2 mr-2 rounded-md text-white hover:bg-green-700 bg-green-500"
+                          onClick={() => handleEditClick(product)}
+                        ></button>
+                        <button className="fa fa-trash p-2 ml-2 rounded-md text-white hover:bg-red-700 bg-red-500"></button>
+                      </td>
+                    </>
+                  )}
                 </tr>
               ))}
             </tbody>
