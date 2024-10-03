@@ -22,9 +22,13 @@ const registerAdmin = asyncHandler(async (req, res) => {
     password,
   });
 
-const token = jwt.sign({ id: admin._id, role: "admin" }, process.env.JWT_SECRET, {
-  expiresIn: "1h",
-});
+  const token = jwt.sign(
+    { id: admin._id, role: "admin" },
+    process.env.JWT_SECRET,
+    {
+      expiresIn: "1h",
+    }
+  );
 
   if (admin) {
     res.status(201).json({
@@ -100,7 +104,8 @@ const getUsers = asyncHandler(async (req, res) => {
 const removeUser = asyncHandler(async (req, res) => {
   const { id: _id } = req.params;
 
-  if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).json({ message: "Invalid id" });
+  if (!mongoose.Types.ObjectId.isValid(_id))
+    return res.status(404).json({ message: "Invalid id" });
 
   const user = await User.findByIdAndDelete(_id);
 
@@ -108,7 +113,6 @@ const removeUser = asyncHandler(async (req, res) => {
 
   res.json({ message: "User deleted successfully" });
 });
-
 
 // @desc    Logout admin
 // @route   POST /api/admin/logout
@@ -155,6 +159,21 @@ const getAdminProfile = asyncHandler(async (req, res) => {
   });
 });
 
+const getAllAdmins = async (req, res) => {
+  try {
+    const admins = await Admin.find(); // Fetch all admins from the database
+    res.status(200).json({
+      success: true,
+      data: admins,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Failed to retrieve admins",
+      error: error.message,
+    });
+  }
+};
 
 module.exports = {
   registerAdmin,
@@ -163,4 +182,5 @@ module.exports = {
   removeUser,
   logoutAdmin,
   getAdminProfile,
+  getAllAdmins,
 };
