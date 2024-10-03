@@ -49,7 +49,7 @@ export const Header = () => {
         ></i>
         <span className="hidden md:block"></span>
         <Link to="/" className="text-3xl font-extrabold cursor-pointer">
-          Demam Product
+          Demam Products
         </Link>
         {renderCartIcon()}
       </div>
