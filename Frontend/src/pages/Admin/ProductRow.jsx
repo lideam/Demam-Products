@@ -8,6 +8,7 @@ import {
   DialogTitle,
 } from "@headlessui/react";
 import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
+import { FaLink } from "react-icons/fa";
 
 export const ProductRow = ({ product, handleUpdate, handleDelete }) => {
   const backendUrl = import.meta.env.VITE_REACT_APP_BACKEND_URL;
@@ -167,7 +168,16 @@ export const ProductRow = ({ product, handleUpdate, handleDelete }) => {
           </>
         ) : (
           <>
-            <td className="p-4 border-b border-slate-200">{product.name}</td>
+            <td className="p-4 border-b border-slate-200 ">
+              <a
+                target="_blank"
+                href={`/${product._id}/detail`}
+                className="font-bold cursor-pointer text-clayBrown flex gap-2"
+              >
+                {product.name}
+                <FaLink />
+              </a>
+            </td>
             <td className="p-4 border-b border-slate-200">{product.price}</td>
             <td className="p-4 border-b border-slate-200">
               {product.category}
