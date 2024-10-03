@@ -1,7 +1,8 @@
 import React, { useContext, useState, useEffect } from "react";
 import { DashboardContext } from "../../context/DashboardContext";
 import { FaSortUp, FaSortDown } from "react-icons/fa";
-import { useDropzone } from "react-dropzone"; // Import useDropzone from react-dropzone
+import { useDropzone } from "react-dropzone";
+import {ProductRow} from "./ProductRow";
 
 export const ProductTable = () => {
   const { products } = useContext(DashboardContext);
@@ -63,26 +64,12 @@ export const ProductTable = () => {
     }));
   };
 
-  const handleSaveClick = () => {
+  const handleDeleteClick = () => {
     // Here you would usually make a call to update the product
     console.log("Updated product:", editedProduct);
     setEditRowId(null);
   };
 
-  // Handle image upload
-  const onDrop = (acceptedFiles) => {
-    const images = acceptedFiles.map((file) => URL.createObjectURL(file));
-    setEditedProduct((prev) => ({
-      ...prev,
-      images: images.slice(0, 3), // Limit to 3 images
-    }));
-  };
-
-  const { getRootProps, getInputProps } = useDropzone({
-    onDrop,
-    accept: "image/*", // Only accept image files
-    multiple: true,
-  });
 
   return (
     <div>
@@ -192,100 +179,11 @@ export const ProductTable = () => {
             </thead>
             <tbody>
               {currentProducts.map((product) => (
-                <tr key={product._id}>
-                  <td className="p-4 border-b flex justify-center border-slate-200">
-                    {editRowId === product._id ? (
-                      <div
-                        {...getRootProps()}
-                        className="border-dashed border-2 border-gray-400 p-4 rounded-lg text-center"
-                      >
-                        <input {...getInputProps()} />
-                        <p>Drag & drop images here, or click to select</p>
-                        {editedProduct.images &&
-                          editedProduct.images.map((img, index) => (
-                            <img
-                              key={index}
-                              src={img}
-                              alt={`Image ${index + 1}`}
-                              className="w-16 h-16 mt-2"
-                            />
-                          ))}
-                      </div>
-                    ) : (
-                      <img
-                        src={product.image1Url}
-                        alt=""
-                        className="w-32 h-32 rounded-xl"
-                      />
-                    )}
-                  </td>
-                  {editRowId === product._id ? (
-                    <>
-                      <td className="p-4 border-b border-slate-200">
-                        <input
-                          name="name"
-                          value={editedProduct.name}
-                          onChange={handleInputChange}
-                          className="border rounded p-2 w-full"
-                        />
-                      </td>
-                      <td className="p-4 border-b border-slate-200">
-                        <input
-                          name="price"
-                          value={editedProduct.price}
-                          onChange={handleInputChange}
-                          className="border rounded p-2 w-full"
-                        />
-                      </td>
-                      <td className="p-4 border-b border-slate-200">
-                        <input
-                          name="category"
-                          value={editedProduct.category}
-                          onChange={handleInputChange}
-                          className="border rounded p-2 w-full"
-                        />
-                      </td>
-                      <td className="p-4 border-b border-slate-200">
-                        <input
-                          name="stock"
-                          value={editedProduct.stock}
-                          onChange={handleInputChange}
-                          className="border rounded p-2 w-full"
-                        />
-                      </td>
-                      <td className="p-4 border-b border-slate-200 ">
-                        <button
-                          className="fa fa-save p-2 mr-2 rounded-md text-white hover:bg-blue-700 bg-blue-500"
-                          onClick={handleSaveClick}
-                        >
-                          Save
-                        </button>
-                      </td>
-                    </>
-                  ) : (
-                    <>
-                      <td className="p-4 border-b border-slate-200">
-                        {product.name}
-                      </td>
-                      <td className="p-4 border-b border-slate-200">
-                        ${product.price}
-                      </td>
-                      <td className="p-4 border-b border-slate-200">
-                        {product.category}
-                      </td>
-                      <td className="p-4 border-b border-slate-200">
-                        {product.stock}
-                      </td>
-                      <td className="p-4 border-b border-slate-200 ">
-                        <button
-                          className="fa fa-edit p-2 mr-2 rounded-md text-white hover:bg-green-700 bg-green-500"
-                          onClick={() => handleEditClick(product)}
-                        ></button>
-                        <button className="fa fa-trash p-2 ml-2 rounded-md text-white hover:bg-red-700 bg-red-500"></button>
-                      </td>
-                    </>
-                  )}
-                </tr>
+                <ProductRow
+                  key={product._id}
+                  product={product}
+                  handleDeleteClick={handleDeleteClick}
+                />
               ))}
             </tbody>
           </table>
