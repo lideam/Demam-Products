@@ -133,7 +133,7 @@ export const Products = () => {
           </p>
         )}
       </div>
-      <div className="flex items-center justify-center my-12">
+      {/* <div className="flex items-center justify-center my-12">
         <nav className="inline-flex shadow-md">
           <a
             href="#"
@@ -159,7 +159,7 @@ export const Products = () => {
             Next
           </a>
         </nav>
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -61,7 +61,6 @@ export const MainRoutes = () => {
           <div className="mt-32">
             <Routes key={location.key}>
               <Route path="/" element={<Home />} />
-              <Route path="/store" element={<Store />} />
               <Route path="/:id/detail" element={<ProductDetail />} />
               <Route path="*" element={<Home />} />
             </Routes>

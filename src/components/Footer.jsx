@@ -42,13 +42,15 @@ export const Footer = () => {
             ))}
           </ul>
         </div>
-        <div className="text-xl">
+        <div className="text-xl text-center">
           <p>Let's Follow Together</p>
           <div className="flex gap-4 m-4 justify-center text-clayBrown">
-            <i className="fab fa-facebook-f"></i>
-            <i className="fab fa-telegram"></i>
-            <i className="fab fa-instagram"></i>
-            <i className="fab fa-twitter"></i>
+            <a className="cursor-pointer fa fa-phone"></a>
+            <a className="cursor-pointer fa fa-envelope"></a>
+            <a className="cursor-pointer fab fa-facebook-f"></a>
+            <a className="cursor-pointer fab fa-telegram"></a>
+            <a className="cursor-pointer fab fa-instagram"></a>
+            <a className="cursor-pointer fab fa-twitter"></a>
           </div>
         </div>
       </div>
