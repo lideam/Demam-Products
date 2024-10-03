@@ -7,7 +7,7 @@ export const ProductTable = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [sortedProducts, setSortedProducts] = useState(products);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10;
+  const itemsPerPage = 5;
   const [sortDirection, setSortDirection] = useState({ key: "", order: "asc" });
 
   useEffect(() => {
@@ -84,7 +84,7 @@ export const ProductTable = () => {
         <div className="p-0">
           <table className="w-full mt-4 text-left table-auto min-w-max">
             <thead>
-              <tr className="bg-slateGrey text-white">
+              <tr className="bg-clayBrown text-white">
                 <th>
                   <p className="p-4 font-sans text-sm font-normal leading-none">
                     Image
@@ -157,7 +157,11 @@ export const ProductTable = () => {
               {currentProducts.map((product) => (
                 <tr key={product._id}>
                   <td className="p-4 border-b flex justify-center border-slate-200">
-                    <img src={product.image1Url} alt="" className="w-32 h-32 rounded-xl" />
+                    <img
+                      src={product.image1Url}
+                      alt=""
+                      className="w-32 h-32 rounded-xl"
+                    />
                   </td>
                   <td className="p-4 border-b border-slate-200">
                     {product.name}
@@ -170,6 +174,10 @@ export const ProductTable = () => {
                   </td>
                   <td className="p-4 border-b border-slate-200">
                     {product.stock}
+                  </td>
+                  <td className="p-4 border-b border-slate-200 ">
+                    <button className="fa fa-edit p-2 mr-2 rounded-md text-white hover:bg-green-700 bg-green-500"></button>
+                    <button className="fa fa-trash p-2 ml-2 rounded-md text-white hover:bg-red-700 bg-red-500"></button>
                   </td>
                 </tr>
               ))}
