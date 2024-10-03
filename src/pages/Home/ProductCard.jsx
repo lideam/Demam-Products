@@ -2,6 +2,8 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { ProductContext } from "../../context";
 
+
+
 export const ProductCard = ({ product }) => {
   const {
     addToCart,
