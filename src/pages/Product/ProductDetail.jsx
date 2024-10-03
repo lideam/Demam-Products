@@ -18,7 +18,7 @@ const ProductDetail = () => {
   useEffect(() => {
     set([
       { label: "Home", path: "/", type: "route" },
-      { label: "Store", path: "/store", type: "route" },
+      { label: "Store", path: "/#store", type: "route" },
       { label: "Contact Us", id: "footer", type: "scroll" },
     ]);
   }, [set]);
@@ -128,7 +128,7 @@ const ProductDetail = () => {
           </div>
         </div>
       )}
-      <Featured />
+      {data && <Featured ex={data._id} />}
     </>
   );
 };
