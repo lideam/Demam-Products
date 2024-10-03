@@ -11,7 +11,7 @@ export const Products = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedCategory, setSelectedCategory] = useState(options[0]);
   const [searchTerm, setSearchTerm] = useState("");
-  const productsPerPage = 15;
+  const productsPerPage = 20;
 
   useEffect(() => {
     if (data) {

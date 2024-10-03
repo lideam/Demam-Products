@@ -2,10 +2,10 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { About } from "./About";
 import { Categories } from "./Categories";
-import { Featured } from "./Featured";
 import { Hero } from "./Hero";
 import { useContext, useEffect } from "react";
 import { UtilContext } from "../../context";
+import Store from "../store/Store";
 
 const fadeInVariant = (direction) => ({
   hidden: { opacity: 0, y: direction === "down" ? -50 : 50 },
@@ -14,23 +14,25 @@ const fadeInVariant = (direction) => ({
 
 const Home = () => {
   const [heroRef, heroInView] = useInView({ triggerOnce: true });
-  const [featuredRef, featuredInView] = useInView({ triggerOnce: true });
   const [aboutRef, aboutInView] = useInView({ triggerOnce: true });
   const [categoriesRef, categoriesInView] = useInView({
     triggerOnce: true,
     threshold: 0.2,
   });
+  const [storeRef, storeInView] = useInView({ triggerOnce: true });
+
   const { set } = useContext(UtilContext);
+
   useEffect(() => {
     set([
       { label: "Home", id: "hero", type: "scroll" },
-      { label: "Featured", id: "featured", type: "scroll" },
       { label: "Our Products", id: "categories", type: "scroll" },
+      { label: "Store", id: "store", type: "scroll" },
       { label: "About Us", id: "about", type: "scroll" },
-      { label: "Store", path: "/store", type: "route" },
       { label: "Contact Us", id: "footer", type: "scroll" },
     ]);
   }, [set]);
+
   return (
     <div className="min-h-screen">
       <motion.div
@@ -41,16 +43,6 @@ const Home = () => {
         variants={fadeInVariant("up")}
       >
         <Hero heroInView={heroInView} />
-      </motion.div>
-
-      <motion.div
-        id="featured"
-        ref={featuredRef}
-        initial="hidden"
-        animate={featuredInView ? "visible" : "hidden"}
-        variants={fadeInVariant("down")}
-      >
-        <Featured />
       </motion.div>
 
       <motion.div
@@ -71,6 +63,16 @@ const Home = () => {
         variants={fadeInVariant("down")}
       >
         <Categories />
+      </motion.div>
+
+      <motion.div
+        id="store"
+        ref={storeRef}
+        initial="hidden"
+        animate={storeInView ? "visible" : "hidden"}
+        variants={fadeInVariant("up")}
+      >
+        <Store />
       </motion.div>
     </div>
   );

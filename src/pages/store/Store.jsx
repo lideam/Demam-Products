@@ -15,43 +15,14 @@ const fadeInVariant = (direction = "up", delay = 0) => ({
 });
 
 const Store = () => {
-  const { set } = useContext(UtilContext);
-
-  useEffect(() => {
-    set([
-      { label: "Home", path: "/", type: "route" },
-      { label: "Our Products", id: "hero", type: "scroll" },
-      { label: "About Us", id: "about", type: "scroll" },
-      { label: "Contact Us", id: "footer", type: "scroll" },
-    ]);
-  }, [set]);
-
   return (
     <div className="lg:px-24 px-2 lg:py-12 w-full flex flex-col">
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        id="hero"
-        variants={fadeInVariant("down")}
-      >
-        <Header />
-      </motion.div>
-
       <motion.div
         initial="hidden"
         animate="visible"
         variants={fadeInVariant("up", 0.2)}
       >
         <Products />
-      </motion.div>
-
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        id="about"
-        variants={fadeInVariant("up", 0.4)}
-      >
-        <About />
       </motion.div>
     </div>
   );
