@@ -134,10 +134,33 @@ const logoutAdmin = asyncHandler(async (req, res) => {
   }
 });
 
+// @desc    Get logged-in admin details
+// @route   GET /api/admin/me
+// @access  Private/Admin
+const getAdminProfile = asyncHandler(async (req, res) => {
+  const admin = await Admin.findById(req.admin._id).select("-password");
+
+  if (!admin) {
+    res.status(404);
+    throw new Error("Admin not found");
+  }
+
+  res.json({
+    success: true,
+    data: {
+      _id: admin._id,
+      name: admin.name,
+      phoneNumber: admin.phoneNumber,
+    },
+  });
+});
+
+
 module.exports = {
   registerAdmin,
   loginAdmin,
   getUsers,
   removeUser,
   logoutAdmin,
+  getAdminProfile,
 };
