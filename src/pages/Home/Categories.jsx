@@ -40,7 +40,7 @@ export const Categories = () => {
 
   return (
     <div className="py-8 w-full flex flex-col justify-center items-center">
-      <header className="w-full gap-4 font-playfair flex flex-col justify-center items-center">
+      <header className="w-full md:mt-32 gap-4 font-playfair flex flex-col justify-center items-center">
         <h1 className="text-4xl font-extrabold">Our Store</h1>
         <p>Explore our range of products. </p>
       </header>
