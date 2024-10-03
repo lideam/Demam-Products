@@ -1,14 +1,14 @@
 import React, { createContext, useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
-import { AuthContext } from "./AuthContext"; 
+import { AuthContext } from "./AuthContext";
 
-const backendUrl = import.meta.env.VITE_REACT_APP_BACKEND_URL; 
+const backendUrl = import.meta.env.VITE_REACT_APP_BACKEND_URL;
 
 export const DashboardContext = createContext();
 
 export const DashboardProvider = ({ children }) => {
-  const { authTokens, myprofile } = useContext(AuthContext); 
+  const { authTokens, myprofile } = useContext(AuthContext);
   const [products, setProducts] = useState([]);
   const [orders, setOrders] = useState([]);
   const [admins, setAdmins] = useState([]);
@@ -18,7 +18,7 @@ export const DashboardProvider = ({ children }) => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get(`${backendUrl}api/products`);
-        setProducts(response.data.data);
+        setProducts(response.data);
       } catch (error) {
         toast.error("Error fetching products");
       }
@@ -26,9 +26,9 @@ export const DashboardProvider = ({ children }) => {
 
     const fetchOrders = async () => {
       try {
-        const response = await axios.get(`${backendUrl}api/order`, {
+        const response = await axios.get(`${backendUrl}api/orders`, {
           headers: {
-            Authorization: `Bearer ${authTokens.access}`, // Include token
+            Authorization: `Bearer ${authTokens}`,
           },
         });
         setOrders(response.data.data);
@@ -39,9 +39,9 @@ export const DashboardProvider = ({ children }) => {
 
     const fetchAdmins = async () => {
       try {
-        const response = await axios.get(`${backendUrl}api/admins`, {
+        const response = await axios.get(`${backendUrl}api/admin`, {
           headers: {
-            Authorization: `Bearer ${authTokens.access}`, // Include token
+            Authorization: `Bearer ${authTokens}`,
           },
         });
         setAdmins(response.data.data);
@@ -59,7 +59,7 @@ export const DashboardProvider = ({ children }) => {
     };
 
     fetchData();
-  }, [authTokens, myprofile]); // Dependencies include authTokens and myprofile
+  }, [authTokens, myprofile]);
 
   const value = {
     products,

@@ -4,6 +4,7 @@ import { Admin, Login } from "../pages";
 import { useContext } from "react";
 import { AuthContext } from "../context";
 import { Loader } from "../utils/Loader";
+import { DashboardProvider } from "../context/DashboardContext";
 
 export const AdminRoutes = () => {
   const { myprofile, loading } = useContext(AuthContext);
@@ -12,13 +13,15 @@ export const AdminRoutes = () => {
   }
   return (
     <div>
-      <Routes>
-        {!myprofile ? (
-          <Route path="/" element={<Login />} />
-        ) : (
-          <Route path="/" element={<Admin />} />
-        )}
-      </Routes>
+      <DashboardProvider>
+        <Routes>
+          {!myprofile ? (
+            <Route path="/" element={<Login />} />
+          ) : (
+            <Route path="/" element={<Admin />} />
+          )}
+        </Routes>
+      </DashboardProvider>
     </div>
   );
 };

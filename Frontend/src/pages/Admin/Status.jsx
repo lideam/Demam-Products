@@ -1,5 +1,9 @@
+import { useContext } from "react";
+import { DashboardContext } from "../../context/DashboardContext";
 
 export const Status = () => {
+  const { products, orders, admins } = useContext(DashboardContext);
+  console.log(products, orders, admins);
   return (
     <div class="container items-center px-4 py-8 m-auto mt-5">
       <div class="flex flex-wrap pb-3 mx-4 md:mx-24 lg:mx-0">
@@ -236,4 +240,4 @@ export const Status = () => {
       </div>
     </div>
   );
-}
+};
