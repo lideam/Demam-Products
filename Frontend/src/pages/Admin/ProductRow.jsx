@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useDropzone } from "react-dropzone";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 
@@ -13,52 +12,40 @@ export const ProductRow = ({ product, handleUpdate }) => {
     image3Url: product.image3Url,
   });
 
-  const [images, setImages] = useState([]);
-
-  const onDrop = (acceptedFiles) => {
-    const selectedImages = acceptedFiles
-      .slice(0, 3)
-      .map((file) => URL.createObjectURL(file));
-    setImages(selectedImages);
-  };
-
-  const { getRootProps, getInputProps } = useDropzone({
-    onDrop,
-    accept: "image/*",
-    multiple: true,
-  });
+  const [imageUrls, setImageUrls] = useState([
+    editedProduct.image1Url || "",
+    editedProduct.image2Url || "",
+    editedProduct.image3Url || "",
+  ]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setEditedProduct((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handleUrlChange = (index, value) => {
+    const updatedUrls = [...imageUrls];
+    updatedUrls[index] = value;
+    setImageUrls(updatedUrls);
+  };
+
   const handleSaveClick = async () => {
     try {
-      const formData = new FormData();
       const updatedProduct = { ...editedProduct };
-
-      if (images.length > 0) {
-        images.forEach((image, index) => {
-          formData.append(`image${index + 1}`, image);
-        });
-      }
-
-      formData.append("name", updatedProduct.name);
-      formData.append("description", updatedProduct.description);
-      formData.append("price", updatedProduct.price);
-      formData.append("category", updatedProduct.category);
-      formData.append("stock", updatedProduct.stock);
+      updatedProduct.image1Url = imageUrls[0];
+      updatedProduct.image2Url = imageUrls[1];
+      updatedProduct.image3Url = imageUrls[2];
 
       const response = await axios.put(
         `${backendUrl}api/products/${product._id}`,
-        formData,
+        updatedProduct,
         {
           headers: {
-            "Content-Type": "multipart/form-data",
+            "Content-Type": "application/json",
           },
         }
       );
+
       handleUpdate(response.data.product);
       toast.success("Product updated successfully!");
     } catch (error) {
@@ -73,49 +60,25 @@ export const ProductRow = ({ product, handleUpdate }) => {
       <tr>
         <td className="p-4 border-b flex justify-center border-slate-200">
           {isEditing ? (
-            <div
-              {...getRootProps()}
-              className="border-dashed border-2 border-gray-400 p-4 rounded-lg text-center"
-            >
-              <input {...getInputProps()} />
-              <p>Drag & drop images here, or click to select (up to 3)</p>
-              <div></div>
-              {images.length > 0 ? (
-                <div className="flex justify-between">
-                  {images.map((img, index) => (
+            <div className="flex flex-col items-center">
+              {imageUrls.map((url, index) => (
+                <div key={index}>
+                  <input
+                    type="text"
+                    value={url}
+                    onChange={(e) => handleUrlChange(index, e.target.value)}
+                    placeholder={`Image URL ${index + 1}`}
+                    className="border rounded p-1 w-40"
+                  />
+                  {url && (
                     <img
-                      key={index}
-                      src={img}
-                      alt={`Image ${index + 1}`}
-                      className="w-20 h-20 mt-2"
-                    />
-                  ))}
-                </div>
-              ) : (
-                <div className="flex justify-between">
-                  {product.image1Url && (
-                    <img
-                      src={product.image1Url}
-                      alt="Image 1"
-                      className="w-20 h-20 mt-2"
-                    />
-                  )}
-                  {product.image2Url && (
-                    <img
-                      src={product.image2Url}
-                      alt="Image 2"
-                      className="w-20 h-20 mt-2"
-                    />
-                  )}
-                  {product.image3Url && (
-                    <img
-                      src={product.image3Url}
-                      alt="Image 3"
+                      src={url}
+                      alt={`Image URL ${index + 1}`}
                       className="w-20 h-20 mt-2"
                     />
                   )}
                 </div>
-              )}
+              ))}
             </div>
           ) : (
             <>
@@ -193,10 +156,7 @@ export const ProductRow = ({ product, handleUpdate }) => {
                 className="fa fa-edit p-2 mr-2 rounded-md text-white hover:bg-green-700 bg-green-500"
                 onClick={() => setIsEditing(true)}
               ></button>
-              <button
-                className="fa fa-trash p-2 ml-2 rounded-md text-white hover:bg-red-700 bg-red-500"
-                // onClick={() => handleDeleteClick(product._id)}
-              ></button>
+              <button className="fa fa-trash p-2 ml-2 rounded-md text-white hover:bg-red-700 bg-red-500"></button>
             </td>
           </>
         )}
@@ -209,7 +169,7 @@ export const ProductRow = ({ product, handleUpdate }) => {
           <td colSpan={5}>
             <textarea
               name="description"
-              value={editedProduct.description || ""} // Ensure it's controlled
+              value={editedProduct.description || ""}
               onChange={handleInputChange}
               className="outline-none border border-clayBrown w-full p-2"
             />

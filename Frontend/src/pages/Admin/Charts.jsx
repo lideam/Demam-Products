@@ -27,11 +27,6 @@ ChartJS.register(
 export const Charts = () => {
   const { products, orders } = useContext(DashboardContext);
 
-  useEffect(() => {
-    console.log("Products:", products);
-    console.log("Orders:", orders);
-  }, [products, orders]);
-
   const categoryData = products.reduce((acc, product) => {
     const category = product.category;
     const stock = product.stock;
