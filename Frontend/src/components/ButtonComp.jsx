@@ -3,7 +3,7 @@ import React from "react";
 export const ButtonComp = ({ text, load }) => {
   return (
     <button
-      className="bg-purple-500 text-white py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 disabled:opacity-80"
+      className="bg-clayBrown text-white py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-[#5a361d] focus:ring-opacity-50 disabled:opacity-80"
       type="submit"
       disabled={load}
     >
