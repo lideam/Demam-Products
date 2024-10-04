@@ -270,7 +270,7 @@ export const OrderTable = () => {
             onChange={(e) => {
               setPageSize(Number(e.target.value));
             }}
-            className="ml-4 border rounded p-1"
+            className="ml-4 border-2 rounded p-1 outline-none border-clayBrown"
           >
             {[5, 10, 20, 30, 40, 50].map((size) => (
               <option key={size} value={size}>
