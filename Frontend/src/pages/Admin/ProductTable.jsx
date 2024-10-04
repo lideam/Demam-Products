@@ -98,7 +98,7 @@ export const ProductTable = () => {
     const productToAdd = {
       name: newProduct.name,
       price: price,
-      category: newProduct.category,
+      category: newProduct.category.toLowerCase(),
       description: newProduct.description,
       stock: stock,
       image1Url: newProduct.image1Url,
@@ -107,7 +107,6 @@ export const ProductTable = () => {
     };
 
     try {
-      // Make API call to add the product
       const response = await axios.post(
         `${import.meta.env.VITE_REACT_APP_BACKEND_URL}api/products/addProducts`,
         productToAdd,
@@ -118,11 +117,9 @@ export const ProductTable = () => {
         }
       );
       console.log(response);
-      // Update the products state with the newly added product
       setProducts((prev) => [...prev, response.data]);
       toast.success("Product added successfully!");
 
-      // Reset the new product state
       setNewProduct({
         name: "",
         price: "",

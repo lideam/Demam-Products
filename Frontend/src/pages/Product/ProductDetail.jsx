@@ -4,11 +4,12 @@ import { useFetch } from "../../hooks/";
 import { useParams } from "react-router-dom";
 import { ProductContext, UtilContext } from "../../context";
 import { Loader } from "../../utils/Loader";
+import f from "../../assets/4.gif"
 
 const ProductDetail = () => {
   const [image, setImage] = useState(null);
   const { id } = useParams();
-  const { data, loading } = useFetch(`api/products/${id}`);
+  const { data, loading, error } = useFetch(`api/products/${id}`);
   const { addToCart, removeFromCart, checkCart, updateQuantity, getCart } =
     useContext(ProductContext);
 
@@ -43,10 +44,17 @@ const ProductDetail = () => {
       addToCart(data, newQuantity);
     }
   };
-
+if (error) {
+  return (
+    <div className="w-full flex justify-center items-center h-[70vh]">
+      <img src={f} className="w-96" alt="" />
+    </div>
+  );
+}
   if (!data || loading) {
     return <Loader />;
   }
+
 
   return (
     <>

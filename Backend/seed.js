@@ -11,7 +11,8 @@ mongoose
     const products = [
       {
         name: "Revitalizing Face Serum",
-        description: "A serum that hydrates and replenishes your skin, leaving it radiant with a long-lasting glow. This formula penetrates deep into the skin layers to provide moisture and improve texture.",
+        description:
+          "A serum that hydrates and replenishes your skin, leaving it radiant with a long-lasting glow. This formula penetrates deep into the skin layers to provide moisture and improve texture.",
         price: 49.99,
         stock: 100,
         category: "Skincare",
@@ -21,7 +22,8 @@ mongoose
       },
       {
         name: "Hydrating Night Cream",
-        description: "Rich night cream that restores your skin’s glow while you sleep. Infused with natural ingredients like hyaluronic acid and shea butter.",
+        description:
+          "Rich night cream that restores your skin’s glow while you sleep. Infused with natural ingredients like hyaluronic acid and shea butter.",
         price: 39.99,
         stock: 120,
         category: "Skincare",
@@ -31,7 +33,8 @@ mongoose
       },
       {
         name: "Vitamin C Brightening Serum",
-        description: "Brighten your skin with this powerful Vitamin C formula. It helps reduce dark spots, even out skin tone, and improve overall skin texture.",
+        description:
+          "Brighten your skin with this powerful Vitamin C formula. It helps reduce dark spots, even out skin tone, and improve overall skin texture.",
         price: 59.99,
         stock: 75,
         category: "Skincare",
@@ -41,7 +44,8 @@ mongoose
       },
       {
         name: "Moisturizing Body Lotion",
-        description: "Deeply nourishing body lotion to keep your skin soft all day long.",
+        description:
+          "Deeply nourishing body lotion to keep your skin soft all day long.",
         price: 25.99,
         stock: 150,
         category: "Body Care",
@@ -51,7 +55,8 @@ mongoose
       },
       {
         name: "Exfoliating Face Scrub",
-        description: "Gentle exfoliating scrub that removes dead skin cells and unclogs pores.",
+        description:
+          "Gentle exfoliating scrub that removes dead skin cells and unclogs pores.",
         price: 29.99,
         stock: 110,
         category: "Skincare",
@@ -71,7 +76,8 @@ mongoose
       },
       {
         name: "Clarifying Face Mask",
-        description: "Detoxify your skin with this clarifying mask, made with natural clay.",
+        description:
+          "Detoxify your skin with this clarifying mask, made with natural clay to help absorb impurities.",
         price: 34.99,
         stock: 90,
         category: "Skincare",
@@ -81,7 +87,8 @@ mongoose
       },
       {
         name: "Sunscreen SPF 50",
-        description: "High-protection sunscreen for all-day outdoor activities.",
+        description:
+          "High-protection sunscreen for all-day outdoor activities, ensuring your skin stays safe from harmful UV rays.",
         price: 19.99,
         stock: 130,
         category: "Skincare",
@@ -91,7 +98,8 @@ mongoose
       },
       {
         name: "Anti-Aging Eye Cream",
-        description: "Reduce fine lines and dark circles with this anti-aging eye cream.",
+        description:
+          "Reduce fine lines and dark circles with this anti-aging eye cream, formulated to rejuvenate and refresh the delicate eye area.",
         price: 44.99,
         stock: 60,
         category: "Skincare",
@@ -101,7 +109,8 @@ mongoose
       },
       {
         name: "Rejuvenating Hair Oil",
-        description: "Nourish and revitalize your hair with this lightweight hair oil.",
+        description:
+          "Nourish and revitalize your hair with this lightweight hair oil, designed to add shine and prevent dryness.",
         price: 24.99,
         stock: 140,
         category: "Hair Care",
@@ -111,7 +120,8 @@ mongoose
       },
       {
         name: "Rose Water Toner",
-        description: "A gentle toner that balances your skin’s pH and refreshes your face.",
+        description:
+          "A gentle toner that balances your skin’s pH and refreshes your face, leaving it feeling clean and hydrated.",
         price: 14.99,
         stock: 180,
         category: "Skincare",
@@ -121,7 +131,8 @@ mongoose
       },
       {
         name: "Whipped Body Butter",
-        description: "Indulge your skin with this ultra-hydrating whipped body butter.",
+        description:
+          "Indulge your skin with this ultra-hydrating whipped body butter, perfect for dry areas to provide lasting moisture.",
         price: 32.99,
         stock: 80,
         category: "Body Care",
@@ -131,7 +142,8 @@ mongoose
       },
       {
         name: "Brightening Face Oil",
-        description: "Lightweight face oil that evens skin tone and adds a radiant glow.",
+        description:
+          "Lightweight face oil that evens skin tone and adds a radiant glow, making it perfect for daily use.",
         price: 49.99,
         stock: 85,
         category: "Skincare",
@@ -141,7 +153,8 @@ mongoose
       },
       {
         name: "Coconut Milk Shampoo",
-        description: "A nourishing shampoo that strengthens and moisturizes your hair.",
+        description:
+          "A nourishing shampoo that strengthens and moisturizes your hair, leaving it soft and manageable.",
         price: 22.99,
         stock: 110,
         category: "Hair Care",
@@ -151,7 +164,8 @@ mongoose
       },
       {
         name: "Detoxifying Charcoal Mask",
-        description: "Purify your skin with this deep cleansing charcoal mask.",
+        description:
+          "Purify your skin with this deep cleansing charcoal mask that absorbs excess oil and removes impurities.",
         price: 39.99,
         stock: 95,
         category: "Skincare",
@@ -161,7 +175,8 @@ mongoose
       },
       {
         name: "Lavender Bath Salts",
-        description: "Relax and unwind with these soothing lavender bath salts.",
+        description:
+          "Relax and unwind with these soothing lavender bath salts, perfect for a calming soak after a long day.",
         price: 15.99,
         stock: 170,
         category: "Body Care",
@@ -171,7 +186,8 @@ mongoose
       },
       {
         name: "Hand Cream with Shea Butter",
-        description: "Moisturizing hand cream infused with organic shea butter.",
+        description:
+          "Moisturizing hand cream infused with organic shea butter, perfect for keeping hands soft and nourished.",
         price: 12.99,
         stock: 140,
         category: "Body Care",
@@ -180,106 +196,95 @@ mongoose
         image3Url: "https://via.placeholder.com/150/hand-cream3.jpg",
       },
       {
-        name: "Aloe Vera Gel",
-        description: "Natural aloe vera gel to soothe and hydrate your skin.",
-        price: 16.99,
-        stock: 120,
-        category: "Skincare",
-        image1Url: "https://via.placeholder.com/150/aloe-gel1.jpg",
-        image2Url: "https://via.placeholder.com/150/aloe-gel2.jpg",
-        image3Url: "https://via.placeholder.com/150/aloe-gel3.jpg",
-      },
-      {
-        name: "Tea Tree Oil",
-        description: "Purifying tea tree oil to treat blemishes and acne.",
-        price: 17.99,
-        stock: 100,
-        category: "Skincare",
-        image1Url: "https://via.placeholder.com/150/tea-tree-oil1.jpg",
-        image2Url: "https://via.placeholder.com/150/tea-tree-oil2.jpg",
-        image3Url: "https://via.placeholder.com/150/tea-tree-oil3.jpg",
-      },
-      {
-        name: "Bamboo Toothbrush",
-        description: "Eco-friendly bamboo toothbrush for sustainable oral care.",
-        price: 4.99,
-        stock: 300,
-        category: "Oral Care",
-        image1Url: "https://via.placeholder.com/150/toothbrush1.jpg",
-        image2Url: "https://via.placeholder.com/150/toothbrush2.jpg",
-        image3Url: "https://via.placeholder.com/150/toothbrush3.jpg",
-      },
-      {
-        name: "Organic Cotton Face Towels",
-        description: "Soft organic cotton face towels for a gentle touch on your skin.",
-        price: 19.99,
-        stock: 150,
-        category: "Body Care",
-        image1Url: "https://via.placeholder.com/150/face-towels1.jpg",
-        image2Url: "https://via.placeholder.com/150/face-towels2.jpg",
-        image3Url: "https://via.placeholder.com/150/face-towels3.jpg",
-      },
-      {
-        name: "Eucalyptus Essential Oil",
-        description: "Refresh your mind with invigorating eucalyptus essential oil.",
-        price: 12.49,
-        stock: 90,
-        category: "Aromatherapy",
-        image1Url: "https://via.placeholder.com/150/eucalyptus-oil1.jpg",
-        image2Url: "https://via.placeholder.com/150/eucalyptus-oil2.jpg",
-        image3Url: "https://via.placeholder.com/150/eucalyptus-oil3.jpg",
-      },
-      {
-        name: "Nourishing Face Mask",
-        description: "Deeply nourishing face mask that rejuvenates and revitalizes.",
-        price: 29.99,
-        stock: 75,
-        category: "Skincare",
-        image1Url: "https://via.placeholder.com/150/nourishing-mask1.jpg",
-        image2Url: "https://via.placeholder.com/150/nourishing-mask2.jpg",
-        image3Url: "https://via.placeholder.com/150/nourishing-mask3.jpg",
-      },
-      {
-        name: "Hair Growth Serum",
-        description: "Promote hair growth and thickness with this serum.",
-        price: 39.99,
-        stock: 50,
-        category: "Hair Care",
-        image1Url: "https://via.placeholder.com/150/hair-growth-serum1.jpg",
-        image2Url: "https://via.placeholder.com/150/hair-growth-serum2.jpg",
-        image3Url: "https://via.placeholder.com/150/hair-growth-serum3.jpg",
-      },
-      {
-        name: "Anti-Frizz Hair Spray",
-        description: "Keep your hair smooth and frizz-free all day.",
+        name: "Cooling Aloe Vera Gel",
+        description:
+          "Soothing aloe vera gel that hydrates and calms irritated skin, ideal for after sun exposure.",
         price: 18.99,
-        stock: 65,
-        category: "Hair Care",
-        image1Url: "https://via.placeholder.com/150/anti-frizz-spray1.jpg",
-        image2Url: "https://via.placeholder.com/150/anti-frizz-spray2.jpg",
-        image3Url: "https://via.placeholder.com/150/anti-frizz-spray3.jpg",
-      },
-      {
-        name: "Bamboo Makeup Remover Pads",
-        description: "Eco-friendly reusable makeup remover pads.",
-        price: 9.99,
-        stock: 180,
-        category: "Makeup",
-        image1Url: "https://via.placeholder.com/150/makeup-pads1.jpg",
-        image2Url: "https://via.placeholder.com/150/makeup-pads2.jpg",
-        image3Url: "https://via.placeholder.com/150/makeup-pads3.jpg",
-      },
-      {
-        name: "Hydrating Face Mist",
-        description: "A refreshing face mist to hydrate and revitalize your skin throughout the day.",
-        price: 15.99,
-        stock: 120,
+        stock: 130,
         category: "Skincare",
-        image1Url: "https://via.placeholder.com/150/face-mist1.jpg",
-        image2Url: "https://via.placeholder.com/150/face-mist2.jpg",
-        image3Url: "https://via.placeholder.com/150/face-mist3.jpg",
+        image1Url: "https://via.placeholder.com/150/aloe-vera-gel1.jpg",
+        image2Url: "https://via.placeholder.com/150/aloe-vera-gel2.jpg",
+        image3Url: "https://via.placeholder.com/150/aloe-vera-gel3.jpg",
+      },
+      {
+        name: "Mint Foot Cream",
+        description:
+          "Revitalize tired feet with this mint-infused foot cream, providing cooling relief and hydration.",
+        price: 17.99,
+        stock: 110,
+        category: "Body Care",
+        image1Url: "https://via.placeholder.com/150/foot-cream1.jpg",
+        image2Url: "https://via.placeholder.com/150/foot-cream2.jpg",
+        image3Url: "https://via.placeholder.com/150/foot-cream3.jpg",
+      },
+      {
+        name: "Organic Facial Mist",
+        description:
+          "Refresh and hydrate your skin with this organic facial mist, perfect for a mid-day pick-me-up.",
+        price: 13.99,
+        stock: 200,
+        category: "Skincare",
+        image1Url: "https://via.placeholder.com/150/facial-mist1.jpg",
+        image2Url: "https://via.placeholder.com/150/facial-mist2.jpg",
+        image3Url: "https://via.placeholder.com/150/facial-mist3.jpg",
+      },
+      {
+        name: "Gentle Foaming Cleanser",
+        description:
+          "A gentle foaming cleanser that removes makeup and impurities while leaving your skin feeling soft and clean.",
+        price: 21.99,
+        stock: 150,
+        category: "Skincare",
+        image1Url: "https://via.placeholder.com/150/foaming-cleanser1.jpg",
+        image2Url: "https://via.placeholder.com/150/foaming-cleanser2.jpg",
+        image3Url: "https://via.placeholder.com/150/foaming-cleanser3.jpg",
+      },
+      {
+        name: "Anti-Acne Treatment Gel",
+        description:
+          "Target breakouts with this effective anti-acne gel, formulated with salicylic acid for fast relief.",
+        price: 27.99,
+        stock: 90,
+        category: "Skincare",
+        image1Url: "https://via.placeholder.com/150/acne-gel1.jpg",
+        image2Url: "https://via.placeholder.com/150/acne-gel2.jpg",
+        image3Url: "https://via.placeholder.com/150/acne-gel3.jpg",
+      },
+      {
+        name: "Strengthening Hair Conditioner",
+        description:
+          "This conditioner nourishes and strengthens hair, making it smooth and manageable.",
+        price: 22.99,
+        stock: 115,
+        category: "Hair Care",
+        image1Url: "https://via.placeholder.com/150/conditioner1.jpg",
+        image2Url: "https://via.placeholder.com/150/conditioner2.jpg",
+        image3Url: "https://via.placeholder.com/150/conditioner3.jpg",
+      },
+      {
+        name: "Brightening Under-Eye Patches",
+        description:
+          "Hydrating patches that brighten and refresh the under-eye area, reducing puffiness and dark circles.",
+        price: 19.99,
+        stock: 140,
+        category: "Skincare",
+        image1Url: "https://via.placeholder.com/150/eye-patches1.jpg",
+        image2Url: "https://via.placeholder.com/150/eye-patches2.jpg",
+        image3Url: "https://via.placeholder.com/150/eye-patches3.jpg",
+      },
+      {
+        name: "Calming Herbal Bath Oil",
+        description:
+          "Relaxing bath oil infused with herbal extracts, perfect for a soothing bath experience.",
+        price: 26.99,
+        stock: 100,
+        category: "Body Care",
+        image1Url: "https://via.placeholder.com/150/bath-oil1.jpg",
+        image2Url: "https://via.placeholder.com/150/bath-oil2.jpg",
+        image3Url: "https://via.placeholder.com/150/bath-oil3.jpg",
       },
     ];
+
 
     return Product.insertMany(products);
   })
