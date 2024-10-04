@@ -17,7 +17,7 @@ export const OrderTable = () => {
   const columns = React.useMemo(
     () => [
       {
-        Header: "Order ID", // New Order ID column
+        Header: "Order ID",
         accessor: "_id",
         filter: "includes",
       },
@@ -37,6 +37,18 @@ export const OrderTable = () => {
       {
         Header: "Status",
         accessor: "status",
+        Cell: ({ value }) => {
+          const statusClasses = {
+            pending: "bg-yellow-400 text-black p-1 rounded",
+            completed: "bg-green-500 text-white p-1 rounded",
+            deleted: "bg-red-500 text-white p-1 rounded",
+          };
+          return (
+            <span className={statusClasses[value] || ""}>
+              {value.charAt(0).toUpperCase() + value.slice(1)}
+            </span>
+          );
+        },
       },
       {
         Header: "Date",
@@ -48,12 +60,11 @@ export const OrderTable = () => {
     []
   );
 
-  // Sort orders with "pending" status first
   const sortedData = React.useMemo(() => {
     return orders.sort((a, b) => {
       if (a.status === "pending" && b.status !== "pending") return -1;
       if (a.status !== "pending" && b.status === "pending") return 1;
-      return 0; // Keep original order for other statuses
+      return 0;
     });
   }, [orders]);
 
