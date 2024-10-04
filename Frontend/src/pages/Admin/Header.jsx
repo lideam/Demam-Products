@@ -65,7 +65,7 @@ export const Header = () => {
                   href={item.href}
                   className={`text-gray-800 hover:text-gray-600 ${
                     item.isExternal
-                      ? "rounded-md bg-clayBrown p-4 text-white"
+                      ? "rounded-md bg-clayBrown p-4 text-white hover:text-white"
                       : ""
                   }`}
                 >

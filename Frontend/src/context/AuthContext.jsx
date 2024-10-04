@@ -66,10 +66,10 @@ export const AuthProvider = ({ children }) => {
         toast.success("Logged in successfully");
         navigate("/superadmin");
       } else {
-        toast.error(response.data.detail);
+        toast.error("invalid credentials");
       }
     } catch (error) {
-      toast.error(error.message);
+        toast.error("invalid credentials");
     } finally {
       setLoading(false);
     }
