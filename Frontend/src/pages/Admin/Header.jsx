@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../context";
 
 const navItems = [
   { name: "Main Website", href: "/", isExternal: true },
@@ -12,6 +14,7 @@ const navItems = [
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { logoutUser } = useContext(AuthContext);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -21,7 +24,16 @@ export const Header = () => {
     <>
       <nav className="fixed top-0 z-[9999] left-0 right-0 p-4 backdrop-blur-md bg-white/30 border-b border-gray-200">
         <div className="container mx-auto flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-gray-800">Demam Admin Page</h1>
+          <span className="flex gap-2 items-center">
+            <Link to="/superadmin" className="text-2xl font-bold text-gray-800">
+              Demam Admin Page
+            </Link>
+            <i
+              className="fa fa-power-off p-2 cursor-pointer bg-red-600 text-white rounded-xl"
+              onClick={logoutUser}
+            ></i>
+          </span>
+
           <div className="md:hidden">
             <button
               onClick={toggleMenu}
