@@ -19,6 +19,7 @@ const orderSchema = new mongoose.Schema(
     phoneNumber: { type: String, required: true }, // Customer phone number
     orderItems: [orderItemSchema], // Array of order items
     totalPrice: { type: Number, required: true },
+    status: { type: String, default: "pending" }, // Status default to "pending"
   },
   {
     timestamps: true, // Automatically manage createdAt and updatedAt fields

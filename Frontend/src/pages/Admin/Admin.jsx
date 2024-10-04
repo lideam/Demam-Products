@@ -4,6 +4,7 @@ import { Status } from "./Status";
 import { Loader } from "../../utils/Loader";
 import { Charts } from "./Charts";
 import { ProductTable } from "./ProductTable";
+import { OrderStatus } from "./OrderStatus";
 
 export const Admin = () => {
   const { loading } = useContext(DashboardContext);
@@ -12,11 +13,12 @@ export const Admin = () => {
   }
   return (
     <>
-      <div className="w-full flex flex-col gap-8 py-10 px-20">
+      <div className="w-full flex flex-col gap-8 py-10 px-20 bg-sandyBeige">
         Admin
         <Status />
         <Charts />
         <ProductTable />
+        <OrderStatus />
       </div>
     </>
   );
