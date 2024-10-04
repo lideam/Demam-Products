@@ -83,7 +83,7 @@ export const ProductRow = ({ product, handleUpdate, handleDelete }) => {
       <tr>
         <td className="p-4 border-b flex justify-center border-slate-200">
           {isEditing ? (
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1 p-0">
               {imageUrls.map((url, index) => (
                 <div key={index}>
                   <input
@@ -201,7 +201,7 @@ export const ProductRow = ({ product, handleUpdate, handleDelete }) => {
           <td className="text-center text-xl text-clayBrown">
             Product Description
           </td>
-          <td colSpan={5}>
+          <td colSpan={4}>
             <textarea
               name="description"
               value={editedProduct.description || ""}

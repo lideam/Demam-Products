@@ -50,28 +50,11 @@ export const ProductTable = () => {
     setCurrentPage((prev) => Math.min(prev + 1, totalPages));
   const handlePrevious = () => setCurrentPage((prev) => Math.max(prev - 1, 1));
 
-  const handleUpdateProduct = async (product) => {
-    try {
-      const response = await axios.put(
-        `${import.meta.env.VITE_REACT_APP_BACKEND_URL}api/products/${
-          product._id
-        }`,
-        product,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      setProducts((prev) =>
-        prev.map((p) => (p._id === product._id ? response.data.product : p))
-      );
-      toast.success("Product updated successfully!");
-    } catch (error) {
-      toast.error("Error updating product. Please try again.");
-      console.error("Error updating product:", error);
-    }
+  const handleUpdateProduct = (updatedProduct) => {
+    setProducts((prev) =>
+      prev.map((p) => (p._id === updatedProduct._id ? updatedProduct : p))
+    );
+    toast.success("Product updated locally!");
   };
 
   const handleDeleteProduct = async (id) => {
