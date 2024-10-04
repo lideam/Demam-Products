@@ -24,7 +24,7 @@ export const OrderChart = () => {
       {
         label: "Order Status Distribution",
         data: [pendingOrders, completedOrders, deletedOrders],
-        backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+        backgroundColor: ["#FFCE56", "#36A2EB", "#FF6384"],
       },
     ],
   };
