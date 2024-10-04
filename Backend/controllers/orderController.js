@@ -105,7 +105,11 @@ const getUserOrders = asyncHandler(async (req, res) => {
 
 const getAllOrders = async (req, res) => {
   try {
-    const orders = await Order.find(); 
+    const orders = await Order.find().populate({
+      path: "orderItems.product", // Populate the product field in orderItems
+      model: "Product", // Reference the Product model
+    });
+
     res.status(200).json({
       success: true,
       data: orders,
@@ -118,6 +122,7 @@ const getAllOrders = async (req, res) => {
     });
   }
 };
+
 
 module.exports = {
   placeOrder,

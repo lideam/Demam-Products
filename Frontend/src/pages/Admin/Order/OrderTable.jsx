@@ -17,8 +17,14 @@ export const OrderTable = () => {
   const columns = React.useMemo(
     () => [
       {
+        Header: "Order ID", // New Order ID column
+        accessor: "_id",
+        filter: "includes",
+      },
+      {
         Header: "Customer Name",
         accessor: "customerName",
+        filter: "includes",
       },
       {
         Header: "Phone Number",
@@ -35,13 +41,21 @@ export const OrderTable = () => {
       {
         Header: "Date",
         accessor: "createdAt",
-        Cell: ({ value }) =>  formatDistanceToNow(new Date(value), { addSuffix: true }),
+        Cell: ({ value }) =>
+          formatDistanceToNow(new Date(value), { addSuffix: true }),
       },
     ],
     []
   );
 
-  const data = React.useMemo(() => orders, [orders]);
+  // Sort orders with "pending" status first
+  const sortedData = React.useMemo(() => {
+    return orders.sort((a, b) => {
+      if (a.status === "pending" && b.status !== "pending") return -1;
+      if (a.status !== "pending" && b.status === "pending") return 1;
+      return 0; // Keep original order for other statuses
+    });
+  }, [orders]);
 
   const {
     getTableProps,
@@ -61,7 +75,7 @@ export const OrderTable = () => {
   } = useTable(
     {
       columns,
-      data,
+      data: sortedData,
       initialState: { pageIndex: 0 },
     },
     useFilters,
@@ -76,12 +90,6 @@ export const OrderTable = () => {
     setFilterInput(value);
   };
 
-  const handleProductSearch = (e) => {
-    const value = e.target.value || undefined;
-    setFilter("productName", value);
-    setFilterInput(value);
-  };
-
   const handleStatusChange = (e) => {
     const value = e.target.value || undefined;
     setStatusFilter(value);
@@ -89,42 +97,38 @@ export const OrderTable = () => {
   };
 
   const handleRowClick = (row) => {
-    row.toggleRowExpanded(!row.isExpanded);
     if (row.isExpanded) {
       row.toggleRowExpanded(false);
     } else {
-      for (let r of rows) {
+      for (let r of page) {
         if (r.id !== row.id) {
           r.toggleRowExpanded(false);
         }
       }
+      row.toggleRowExpanded(true);
     }
   };
 
   return (
     <div className="p-4 bg-gray-100 rounded-lg shadow-lg">
-      <input
-        value={filterInput}
-        onChange={handleFilterChange}
-        placeholder="Search by customer name..."
-        className="p-2 mb-4 border rounded"
-      />
-      <input
-        value={filterInput}
-        onChange={handleProductSearch}
-        placeholder="Search by product name or description..."
-        className="p-2 mb-4 border rounded"
-      />
-      <select
-        value={statusFilter}
-        onChange={handleStatusChange}
-        className="mb-4 border rounded p-2"
-      >
-        <option value="">All Statuses</option>
-        <option value="pending">Pending</option>
-        <option value="completed">Completed</option>
-        <option value="canceled">Canceled</option>
-      </select>
+      <div className="w-full flex justify-between">
+        <input
+          value={filterInput}
+          onChange={handleFilterChange}
+          placeholder="Search by customer name..."
+          className="p-2 mb-4 border-2 rounded outline-none border-clayBrown"
+        />
+        <select
+          value={statusFilter}
+          onChange={handleStatusChange}
+          className="mb-4 border rounded p-2 outline-none bg-clayBrown text-white"
+        >
+          <option value="">All Statuses</option>
+          <option value="pending">Pending</option>
+          <option value="completed">Completed</option>
+          <option value="deleted">Canceled</option>
+        </select>
+      </div>
       <table
         {...getTableProps()}
         className="min-w-full bg-white rounded-lg shadow-lg"
@@ -171,12 +175,49 @@ export const OrderTable = () => {
                     <td colSpan={columns.length} className="p-4 bg-gray-50">
                       <div>
                         <h4 className="font-bold">Ordered Products:</h4>
-                        <ul>
+                        <ul className="flex flex-wrap w-full gap-8">
                           {row.original.orderItems.map((item) => (
-                            <li key={item.product._id}>
-                              {item.product.name} - Quantity: {item.quantity} -
-                              Price: ${item.price}
-                            </li>
+                            <div key={item.product._id}>
+                              <div className="flex gap-4">
+                                <img
+                                  src={item.product.image1Url}
+                                  alt=""
+                                  className="w-32"
+                                />
+                                {item.product.image2Url && (
+                                  <img
+                                    src={item.product.image2Url}
+                                    alt=""
+                                    className="w-32"
+                                  />
+                                )}
+                                {item.product.image3Url && (
+                                  <img
+                                    src={item.product.image3Url}
+                                    alt=""
+                                    className="w-32"
+                                  />
+                                )}
+                              </div>
+                              <li className="flex flex-col gap-2">
+                                <a
+                                  target="_blank"
+                                  href={`/${item.product._id}/detail`}
+                                  className="font-bold text-clayBrown text-xl cursor-pointer"
+                                >
+                                  {item.product.name}{" "}
+                                  <i className="fa-solid fa-up-right-from-square"></i>
+                                </a>
+                                <p>
+                                  <b className="text-clayBrown">Quantity: </b>
+                                  {item.quantity}
+                                </p>
+                                <p>
+                                  <b className="text-clayBrown">Price: </b>
+                                  {item.price} ETB
+                                </p>
+                              </li>
+                            </div>
                           ))}
                         </ul>
                       </div>
