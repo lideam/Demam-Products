@@ -6,6 +6,7 @@ import { Charts } from "./Product/Charts";
 import { ProductTable } from "./Product/ProductTable";
 import { OrderStatus } from "./Order/OrderStatus";
 import { OrderChart } from "./Order/OrderChart";
+import { OrderTable } from "./Order/OrderTable";
 
 export const Admin = () => {
   const { loading } = useContext(DashboardContext);
@@ -21,6 +22,7 @@ export const Admin = () => {
         <ProductTable />
         <OrderStatus />
         <OrderChart />
+        <OrderTable />
       </div>
     </>
   );
