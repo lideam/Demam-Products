@@ -1,25 +1,27 @@
-// OrderRow.js
 import React from "react";
 
-export const OrderRow = ({ order }) => {
-    console.log(order);
+export const OrderRow = ({ order, renderProducts, handleToggleRow }) => {
   return (
-    <tr>
-      <td className="p-4 border-b border-slate-200">
-        <img
-          src={order.product.image1Url}
-          alt="Product Image"
-          className="w-32 h-32 rounded-xl"
-        />
-      </td>
-      <td className="p-4 border-b border-slate-200">{order.product.name}</td>
-      <td className="p-4 border-b border-slate-200">{order.quantity}</td>
-      <td className="p-4 border-b border-slate-200">{order.totalPrice}</td>
-      <td className="p-4 border-b border-slate-200">
-        <button
-          className="fa fa-trash p-2 rounded-md text-white hover:bg-red-700 bg-red-500"
-        />
-      </td>
-    </tr>
+    <React.Fragment>
+      <tr
+        {...order.getRowProps()}
+        className="cursor-pointer"
+        onClick={handleToggleRow}
+      >
+        {order.cells.map((cell) => (
+          <td {...cell.getCellProps()} className="p-4 border-b border-gray-200">
+            {cell.render("Cell")}
+          </td>
+        ))}
+      </tr>
+      {order.original.isExpanded && (
+        <tr>
+          <td colSpan={order.cells.length}>
+            {renderProducts(order.original.orderItems)}
+          </td>
+        </tr>
+      )}
+    </React.Fragment>
   );
 };
+

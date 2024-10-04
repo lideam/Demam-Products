@@ -10,12 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@emotion/react": "^11.13.3",
-    "@emotion/styled": "^11.13.0",
     "@fontsource/playfair-display": "^5.1.0",
     "@headlessui/react": "^2.1.8",
     "@heroicons/react": "^2.1.5",
-    "@mui/material": "^6.1.2",
     "@shadcn/ui": "^0.0.4",
     "axios": "^1.7.7",
     "chart.js": "^4.4.4",
