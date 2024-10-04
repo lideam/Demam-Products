@@ -67,6 +67,7 @@ export const DashboardProvider = ({ children }) => {
     orders,
     setOrders,
     admins,
+    setAdmins,
     loading,
   };
 

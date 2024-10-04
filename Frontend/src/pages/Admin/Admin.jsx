@@ -7,6 +7,7 @@ import { ProductTable } from "./Product/ProductTable";
 import { OrderStatus } from "./Order/OrderStatus";
 import { OrderChart } from "./Order/OrderChart";
 import { OrderTable } from "./Order/OrderTable";
+import { Admins } from "./Admins";
 
 export const Admin = () => {
   const { loading } = useContext(DashboardContext);
@@ -23,6 +24,7 @@ export const Admin = () => {
         <OrderStatus />
         <OrderChart />
         <OrderTable />
+        <Admins />
       </div>
     </>
   );

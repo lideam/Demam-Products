@@ -13,7 +13,7 @@ const registerAdmin = asyncHandler(async (req, res) => {
 
   if (adminExists) {
     res.status(400);
-    throw new Error("Admin already exists");
+    throw new Error("Admin with this phone number already exists.");
   }
 
   const admin = await Admin.create({
@@ -33,7 +33,7 @@ const registerAdmin = asyncHandler(async (req, res) => {
   if (admin) {
     res.status(201).json({
       success: true,
-      message: "Admin registered successfully",
+      message: "Admin registered successfully.",
       token,
       data: {
         _id: admin._id,
@@ -43,7 +43,9 @@ const registerAdmin = asyncHandler(async (req, res) => {
     });
   } else {
     res.status(400);
-    throw new Error("Invalid admin data");
+    throw new Error(
+      "Failed to register admin. Please check the provided data."
+    );
   }
 });
 
