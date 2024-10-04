@@ -5,6 +5,7 @@ import { Loader } from "../../utils/Loader";
 import { Charts } from "./Charts";
 import { ProductTable } from "./ProductTable";
 import { OrderStatus } from "./OrderStatus";
+import { OrderChart } from "./OrderChart";
 
 export const Admin = () => {
   const { loading } = useContext(DashboardContext);
@@ -19,6 +20,7 @@ export const Admin = () => {
         <Charts />
         <ProductTable />
         <OrderStatus />
+        <OrderChart />
       </div>
     </>
   );

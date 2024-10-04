@@ -26,6 +26,18 @@ const getRandomStatus = () => {
 const getRandomInt = (min, max) =>
   Math.floor(Math.random() * (max - min + 1)) + min;
 
+const getRandomDate = () => {
+  const now = new Date();
+  const daysAgo = getRandomInt(0, 30);
+  return new Date(
+    now.getFullYear(),
+    now.getMonth(),
+    now.getDate() - daysAgo,
+    getRandomInt(0, 23),
+    getRandomInt(0, 59)
+  );
+};
+
 const seedOrders = async () => {
   try {
     await Order.deleteMany({});
@@ -53,6 +65,7 @@ const seedOrders = async () => {
         orderItems,
         totalPrice,
         status: getRandomStatus(),
+        createdAt: getRandomDate(),
       });
       await newOrder.save();
     }

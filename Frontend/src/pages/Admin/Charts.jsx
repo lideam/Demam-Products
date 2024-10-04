@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { Bar, Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -56,7 +56,7 @@ export const Charts = () => {
   const orderDataMap = {};
 
   orders.forEach((order) => {
-    const date = new Date(order.createdAt); 
+    const date = new Date(order.createdAt);
     if (!isNaN(date.getTime())) {
       const formattedDate = date.toLocaleDateString();
       if (!orderDataMap[formattedDate]) {
@@ -119,7 +119,7 @@ export const Charts = () => {
               data={orderData}
               options={{
                 responsive: true,
-                maintainAspectRatio: true,
+                maintainAspectRatio: false,
                 plugins: {
                   legend: {
                     position: "top",
