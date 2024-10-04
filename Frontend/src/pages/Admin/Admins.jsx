@@ -13,6 +13,7 @@ export const Admins = () => {
     phoneNumber: "",
     password: "",
   });
+  const [loading, setLoading] = useState(false); // Add loading state
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -21,6 +22,7 @@ export const Admins = () => {
 
   const handleAddAdmin = async (e) => {
     e.preventDefault();
+    setLoading(true); // Set loading to true
     try {
       const response = await axios.post(
         `${backendUrl}api/admin/register`,
@@ -36,10 +38,13 @@ export const Admins = () => {
       }
     } catch (error) {
       toast.error("Admin already exists or enter a valid input");
+    } finally {
+      setLoading(false); // Set loading to false after request
     }
   };
 
   const handleDeleteAdmin = async (adminId) => {
+    setLoading(true); // Set loading to true
     try {
       const response = await axios.delete(
         `${backendUrl}api/admin/users/${adminId}`,
@@ -59,6 +64,8 @@ export const Admins = () => {
     } catch (error) {
       console.error("Error deleting admin:", error);
       toast.error("Failed to delete admin. Please try again.");
+    } finally {
+      setLoading(false); 
     }
   };
 
@@ -94,8 +101,9 @@ export const Admins = () => {
               <button
                 onClick={() => handleDeleteAdmin(admin._id)}
                 className="h-8 px-3 text-md font-bold text-red-400 border border-red-400 rounded-full hover:bg-blue-100"
+                disabled={loading}
               >
-                Delete
+                {loading ? "Deleting..." : "Delete"}
               </button>
             </div>
           ))}
@@ -135,6 +143,7 @@ export const Admins = () => {
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="Abebe Beso"
                 required
+                disabled={loading}
               />
             </div>
             <div className="mb-5">
@@ -152,6 +161,7 @@ export const Admins = () => {
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="09--------"
                 required
+                disabled={loading} 
               />
             </div>
             <div className="mb-5">
@@ -168,6 +178,7 @@ export const Admins = () => {
                 onChange={handleInputChange}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 required
+                disabled={loading}
               />
             </div>
             <div className="flex items-start mb-5">
@@ -180,9 +191,10 @@ export const Admins = () => {
             </div>
             <button
               type="submit"
-              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+              className="text-white bg-clayBrown focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+              disabled={loading} 
             >
-              Submit
+              {loading ? "Adding..." : "Submit"}
             </button>
           </form>
         )}
