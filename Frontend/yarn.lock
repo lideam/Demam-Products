@@ -1955,6 +1955,7 @@ __metadata:
     react-router-dom: "npm:^6.26.2"
     react-select: "npm:^5.8.0"
     tailwindcss: "npm:^3.4.10"
+    validator: "npm:^13.12.0"
     vite: "npm:^5.4.1"
   languageName: unknown
   linkType: soft
@@ -5389,6 +5390,13 @@ __metadata:
   version: 1.0.2
   resolution: "util-deprecate@npm:1.0.2"
   checksum: 10c0/41a5bdd214df2f6c3ecf8622745e4a366c4adced864bc3c833739791aeeeb1838119af7daed4ba36428114b5c67dcda034a79c882e97e43c03e66a4dd7389942
+  languageName: node
+  linkType: hard
+
+"validator@npm:^13.12.0":
+  version: 13.12.0
+  resolution: "validator@npm:13.12.0"
+  checksum: 10c0/21d48a7947c9e8498790550f56cd7971e0e3d724c73388226b109c1bac2728f4f88caddfc2f7ed4b076f9b0d004316263ac786a17e9c4edf075741200718cd32
   languageName: node
   linkType: hard
 

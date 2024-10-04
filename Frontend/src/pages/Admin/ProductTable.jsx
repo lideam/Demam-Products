@@ -4,6 +4,7 @@ import { FaSortUp, FaSortDown } from "react-icons/fa";
 import axios from "axios";
 import { ProductRow } from "./ProductRow";
 import { toast } from "react-hot-toast";
+import validator from "validator";
 
 export const ProductTable = () => {
   const { products, setProducts } = useContext(DashboardContext);
@@ -12,6 +13,18 @@ export const ProductTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
   const [sortDirection, setSortDirection] = useState({ key: "", order: "asc" });
+
+  // State for new product
+  const [newProduct, setNewProduct] = useState({
+    name: "",
+    price: "",
+    category: "",
+    stock: "",
+    image1Url: "",
+    image2Url: "",
+    image3Url: "",
+  });
+  const [showNewProductRow, setShowNewProductRow] = useState(false);
 
   useEffect(() => {
     const filteredProducts = products.filter((product) =>
@@ -37,6 +50,87 @@ export const ProductTable = () => {
     setSortedProducts(sorted);
     setSortDirection({ key, order });
   };
+
+  const handleAddProduct = async () => {
+    // Validation
+    if (
+      !newProduct.name ||
+      !newProduct.price ||
+      !newProduct.category ||
+      !newProduct.stock
+    ) {
+      toast.error("Please fill in all required fields.");
+      return;
+    }
+
+    // Ensure price and stock are numbers
+    if (isNaN(newProduct.price) || isNaN(newProduct.stock)) {
+      toast.error("Price and Stock must be valid numbers.");
+      return;
+    }
+
+    // Validate image URLs using validator
+    if (
+      !validator.isURL(newProduct.image1Url, {
+        require_protocol: true,
+        protocols: ["https"],
+      })
+    ) {
+      toast.error("Image URL 1 must be a valid HTTPS URL.");
+      return;
+    }
+
+    if (
+      newProduct.image2Url &&
+      !validator.isURL(newProduct.image2Url, {
+        require_protocol: true,
+        protocols: ["https"],
+      })
+    ) {
+      toast.error("Image URL 2 must be a valid HTTPS URL.");
+      return;
+    }
+
+    if (
+      newProduct.image3Url &&
+      !validator.isURL(newProduct.image3Url, {
+        require_protocol: true,
+        protocols: ["https"],
+      })
+    ) {
+      toast.error("Image URL 3 must be a valid HTTPS URL.");
+      return;
+    }
+
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_REACT_APP_BACKEND_URL}api/products`,
+        newProduct,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      setProducts((prev) => [...prev, response.data.product]);
+      toast.success("Product added successfully!");
+      setNewProduct({
+        name: "",
+        price: "",
+        category: "",
+        stock: "",
+        image1Url: "",
+        image2Url: "",
+        image3Url: "",
+      });
+      setShowNewProductRow(false);
+    } catch (error) {
+      toast.error("Error adding product. Please try again.");
+      console.error("Error adding product:", error);
+    }
+  };
+
 
   const indexOfLastProduct = currentPage * itemsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - itemsPerPage;
@@ -98,12 +192,92 @@ export const ProductTable = () => {
               <button
                 className="flex select-none items-center gap-2 rounded bg-slate-800 py-2.5 px-4 text-xs font-semibold text-white shadow-md transition-all hover:shadow-lg focus:opacity-[0.85]"
                 type="button"
+                onClick={() => setShowNewProductRow((prev) => !prev)}
               >
                 Add Product
               </button>
             </div>
           </div>
         </div>
+
+        {showNewProductRow && (
+          <div className="p-4">
+            <div className="flex gap-4 mb-4">
+              <input
+                type="text"
+                placeholder="Product Name"
+                value={newProduct.name}
+                onChange={(e) =>
+                  setNewProduct({ ...newProduct, name: e.target.value })
+                }
+                className="border rounded p-2 w-full"
+              />
+              <input
+                type="number"
+                placeholder="Price"
+                value={newProduct.price}
+                onChange={(e) =>
+                  setNewProduct({ ...newProduct, price: e.target.value })
+                }
+                className="border rounded p-2 w-full"
+              />
+              <input
+                type="text"
+                placeholder="Category"
+                value={newProduct.category}
+                onChange={(e) =>
+                  setNewProduct({ ...newProduct, category: e.target.value })
+                }
+                className="border rounded p-2 w-full"
+              />
+              <input
+                type="number"
+                placeholder="Stock"
+                value={newProduct.stock}
+                onChange={(e) =>
+                  setNewProduct({ ...newProduct, stock: e.target.value })
+                }
+                className="border rounded p-2 w-full"
+              />
+            </div>
+            <div className="flex gap-4 mb-4">
+              <input
+                type="text"
+                placeholder="Image URL 1"
+                value={newProduct.image1Url}
+                onChange={(e) =>
+                  setNewProduct({ ...newProduct, image1Url: e.target.value })
+                }
+                className="border rounded p-2 w-full"
+              />
+              <input
+                type="text"
+                placeholder="Image URL 2 (optional)"
+                value={newProduct.image2Url}
+                onChange={(e) =>
+                  setNewProduct({ ...newProduct, image2Url: e.target.value })
+                }
+                className="border rounded p-2 w-full"
+              />
+              <input
+                type="text"
+                placeholder="Image URL 3 (optional)"
+                value={newProduct.image3Url}
+                onChange={(e) =>
+                  setNewProduct({ ...newProduct, image3Url: e.target.value })
+                }
+                className="border rounded p-2 w-full"
+              />
+            </div>
+            <button
+              onClick={handleAddProduct}
+              className="flex select-none items-center gap-2 rounded bg-green-600 py-2.5 px-4 text-xs font-semibold text-white shadow-md transition-all hover:shadow-lg focus:opacity-[0.85]"
+            >
+              Add New Product
+            </button>
+          </div>
+        )}
+
         <div className="p-0">
           <table className="w-full mt-4 text-left table-auto min-w-max">
             <thead>
