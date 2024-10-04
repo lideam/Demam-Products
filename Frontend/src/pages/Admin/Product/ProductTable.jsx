@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { DashboardContext } from "../../context/DashboardContext";
+import { DashboardContext } from "../../../context/DashboardContext";
 import { FaSortUp, FaSortDown } from "react-icons/fa";
 import axios from "axios";
 import { ProductRow } from "./ProductRow";

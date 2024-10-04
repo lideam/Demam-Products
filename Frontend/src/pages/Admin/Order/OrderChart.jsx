@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Pie } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Title, Tooltip, Legend } from "chart.js";
-import { DashboardContext } from "../../context/DashboardContext";
+import { DashboardContext } from "../../../context/DashboardContext";
 
 ChartJS.register(ArcElement, Title, Tooltip, Legend);
 

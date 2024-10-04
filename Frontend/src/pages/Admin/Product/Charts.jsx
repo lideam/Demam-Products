@@ -11,7 +11,7 @@ import {
   PointElement,
   LineElement,
 } from "chart.js";
-import { DashboardContext } from "../../context/DashboardContext";
+import { DashboardContext } from "../../../context/DashboardContext";
 
 ChartJS.register(
   CategoryScale,

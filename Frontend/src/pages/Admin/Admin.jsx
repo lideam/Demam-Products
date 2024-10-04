@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import { DashboardContext } from "../../context/DashboardContext";
-import { Status } from "./Status";
+import { Status } from "./Product/Status";
 import { Loader } from "../../utils/Loader";
-import { Charts } from "./Charts";
-import { ProductTable } from "./ProductTable";
-import { OrderStatus } from "./OrderStatus";
-import { OrderChart } from "./OrderChart";
+import { Charts } from "./Product/Charts";
+import { ProductTable } from "./Product/ProductTable";
+import { OrderStatus } from "./Order/OrderStatus";
+import { OrderChart } from "./Order/OrderChart";
 
 export const Admin = () => {
   const { loading } = useContext(DashboardContext);

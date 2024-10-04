@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { DashboardContext } from "../../context/DashboardContext";
-import { Card } from "./Card";
+import { DashboardContext } from "../../../context/DashboardContext";
+import { Card } from "../Card";
 
 export const OrderStatus = () => {
   const { orders } = useContext(DashboardContext);
@@ -22,10 +22,26 @@ export const OrderStatus = () => {
   return (
     <div className="container items-center px-4 py-8 m-auto mt-5">
       <div className="flex flex-wrap pb-3 mx-4 md:mx-24 lg:mx-0">
-       <Card text={pendingOrders} name="Pending Orders" className="fa fa-box" />
-        <Card text={deletedOrders} name="Deleted Orders" className="fa fa-trash" />
-        <Card text={completedOrders} name="Completed Orders" className="fa fa-check-circle" />
-        <Card text={distinctPhoneNumbers} name="Ordered Users" className="fa fa-phone" />
+        <Card
+          text={pendingOrders}
+          name="Pending Orders"
+          className="fa fa-box"
+        />
+        <Card
+          text={deletedOrders}
+          name="Deleted Orders"
+          className="fa fa-trash"
+        />
+        <Card
+          text={completedOrders}
+          name="Completed Orders"
+          className="fa fa-check-circle"
+        />
+        <Card
+          text={distinctPhoneNumbers}
+          name="Ordered Users"
+          className="fa fa-phone"
+        />
       </div>
     </div>
   );

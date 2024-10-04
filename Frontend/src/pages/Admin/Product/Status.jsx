@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { DashboardContext } from "../../context/DashboardContext";
-import { Card } from "./Card";
+import { DashboardContext } from "../../../context/DashboardContext";
+import { Card } from "../Card";
 
 export const Status = () => {
   const { products, orders, admins } = useContext(DashboardContext);
