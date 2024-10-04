@@ -7,10 +7,12 @@ import {
   usePagination,
 } from "react-table";
 import { DashboardContext } from "../../../context";
+import { formatDistanceToNow } from "date-fns";
 
 export const OrderTable = () => {
   const { orders } = useContext(DashboardContext);
   const [filterInput, setFilterInput] = useState("");
+  const [statusFilter, setStatusFilter] = useState("");
 
   const columns = React.useMemo(
     () => [
@@ -29,6 +31,11 @@ export const OrderTable = () => {
       {
         Header: "Status",
         accessor: "status",
+      },
+      {
+        Header: "Date",
+        accessor: "createdAt",
+        Cell: ({ value }) =>  formatDistanceToNow(new Date(value), { addSuffix: true }),
       },
     ],
     []
@@ -69,13 +76,23 @@ export const OrderTable = () => {
     setFilterInput(value);
   };
 
+  const handleProductSearch = (e) => {
+    const value = e.target.value || undefined;
+    setFilter("productName", value);
+    setFilterInput(value);
+  };
+
+  const handleStatusChange = (e) => {
+    const value = e.target.value || undefined;
+    setStatusFilter(value);
+    setFilter("status", value);
+  };
+
   const handleRowClick = (row) => {
     row.toggleRowExpanded(!row.isExpanded);
-    // Collapse other rows
     if (row.isExpanded) {
       row.toggleRowExpanded(false);
     } else {
-      // Collapse all other rows
       for (let r of rows) {
         if (r.id !== row.id) {
           r.toggleRowExpanded(false);
@@ -92,11 +109,27 @@ export const OrderTable = () => {
         placeholder="Search by customer name..."
         className="p-2 mb-4 border rounded"
       />
+      <input
+        value={filterInput}
+        onChange={handleProductSearch}
+        placeholder="Search by product name or description..."
+        className="p-2 mb-4 border rounded"
+      />
+      <select
+        value={statusFilter}
+        onChange={handleStatusChange}
+        className="mb-4 border rounded p-2"
+      >
+        <option value="">All Statuses</option>
+        <option value="pending">Pending</option>
+        <option value="completed">Completed</option>
+        <option value="canceled">Canceled</option>
+      </select>
       <table
         {...getTableProps()}
         className="min-w-full bg-white rounded-lg shadow-lg"
       >
-        <thead className="bg-blue-500 text-white">
+        <thead className="bg-clayBrown text-white">
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (
@@ -166,28 +199,28 @@ export const OrderTable = () => {
           <button
             onClick={() => gotoPage(0)}
             disabled={!canPreviousPage}
-            className="text-blue-500 hover:underline mr-2"
+            className="text-clayBrown hover:underline mr-2"
           >
             {"<<"}
           </button>
           <button
             onClick={() => previousPage()}
             disabled={!canPreviousPage}
-            className="text-blue-500 hover:underline mr-2"
+            className="text-clayBrown hover:underline mr-2"
           >
             {"<"}
           </button>
           <button
             onClick={() => nextPage()}
             disabled={!canNextPage}
-            className="text-blue-500 hover:underline mr-2"
+            className="text-clayBrown hover:underline mr-2"
           >
             {">"}
           </button>
           <button
             onClick={() => gotoPage(pageOptions.length - 1)}
             disabled={!canNextPage}
-            className="text-blue-500 hover:underline"
+            className="text-clayBrown hover:underline"
           >
             {">>"}
           </button>
@@ -198,7 +231,7 @@ export const OrderTable = () => {
             }}
             className="ml-4 border rounded p-1"
           >
-            {[10, 20, 30, 40, 50].map((size) => (
+            {[5, 10, 20, 30, 40, 50].map((size) => (
               <option key={size} value={size}>
                 Show {size}
               </option>
