@@ -65,6 +65,7 @@ export const DashboardProvider = ({ children }) => {
     products,
     setProducts,
     orders,
+    setOrders,
     admins,
     loading,
   };

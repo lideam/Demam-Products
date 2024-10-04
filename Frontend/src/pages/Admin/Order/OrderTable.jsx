@@ -6,13 +6,18 @@ import {
   useSortBy,
   usePagination,
 } from "react-table";
-import { DashboardContext } from "../../../context";
+import { AuthContext, DashboardContext } from "../../../context";
 import { formatDistanceToNow } from "date-fns";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 export const OrderTable = () => {
-  const { orders } = useContext(DashboardContext);
+  const { orders, setOrders } = useContext(DashboardContext);
+  const { authTokens } = useContext(AuthContext);
   const [filterInput, setFilterInput] = useState("");
   const [statusFilter, setStatusFilter] = useState("");
+  const [loadingOrderId, setLoadingOrderId] = useState(null); // State for tracking loading status
+  const backendUrl = import.meta.env.VITE_REACT_APP_BACKEND_URL;
 
   const columns = React.useMemo(
     () => [
@@ -37,16 +42,61 @@ export const OrderTable = () => {
       {
         Header: "Status",
         accessor: "status",
-        Cell: ({ value }) => {
-          const statusClasses = {
-            pending: "bg-yellow-400 text-black p-1 rounded",
-            completed: "bg-green-500 text-white p-1 rounded",
-            deleted: "bg-red-500 text-white p-1 rounded",
+        Cell: ({ row, value }) => {
+          const handleStatusChange = async (e) => {
+            const newStatus = e.target.value;
+            setLoadingOrderId(row.original._id); // Set loading state
+
+            try {
+              await axios.put(
+                `${backendUrl}api/orders/${row.original._id}`,
+                { status: newStatus },
+                {
+                  headers: {
+                    Authorization: `Bearer ${authTokens}`,
+                  },
+                }
+              );
+
+              const updatedOrders = orders.map((order) =>
+                order._id === row.original._id
+                  ? { ...order, status: newStatus }
+                  : order
+              );
+              setOrders(updatedOrders);
+
+              toast.success("Order status updated successfully!");
+            } catch (error) {
+              toast.error("Failed to update order status.");
+            } finally {
+              setLoadingOrderId(null); // Reset loading state
+            }
           };
+
           return (
-            <span className={statusClasses[value] || ""}>
-              {value.charAt(0).toUpperCase() + value.slice(1)}
-            </span>
+            <div className="relative">
+              <select
+                value={value}
+                onChange={handleStatusChange}
+                className={`p-2 rounded ${
+                  value === "pending"
+                    ? "bg-yellow-400 text-black"
+                    : value === "completed"
+                    ? "bg-green-500 text-white"
+                    : "bg-red-500 text-white"
+                }`}
+                disabled={loadingOrderId === row.original._id} // Disable while loading
+              >
+                <option value="pending">Pending</option>
+                <option value="completed">Completed</option>
+                <option value="deleted">Canceled</option>
+              </select>
+              {loadingOrderId === row.original._id && (
+                <div className="absolute inset-0 flex items-center justify-center bg-gray-300 bg-opacity-50">
+                  <span className="loader"></span>
+                </div>
+              )}
+            </div>
           );
         },
       },
@@ -57,7 +107,7 @@ export const OrderTable = () => {
           formatDistanceToNow(new Date(value), { addSuffix: true }),
       },
     ],
-    []
+    [orders, setOrders, loadingOrderId]
   );
 
   const sortedData = React.useMemo(() => {
@@ -276,20 +326,18 @@ export const OrderTable = () => {
           >
             {">>"}
           </button>
-          <select
-            value={pageSize}
-            onChange={(e) => {
-              setPageSize(Number(e.target.value));
-            }}
-            className="ml-4 border-2 rounded p-1 outline-none border-clayBrown"
-          >
-            {[5, 10, 20, 30, 40, 50].map((size) => (
-              <option key={size} value={size}>
-                Show {size}
-              </option>
-            ))}
-          </select>
         </div>
+        <select
+          value={pageSize}
+          onChange={(e) => setPageSize(Number(e.target.value))}
+          className="p-2 border-2 rounded text-clayBrown border-clayBrown outline-none"
+        >
+          {[5, 10, 20, 50].map((pageSize) => (
+            <option key={pageSize} value={pageSize}>
+              Show {pageSize}
+            </option>
+          ))}
+        </select>
       </div>
     </div>
   );

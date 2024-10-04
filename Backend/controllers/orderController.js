@@ -123,9 +123,62 @@ const getAllOrders = async (req, res) => {
   }
 };
 
+const updateOrderStatus = asyncHandler(async (req, res) => {
+  const { orderId } = req.params; // Get the order ID from the route parameters
+  const { status } = req.body; // Get the new status from the request body
+
+  // Validate the incoming request
+  if (!status) {
+    return res.status(400).json({
+      success: false,
+      message: "Status is required",
+    });
+  }
+
+  const validStatuses = ["pending", "completed", "deleted"]; // Define valid statuses
+  if (!validStatuses.includes(status)) {
+    return res.status(400).json({
+      success: false,
+      message: `Invalid status. Valid statuses are: ${validStatuses.join(
+        ", "
+      )}`,
+    });
+  }
+
+  // Find the order by its ID
+  const order = await Order.findById(orderId);
+
+  if (!order) {
+    return res.status(404).json({
+      success: false,
+      message: "Order not found",
+    });
+  }
+
+  // Update the status field of the order
+  order.status = status;
+
+  try {
+    // Save the updated order
+    const updatedOrder = await order.save();
+
+    res.status(200).json({
+      success: true,
+      message: "Order status updated successfully",
+      data: updatedOrder,
+    });
+  } catch (error) {
+    console.error("Error saving order:", error);
+    res.status(500).json({
+      success: false,
+      message: "Error updating order status",
+    });
+  }
+});
 
 module.exports = {
   placeOrder,
   getUserOrders,
   getAllOrders,
+  updateOrderStatus,
 };
