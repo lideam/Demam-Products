@@ -82,7 +82,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem("authTokens");
     toast.success("Logged out successfully");
     setLoading(false);
-    navigate("/superadmin");
+    navigate("/");
   };
 
   const value = {
