@@ -55,7 +55,12 @@ export const Charts = () => {
 
   const orderDataMap = {};
 
-  orders.forEach((order) => {
+  // Sort orders by createdAt date before processing
+  const sortedOrders = orders
+    .slice()
+    .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+
+  sortedOrders.forEach((order) => {
     const date = new Date(order.createdAt);
     if (!isNaN(date.getTime())) {
       const formattedDate = date.toLocaleDateString();
